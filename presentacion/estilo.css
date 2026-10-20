@@ -1,0 +1,506 @@
+/* ==========================================================================
+   Inteligencia artificial sin artificios — estilo retro (escritorio de 1998)
+   Escenario fijo de 1920×1080 escalado a la pantalla. Sin fuentes remotas.
+   ========================================================================== */
+
+:root {
+  --escritorio: #007878;
+  --gris: #c0c0c0;
+  --gris-claro: #dfdfdf;
+  --gris-oscuro: #808080;
+  --blanco: #ffffff;
+  --negro: #000000;
+  --azul: #000080;
+  --azul-claro: #1084d0;
+  --amarillo: #ffffe1;
+  --rojo: #c00000;
+  --verde: #007a00;
+  --morado: #800080;
+
+  --sans: Tahoma, Verdana, "DejaVu Sans", "Segoe UI", sans-serif;
+  --mono: "Lucida Console", "Courier New", "DejaVu Sans Mono", ui-monospace, monospace;
+  --titulo: "Arial Black", "Arial", "Helvetica Neue", "DejaVu Sans", sans-serif;
+
+  --t: .45s;
+  --curva: cubic-bezier(.2, .7, .2, 1);
+
+  /* biselados de Windows 98 */
+  --relieve: inset -2px -2px 0 var(--negro), inset 2px 2px 0 var(--blanco),
+             inset -4px -4px 0 var(--gris-oscuro), inset 4px 4px 0 var(--gris-claro);
+  --hundido: inset 2px 2px 0 var(--gris-oscuro), inset -2px -2px 0 var(--blanco),
+             inset 4px 4px 0 var(--negro), inset -4px -4px 0 var(--gris-claro);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+#marco { position: fixed; inset: 0; display: grid; place-items: center; }
+
+#escenario {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  flex: none;
+  background: var(--escritorio);
+  color: var(--negro);
+  font-family: var(--sans);
+  font-size: 38px;
+  line-height: 1.3;
+  overflow: hidden;
+  transform-origin: center center;
+  cursor: default;
+}
+
+/* --------------------------------------------------------------------------
+   Escenas y beats
+   -------------------------------------------------------------------------- */
+
+.escena {
+  position: absolute;
+  inset: 0 0 64px 0;              /* deja sitio a la barra de tareas */
+  padding: 70px 110px 60px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--t) ease, visibility 0s linear var(--t);
+}
+.escena.activa { opacity: 1; visibility: visible; transition: opacity var(--t) ease; }
+
+[data-in], [data-out] {
+  transition: opacity var(--t) var(--curva), translate var(--t) var(--curva), scale var(--t) var(--curva);
+}
+.sin-transicion * { transition: none !important; }
+.oculto { opacity: 0 !important; translate: 0 16px; pointer-events: none; }
+svg .oculto { translate: none; }
+.ventana.oculto { translate: 0 0; scale: .96; }
+
+.nota { display: none; }
+
+.sin-movimiento *, .sin-movimiento *::before, .sin-movimiento *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Maquetación
+   -------------------------------------------------------------------------- */
+
+.pila { display: grid; width: 100%; height: 100%; }
+.pila > * { grid-area: 1 / 1; min-width: 0; min-height: 0; }
+.pila > .ventana, .pila > .columna { align-self: start; }
+
+.centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 34px;
+}
+.columna { display: flex; flex-direction: column; gap: 26px; }
+.fila { display: flex; align-items: center; gap: 36px; }
+.fila.arriba { align-items: flex-start; }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; height: 100%; }
+.dos-izq { display: grid; grid-template-columns: 800px 1fr; gap: 56px; align-items: center; height: 100%; }
+.tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; align-items: stretch; }
+
+/* --------------------------------------------------------------------------
+   Tipografía
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, p { margin: 0; font-weight: inherit; }
+
+.sobre-escritorio { color: var(--blanco); text-shadow: 3px 3px 0 rgba(0, 0, 0, .55); }
+
+.gigante { font-family: var(--titulo); font-size: 120px; line-height: 1.02; letter-spacing: -0.01em; }
+.titular { font-family: var(--titulo); font-size: 80px; line-height: 1.1; }
+.frase { font-size: 60px; line-height: 1.2; font-weight: 700; }
+.texto { font-size: 38px; line-height: 1.35; }
+.pequeno { font-size: 30px; line-height: 1.4; }
+.mini { font-size: 24px; line-height: 1.4; }
+
+.etiqueta { font-size: 24px; font-weight: 700; color: var(--gris-oscuro); text-transform: uppercase; letter-spacing: .06em; }
+
+.acento { color: var(--azul); }
+.rojo { color: var(--rojo); }
+.verde { color: var(--verde); }
+.tenue { color: var(--gris-oscuro); }
+.mono { font-family: var(--mono); }
+.negrita { font-weight: 700; }
+
+/* texto "seleccionado" al estilo Windows */
+.sel { background: var(--azul); color: var(--blanco); padding: 0 .18em; }
+
+.ilustrativo {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--gris-oscuro);
+}
+
+/* WordArt para el título */
+.wordart {
+  padding: 0 .2em;
+  font-family: var(--titulo);
+  font-style: italic;
+  font-size: 132px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  background: linear-gradient(180deg, #fff36b 0%, #ffb200 45%, #ff5e00 55%, #c80000 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 3px #3a0000;
+  filter: drop-shadow(8px 8px 0 rgba(0, 0, 0, .55));
+  transform: perspective(900px) rotateX(14deg) skewX(-6deg);
+}
+
+/* --------------------------------------------------------------------------
+   Ventanas de Windows 98
+   -------------------------------------------------------------------------- */
+
+.ventana {
+  background: var(--gris);
+  box-shadow: var(--relieve), 10px 10px 0 rgba(0, 0, 0, .35);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  min-width: 0;
+}
+
+.ventana > .barra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 46px;
+  padding: 0 6px 0 12px;
+  background: linear-gradient(90deg, var(--azul), var(--azul-claro));
+  color: var(--blanco);
+  font-weight: 700;
+  font-size: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ventana.inactiva > .barra { background: linear-gradient(90deg, var(--gris-oscuro), #b5b5b5); color: var(--gris-claro); }
+.ventana > .barra .icono { font-size: 24px; }
+.ventana > .barra .nombre { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.ventana > .barra .botones { display: flex; gap: 4px; }
+.ventana > .barra .botones i {
+  width: 32px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--gris);
+  box-shadow: inset -1px -1px 0 var(--negro), inset 1px 1px 0 var(--blanco), inset -2px -2px 0 var(--gris-oscuro);
+  color: var(--negro);
+  font-style: normal;
+  font-size: 20px;
+  font-family: var(--sans);
+  line-height: 1;
+}
+
+.ventana > .cuerpo { padding: 26px 30px; flex: 1 1 auto; min-height: 0; }
+.ventana > .cuerpo.blanco {
+  margin: 8px 4px 4px;
+  background: var(--blanco);
+  box-shadow: var(--hundido);
+  padding: 30px 36px;
+}
+.ventana > .cuerpo.dos-cuerpo { display: flex; flex-direction: column; gap: 22px; }
+
+/* cuadro de diálogo con icono */
+.dialogo .cuerpo { display: flex; gap: 34px; align-items: center; padding: 36px 44px; }
+.dialogo .icono-grande { font-size: 84px; line-height: 1; flex: none; }
+
+.boton {
+  display: inline-block;
+  min-width: 170px;
+  padding: 12px 28px;
+  background: var(--gris);
+  box-shadow: var(--relieve);
+  font-size: 28px;
+  text-align: center;
+}
+
+.boton.pulsado { box-shadow: var(--hundido); }
+
+/* --------------------------------------------------------------------------
+   Código: Bloc de notas y MS-DOS
+   -------------------------------------------------------------------------- */
+
+pre.codigo {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 29px;
+  line-height: 1.5;
+  color: var(--negro);
+  white-space: pre;
+  text-align: left;
+}
+pre.codigo.compacto { font-size: 23px; }
+
+pre.codigo .linea { display: block; transition: opacity .3s ease, background .3s ease; }
+pre.codigo.con-foco .linea { opacity: .25; }
+pre.codigo.con-foco .linea.foco { opacity: 1; background: #ffff9c; }
+
+.c-com { color: var(--verde); }
+.c-cad { color: #a31515; }
+.c-num { color: var(--morado); }
+.c-var { color: var(--azul); }
+.c-pal { color: #0000ff; font-weight: 700; }
+.c-fun { color: #795e26; }
+
+.dos-prompt {
+  background: #000;
+  color: #c0c0c0;
+  font-family: var(--mono);
+  font-size: 28px;
+  line-height: 1.45;
+  padding: 26px 30px;
+  white-space: pre;
+  margin: 8px 4px 4px;
+  box-shadow: var(--hundido);
+}
+.dos-prompt .claro { color: #fff; }
+.dos-prompt .amarillo { color: #ffff55; }
+.dos-prompt .verde { color: #55ff55; }
+
+/* --------------------------------------------------------------------------
+   Piezas comunes
+   -------------------------------------------------------------------------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 26px;
+  background: var(--gris);
+  box-shadow: var(--relieve);
+  font-size: 32px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.chip.activo { box-shadow: var(--hundido); background: var(--gris-claro); }
+
+.flecha { color: var(--blanco); font-size: 44px; font-weight: 700; text-shadow: 2px 2px 0 rgba(0, 0, 0, .5); }
+.flecha.oscura { color: var(--negro); text-shadow: none; }
+
+.cifra { font-family: var(--titulo); font-size: 112px; line-height: 1; font-variant-numeric: tabular-nums; }
+.cifra-media { font-family: var(--titulo); font-size: 72px; line-height: 1; font-variant-numeric: tabular-nums; }
+
+table.tabla {
+  border-collapse: collapse;
+  font-size: 32px;
+  font-variant-numeric: tabular-nums;
+  background: var(--blanco);
+}
+table.tabla th {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: left;
+  padding: 8px 18px;
+  background: var(--gris);
+  box-shadow: inset -1px -1px 0 var(--gris-oscuro), inset 1px 1px 0 var(--blanco);
+  white-space: nowrap;
+}
+table.tabla td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #d8d8d8;
+  white-space: nowrap;
+  transition: opacity var(--t) ease, background var(--t) ease, color var(--t) ease;
+}
+table.tabla .der { text-align: right; }
+table.tabla tr.marcada td { background: #ffff9c; }
+
+.sello {
+  display: inline-block;
+  padding: 8px 22px;
+  border: 4px solid var(--rojo);
+  color: var(--rojo);
+  font-family: var(--titulo);
+  font-size: 30px;
+  text-transform: uppercase;
+  rotate: -5deg;
+  background: rgba(255, 255, 255, .85);
+}
+
+/* barra de progreso de instalador */
+.progreso98 {
+  height: 36px;
+  background: var(--blanco);
+  box-shadow: var(--hundido);
+  padding: 5px;
+  display: flex;
+  gap: 4px;
+  overflow: hidden;
+}
+.progreso98 i { width: 22px; flex: none; background: var(--azul); }
+
+/* --------------------------------------------------------------------------
+   Barra de tareas (indica en qué parte de la charla estamos)
+   -------------------------------------------------------------------------- */
+
+#barra-tareas {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 64px;
+  background: var(--gris);
+  box-shadow: inset 0 2px 0 var(--gris-claro), inset 0 4px 0 var(--blanco);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 4px;
+  z-index: 10;
+  font-family: var(--sans);
+}
+#barra-tareas .inicio {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  font-weight: 700;
+  font-size: 24px;
+  background: var(--gris);
+  box-shadow: var(--relieve);
+}
+#barra-tareas .inicio b { font-family: var(--titulo); font-style: italic; color: var(--azul); }
+#barra-tareas .separador { width: 4px; height: 44px; box-shadow: inset 1px 0 0 var(--gris-oscuro), inset -1px 0 0 var(--blanco); margin: 0 4px; }
+#barra-tareas .tareas { display: flex; gap: 6px; flex: 1; min-width: 0; }
+#barra-tareas .tarea {
+  height: 46px;
+  min-width: 0;
+  flex: 0 1 240px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 21px;
+  background: var(--gris);
+  box-shadow: var(--relieve);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--gris-oscuro);
+  transition: none;
+}
+#barra-tareas .tarea.actual {
+  box-shadow: var(--hundido);
+  background: repeating-conic-gradient(var(--gris-claro) 0 25%, var(--blanco) 0 50%) 0 0 / 4px 4px;
+  color: var(--negro);
+  font-weight: 700;
+}
+#barra-tareas .reloj {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  font-size: 22px;
+  box-shadow: inset 1px 1px 0 var(--gris-oscuro), inset -1px -1px 0 var(--blanco);
+}
+
+#progreso { display: none; }
+
+/* --------------------------------------------------------------------------
+   Clip, el ayudante
+   -------------------------------------------------------------------------- */
+
+#clip {
+  position: absolute;
+  right: 60px;
+  bottom: 90px;
+  width: 150px;
+  height: 230px;
+  z-index: 9;
+  opacity: 0;
+  translate: 0 30px;
+  transition: opacity .4s ease, translate .5s var(--curva);
+  pointer-events: none;
+}
+#clip.presente { opacity: 1; translate: 0 0; }
+#clip svg { width: 100%; height: 100%; overflow: visible; }
+#clip .cuerpo-clip { animation: flotar 3.2s ease-in-out infinite; transform-origin: 60px 190px; }
+#clip .ojos { animation: parpadeo 5s infinite; transform-origin: 60px 62px; }
+#clip .cejas { transition: translate .3s ease; }
+#clip.presente .cejas { animation: cejas 5s ease-in-out infinite; }
+
+@keyframes flotar { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1.5deg); } }
+@keyframes parpadeo { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes cejas { 0%, 70%, 100% { translate: 0 0; } 76%, 88% { translate: 0 -7px; } }
+
+/* bocadillo amarillo de Clip: vive dentro de cada escena */
+.clip-dice {
+  position: absolute;
+  right: 220px;
+  bottom: 120px;
+  max-width: 560px;
+  background: var(--amarillo);
+  border: 2px solid var(--negro);
+  border-radius: 14px;
+  padding: 22px 26px;
+  font-size: 27px;
+  line-height: 1.35;
+  color: var(--negro);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, .3);
+  z-index: 8;
+  text-align: left;
+}
+.clip-dice::after {
+  content: "";
+  position: absolute;
+  right: -26px;
+  bottom: 34px;
+  border: 13px solid transparent;
+  border-left: 18px solid var(--negro);
+}
+.clip-dice::before {
+  content: "";
+  position: absolute;
+  right: -20px;
+  bottom: 36px;
+  border: 11px solid transparent;
+  border-left: 15px solid var(--amarillo);
+  z-index: 1;
+}
+.clip-dice .opciones { display: flex; gap: 14px; margin-top: 16px; }
+.clip-dice .opciones span {
+  font-size: 22px;
+  padding: 6px 16px;
+  background: var(--gris);
+  box-shadow: inset -1px -1px 0 var(--negro), inset 1px 1px 0 var(--blanco), inset -2px -2px 0 var(--gris-oscuro);
+}
+
+/* --------------------------------------------------------------------------
+   Capas del operador: vista general, apagón, ayuda
+   -------------------------------------------------------------------------- */
+
+#apagon { position: fixed; inset: 0; background: #000; z-index: 50; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+#apagon.activo { opacity: 1; }
+
+#general {
+  position: fixed; inset: 0; z-index: 40;
+  background: rgba(0, 60, 60, .97);
+  color: var(--blanco);
+  font-family: var(--sans);
+  padding: 50px 70px;
+  overflow: auto;
+  display: none;
+}
+#general.activo { display: block; }
+#general h2 { font-size: 20px; margin-bottom: 26px; }
+#general ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+#general li { background: var(--gris); color: var(--negro); box-shadow: var(--relieve); padding: 18px 22px; cursor: pointer; }
+#general li.actual, #general li:hover { box-shadow: var(--hundido); background: var(--gris-claro); }
+#general li b { display: block; font-size: 22px; margin-bottom: 4px; }
+#general li span { font-size: 15px; color: var(--gris-oscuro); }
+
+#ayuda {
+  position: fixed; top: 14px; left: 50%; translate: -50% 0; z-index: 30;
+  font-family: var(--sans); font-size: 14px; color: #000;
+  background: var(--amarillo); border: 1px solid #000;
+  padding: 6px 14px;
+  opacity: 0; transition: opacity .4s ease; pointer-events: none;
+}
+#ayuda.visible { opacity: 1; }

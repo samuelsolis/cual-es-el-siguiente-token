@@ -1,0 +1,585 @@
+/* ==========================================================================
+   Estilos propios de cada escena
+   ========================================================================== */
+
+.titulo-pila { width: auto; height: auto; }
+
+/* --------------------------------------------------------------------------
+   Apertura: la caja negra
+   -------------------------------------------------------------------------- */
+
+.caja-negra { width: 1000px; }
+.caja-negra .interior {
+  position: relative;
+  height: 470px;
+  margin: 8px 4px 4px;
+  background: #000;
+  box-shadow: var(--hundido);
+  overflow: hidden;
+  padding: 0;
+}
+.caja-negra .interrogacion {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--titulo);
+  font-size: 300px;
+  color: #fff;
+  transition: opacity .4s ease;
+}
+.caja-negra .numeros {
+  position: absolute; inset: 0;
+  padding: 14px 18px;
+  font-family: var(--mono);
+  font-size: 22px;
+  line-height: 1.32;
+  color: #55ff55;
+  word-break: break-all;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+.caja-negra.abierta .interrogacion { opacity: 0; }
+.caja-negra.abierta .numeros { opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   La neurona
+   -------------------------------------------------------------------------- */
+
+svg.diagrama text { text-anchor: middle; font-family: var(--sans); }
+svg.diagrama .cables line { stroke: #000; stroke-width: 3; }
+svg.diagrama .cables line.b { stroke: var(--rojo); }
+svg.diagrama .nodos circle { fill: #fff; stroke: #000; stroke-width: 3; }
+svg.diagrama .nodos circle.nucleo { fill: var(--amarillo); stroke-width: 4; }
+svg.diagrama .nodos circle.nucleo.b { stroke: var(--rojo); }
+svg.diagrama .pesos text {
+  font-size: 32px; font-weight: 700; fill: var(--azul);
+  paint-order: stroke; stroke: #fff; stroke-width: 12px; stroke-linejoin: round;
+}
+svg.diagrama .pesos text.b { fill: var(--rojo); }
+svg.diagrama .pesos text.sesgo { font-size: 26px; font-weight: 400; fill: #000; }
+svg.diagrama .simbolo { font-size: 54px; font-weight: 700; }
+svg.diagrama .simbolo.b { fill: var(--rojo); }
+svg.diagrama .rotulo text { font-size: 32px; fill: var(--gris-oscuro); }
+svg.diagrama .valor text { font-size: 38px; font-weight: 700; }
+svg.diagrama .valor text.resultado { fill: var(--azul); font-size: 34px; }
+svg.diagrama .valor text.resultado.b { fill: var(--rojo); }
+svg.diagrama .pie { font-size: 24px; fill: var(--gris-oscuro); }
+
+
+pre.cuenta {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 30px;
+  line-height: 1.55;
+}
+pre.cuenta b { color: var(--azul); }
+
+/* --------------------------------------------------------------------------
+   Del texto a números
+   -------------------------------------------------------------------------- */
+
+.fichas { gap: 30px; }
+.ficha {
+  width: 180px;
+  height: 260px;
+  background: var(--gris);
+  box-shadow: var(--relieve), 8px 8px 0 rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.ficha span {
+  width: 140px; height: 140px;
+  display: grid; place-items: center;
+  background: #fff;
+  box-shadow: var(--hundido);
+  font-family: var(--mono);
+  font-size: 110px;
+  line-height: 1;
+}
+.ficha b { font-family: var(--titulo); font-size: 52px; color: var(--azul); line-height: 1; }
+
+.alfabeto { display: grid; grid-template-columns: repeat(27, 1fr); gap: 4px; }
+.alfabeto div {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 6px 0;
+  font-family: var(--mono);
+  font-size: 30px;
+  line-height: 1.1;
+  border: 1px solid #ddd;
+}
+.alfabeto div small { font-size: 18px; color: var(--gris-oscuro); }
+.alfabeto div.marcada { background: var(--azul); color: #fff; border-color: var(--azul); }
+.alfabeto div.marcada small { color: #cfe; }
+
+.trozo {
+  display: inline-block;
+  padding: 2px 14px;
+  margin: 0 2px;
+  border: 2px dashed var(--azul);
+  background: #eef;
+}
+
+table.hoja-calculo {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 21px;
+  font-variant-numeric: tabular-nums;
+}
+table.hoja-calculo th, table.hoja-calculo td {
+  border: 1px solid #c8c8c8;
+  padding: 1px 12px;
+  text-align: right;
+  white-space: nowrap;
+}
+table.hoja-calculo th {
+  background: var(--gris);
+  font-weight: 400;
+  text-align: center;
+  box-shadow: inset -1px -1px 0 var(--gris-oscuro), inset 1px 1px 0 #fff;
+}
+table.hoja-calculo td.fila-nombre {
+  background: var(--gris);
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 24px;
+  box-shadow: inset -1px -1px 0 var(--gris-oscuro), inset 1px 1px 0 #fff;
+}
+table.hoja-calculo tr.marcada td { background: #ffff9c; }
+table.hoja-calculo tr.marcada td.fila-nombre { background: var(--azul); color: #fff; }
+table.hoja-calculo td.puntos { text-align: center; color: var(--gris-oscuro); }
+
+/* --------------------------------------------------------------------------
+   Mapas de palabras
+   -------------------------------------------------------------------------- */
+
+svg.mapa { background: #fff; }
+svg.mapa text { font-family: var(--sans); font-size: 28px; text-anchor: middle; }
+svg.mapa .palabra circle { fill: var(--azul); }
+svg.mapa .zona ellipse { fill: #eef3ff; stroke: #9aa; stroke-width: 2; stroke-dasharray: 8 6; }
+svg.mapa .zona text { font-size: 22px; fill: var(--gris-oscuro); font-style: italic; }
+
+svg.mapa .movil {
+  transform: translate(var(--x0), var(--y0));
+  transition: transform 2.4s cubic-bezier(.3, .1, .2, 1);
+}
+svg.mapa.entrenado .movil { transform: translate(var(--x1), var(--y1)); }
+svg.mapa .movil.animal circle { fill: var(--verde); }
+svg.mapa .movil.dinero circle { fill: var(--rojo); }
+svg.mapa .movil.realeza circle { fill: var(--morado); }
+
+.banco-movil { transform: translate(430px, 255px); transition: transform 1.4s cubic-bezier(.3, .1, .2, 1); }
+.banco-movil circle { fill: var(--acento-banco, #ff8c00); stroke: #000; stroke-width: 3; }
+.banco-movil text { font-weight: 700; font-size: 30px; }
+.banco-movil.a-peces { transform: translate(205px, 105px); }
+.banco-movil.a-parque { transform: translate(665px, 105px); }
+.banco-movil.a-central { transform: translate(435px, 375px); }
+
+/* --------------------------------------------------------------------------
+   Atención
+   -------------------------------------------------------------------------- */
+
+.frase-banco {
+  display: flex;
+  gap: 16px;
+  padding: 44px 26px 20px;
+  background: var(--gris);
+  box-shadow: var(--relieve);
+  transition: opacity var(--t) ease;
+}
+.frase-banco.apagada { opacity: .35; }
+.tok {
+  position: relative;
+  display: inline-block;
+  padding: 10px 22px;
+  background: #fff;
+  box-shadow: var(--hundido);
+  font-family: var(--mono);
+  font-size: 42px;
+  transition: outline-color .4s ease;
+  outline: 0 solid transparent;
+}
+.tok.banco { background: var(--azul); color: #fff; box-shadow: none; }
+.tok em {
+  position: absolute;
+  left: 50%;
+  top: -36px;
+  translate: -50% 0;
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--azul);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.frase-banco.viva .tok em { opacity: 1; }
+.frase-banco.viva .tok.fuerte { outline: 6px solid #ff8c00; }
+
+.vector-fila { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin-bottom: 10px; }
+.vector-fila span {
+  padding: 8px 4px;
+  border: 1px solid #c8c8c8;
+  font-size: 22px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  background: #ffff9c;
+}
+
+.rejilla-coste { display: grid; grid-template-columns: repeat(24, 1fr); gap: 2px; }
+.rejilla-coste i { aspect-ratio: 1; background: #e6e6e6; transition: background .15s ease; }
+.rejilla-coste i.on { background: var(--azul); }
+.rejilla-coste i.diag { background: var(--rojo); }
+
+.pila-modelo { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.pila-modelo .chip { font-size: 30px; }
+.pila-modelo .flecha { font-size: 36px; line-height: 1; }
+.bloque-repetido {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 34px;
+  border: 4px dashed #fff;
+}
+.bloque-repetido .veces {
+  position: absolute;
+  right: -190px;
+  font-family: var(--titulo);
+  font-size: 36px;
+  color: #ffff9c;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, .5);
+}
+
+/* --------------------------------------------------------------------------
+   Entrenar
+   -------------------------------------------------------------------------- */
+
+.enunciado { font-size: 52px; margin-bottom: 8px; }
+.hueco b { display: none; color: var(--verde); }
+.hueco.lleno .raya { display: none; }
+.hueco.lleno b { display: inline; background: #d8ffd8; padding: 0 .2em; }
+
+.frase-contador { min-height: 34px; margin-bottom: 8px; font-family: var(--mono); }
+
+table.probabilidades { width: 100%; }
+table.probabilidades td { padding: 14px 14px; }
+.barra-prob {
+  position: relative;
+  width: 360px;
+  height: 40px;
+  background: #fff;
+  box-shadow: var(--hundido);
+}
+.barra-prob i {
+  position: absolute;
+  left: 4px; top: 4px; bottom: 4px;
+  width: calc((100% - 8px) * var(--v, 0) / 100);
+  background: var(--azul);
+  transition: width .5s ease;
+}
+.barra-prob span {
+  position: absolute;
+  right: -78px;
+  top: 2px;
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cuerpo.bucle { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 34px; }
+.cuerpo.bucle .chip { font-size: 34px; }
+
+/* --------------------------------------------------------------------------
+   Generar
+   -------------------------------------------------------------------------- */
+
+.texto-generado {
+  min-height: 110px;
+  font-size: 44px;
+  padding: 18px 22px;
+  background: #fff;
+  box-shadow: var(--hundido);
+  margin-bottom: 26px;
+}
+.texto-generado .nuevo { background: #d8ffd8; }
+.texto-generado .cursor { display: inline-block; width: .55em; height: 1em; background: #000; vertical-align: -0.12em; animation: cursor 1s steps(1) infinite; }
+@keyframes cursor { 50% { opacity: 0; } }
+
+.candidatos { display: flex; flex-direction: column; gap: 10px; }
+.candidato { display: grid; grid-template-columns: 220px 1fr 110px; align-items: center; gap: 18px; font-size: 32px; padding: 4px 10px; }
+.candidato .b { height: 34px; background: #fff; box-shadow: var(--hundido); position: relative; }
+.candidato .b i { position: absolute; left: 4px; top: 4px; bottom: 4px; width: calc((100% - 8px) * var(--v) / 100); background: var(--gris-oscuro); }
+.candidato.elegido { background: var(--azul); color: #fff; }
+.candidato.elegido .b i { background: #ffd27a; }
+.candidato .p { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* --------------------------------------------------------------------------
+   Para muestra, un botón
+   -------------------------------------------------------------------------- */
+
+.pixeles { display: grid; grid-template-columns: repeat(28, 18px); grid-auto-rows: 18px; gap: 1px; background: #ddd; padding: 1px; width: max-content; }
+.pixeles i { background: rgb(var(--g), var(--g), var(--g)); }
+
+#grafica-entreno text { font-family: var(--sans); font-size: 22px; }
+#grafica-entreno .eje { stroke: #000; stroke-width: 2; }
+#grafica-entreno .guia { stroke: #ddd; stroke-width: 1; }
+#grafica-entreno .error { stroke: var(--rojo); stroke-width: 5; fill: none; }
+#grafica-entreno .acierto { stroke: var(--azul); stroke-width: 5; fill: none; }
+#grafica-entreno .punto-error { fill: var(--rojo); }
+#grafica-entreno .punto-acierto { fill: var(--azul); }
+
+#traza-entreno { font-size: 23px; }
+
+img.hoja { display: block; width: 100%; height: 760px; object-fit: contain; background: #fff; }
+
+.numeros-hoja { display: grid; grid-template-columns: repeat(3, auto); column-gap: 46px; font-size: 30px; }
+.numeros-hoja .fallo { color: #ff6666; text-decoration: underline; }
+.numeros-hoja .ok { color: #55ff55; }
+
+/* --------------------------------------------------------------------------
+   LLM
+   -------------------------------------------------------------------------- */
+
+.fases { align-items: start; transition: opacity var(--t) ease; }
+.fases.atenuada { opacity: .2; }
+.fases .ventana { min-height: 520px; }
+
+/* --------------------------------------------------------------------------
+   LoRA
+   -------------------------------------------------------------------------- */
+
+.bloques-modelo { display: grid; grid-template-columns: repeat(26, 1fr); gap: 4px; }
+.bloques-modelo i { aspect-ratio: 1; background: var(--azul); transition: background .6s ease; }
+.bloques-modelo i.adaptador { background: #ff8c00; opacity: 0; transition: opacity .6s ease .3s; }
+.bloques-modelo.congelado i { background: #bdbdbd; }
+.bloques-modelo.congelado i.adaptador { background: #ff8c00; opacity: 1; }
+
+table.lora td.f, table.lora td.a { transition: background .4s ease; }
+table.lora.col-formato td.f { background: #ffff9c; }
+table.lora.col-acierto td.a { background: #ffd8d8; }
+
+/* --------------------------------------------------------------------------
+   RAG y cierre
+   -------------------------------------------------------------------------- */
+
+.flujo-rag { display: flex; align-items: center; gap: 14px; flex-wrap: nowrap; }
+.flujo-rag .chip { font-size: 26px; padding: 12px 18px; }
+.flujo-rag .flecha { font-size: 34px; }
+
+.qr-hueco {
+  width: 150px; height: 150px; flex: none;
+  display: grid; place-items: center;
+  background: #fff;
+  border: 3px dashed var(--gris-oscuro);
+  font-family: var(--titulo);
+  font-size: 36px;
+  color: var(--gris-oscuro);
+}
+
+/* ajustes tras revisar capturas */
+.ventana svg { max-width: 100%; height: auto; display: block; }
+.rejilla-coste { width: 330px; margin: 0 auto; }
+.bloque-repetido .veces { right: -215px; }
+table.probabilidades td:nth-child(2) { padding-right: 100px; }
+.barra-prob { width: 320px; }
+.frase-contador { font-size: 26px; color: var(--azul); }
+
+/* --------------------------------------------------------------------------
+   Neurona → capa → red: una sola figura que se transforma
+   -------------------------------------------------------------------------- */
+
+#diagrama-neurona .arista { stroke: #000; stroke-width: 3; transition: stroke .5s ease, stroke-width .5s ease; }
+#diagrama-neurona .arista.b { stroke: var(--rojo); }
+#diagrama-neurona .arista.red { stroke: #b0b0b0; stroke-width: 1.6; }
+#diagrama-neurona.encendida .arista.red { stroke: var(--azul); stroke-width: 2.4; }
+#diagrama-neurona .nodo { fill: #fff; stroke: #000; stroke-width: 3; }
+#diagrama-neurona .nodo.nucleo { fill: var(--amarillo); stroke-width: 4; }
+#diagrama-neurona .nodo.b { stroke: var(--rojo); }
+#diagrama-neurona .caja { fill: rgba(0, 0, 128, .05); stroke: var(--azul); stroke-width: 3; stroke-dasharray: 10 7; }
+#diagrama-neurona .capa-nombre { fill: var(--azul); font-weight: 700; }
+
+/* los textos esperan a que la figura termine de moverse; al irse, se van ya */
+#diagrama-neurona .capa-texto { transition: opacity .45s ease .95s; }
+#diagrama-neurona .capa-texto.oculto { transition-delay: 0s; }
+.sin-movimiento #diagrama-neurona .capa-texto { transition: none; }
+
+/* --------------------------------------------------------------------------
+   Arranque: el modelo de juguete ("El perro come carne")
+   -------------------------------------------------------------------------- */
+
+.fichas-palabra { gap: 26px; flex-wrap: wrap; justify-content: center; max-width: 1300px; }
+.ficha-palabra {
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+/* cada palabra, un token: mismo recuadro punteado que en tokenizar.exe */
+.ficha-palabra span {
+  align-self: stretch;
+  text-align: center;
+  padding: 6px 20px;
+  border: 3px dashed var(--azul);
+  background: #eef;
+  font-family: var(--mono);
+  font-size: 56px;
+}
+.ficha-palabra b { font-family: var(--titulo); font-size: 56px; color: var(--blanco); line-height: 1; text-shadow: 3px 3px 0 rgba(0, 0, 0, .45); }
+
+/* «perro» vuela de tokenizar.exe a la frase */
+.pieza-volando {
+  position: absolute; z-index: 50; box-sizing: border-box; pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 56px; padding: 6px 20px;
+  border: 3px dashed var(--azul); background: #eef;
+}
+
+table.hoja-calculo.grande { font-size: 30px; }
+table.hoja-calculo.grande th, table.hoja-calculo.grande td { padding: 10px 18px; }
+table.hoja-calculo td.token { text-align: left; font-family: var(--mono); }
+
+svg.mapa .eje-mapa { stroke: #ccc; stroke-width: 2; }
+svg.mapa .eje-texto { font-size: 22px; fill: var(--gris-oscuro); }
+svg.mapa .punto-token { transition: transform .35s ease; }
+svg.mapa .punto-token circle { fill: var(--azul); }
+svg.mapa-3d .punto-token { transition: none; }
+svg.mapa .plano-mapa { fill: #eef3ff; stroke: #c8d2ee; stroke-width: 2; }
+svg.mapa .caida { stroke: var(--azul); stroke-width: 2; stroke-dasharray: 5 5; }
+svg.mapa .sombra { fill: #9aa6c8; }
+
+/* La columna d3 crece al pasar a 3 dimensiones */
+#tabla-juguete .d3 { font-size: 0; padding-left: 0; padding-right: 0; border-left-width: 0; border-right-width: 0; transition: font-size .9s var(--curva), padding .9s var(--curva); }
+#tabla-juguete.con-d3 .d3 { font-size: 30px; padding-left: 18px; padding-right: 18px; border-left-width: 1px; }
+svg.mapa .punto-token text { font-family: var(--mono); font-size: 28px; font-weight: 700; text-anchor: start; }
+
+table.hoja-calculo.cambios { font-size: 18px; }
+table.hoja-calculo.cambios td { text-align: left; padding: 5px 6px; white-space: nowrap; }
+table.hoja-calculo.cambios td.fila-nombre { text-align: left; font-family: var(--sans); font-size: 17px; }
+table.hoja-calculo.cambios td.cambia { background: #ffff9c; }
+table.hoja-calculo.cambios td.cambia b { color: var(--azul); }
+table.hoja-calculo.cambios td.igual { color: var(--gris-oscuro); }
+table.hoja-calculo.cambios td.nada { background: #eee; }
+
+.ejemplo-juguete { display: grid; grid-template-columns: 300px 1fr; align-items: center; gap: 20px; font-size: 34px; }
+.barra-prob.ancha { width: 340px; margin-right: 90px; }
+
+#diagrama-neurona .salida-token text { font-family: var(--mono); font-size: 26px; text-anchor: start; }
+#diagrama-neurona .salida-token text.gana { font-weight: 700; fill: var(--rojo); }
+#diagrama-neurona .nodo.gana { fill: #ffd8d8; }
+#diagrama-neurona .acento-texto { fill: var(--azul); font-weight: 700; }
+#diagrama-neurona .valor text.v { font-size: 28px; }
+#diagrama-neurona .pequeno-svg text { font-size: 22px; font-weight: 700; }
+#diagrama-neurona .rotulo-salida { font-size: 34px; fill: var(--gris-oscuro); }
+.barra-prob span { right: auto; left: calc(100% + 12px); white-space: nowrap; }
+#diagrama-neurona text.resultado { font-size: 28px; font-weight: 700; fill: var(--azul); }
+#diagrama-neurona text.resultado.b { fill: var(--rojo); }
+table.probabilidades.juguete .barra-prob { width: 230px; }
+table.probabilidades.juguete td { padding: 7px 14px; }
+table.probabilidades.juguete td:nth-child(2) { padding-right: 110px; }
+#tabla-juguete th, #tabla-juguete td { padding: 4px 18px; }
+
+/* Un token no es una palabra */
+.troceo { padding: 40px 50px; }
+.fila-troceo { display: flex; align-items: center; gap: 22px; }
+.fila-troceo .palabra-entera { width: 430px; font-family: var(--mono); font-size: 56px; }
+.fila-troceo .pieza {
+  font-family: var(--mono);
+  font-size: 56px;
+  padding: 6px 20px;
+  border: 3px dashed var(--azul);
+  background: #eef;
+}
+.fila-troceo .pieza:nth-child(4) { background: #ffeedd; border-color: #c06000; }
+.fila-troceo .pieza:nth-child(5) { background: #e6ffe6; border-color: var(--verde); }
+
+/* Tipos de IA (apertura) */
+.tipos-ia .ventana { width: 860px; }
+.tipos-ia .cuerpo { align-items: flex-start; gap: 22px; padding: 30px 36px; }
+.tipos-ia .ventana.elegida { outline: 6px solid #ffff9c; outline-offset: 6px; }
+.tipos-ia .llm { padding: 0 .18em; transition: background .3s ease, color .3s ease; }
+.tipos-ia .llm.resaltado { background: var(--azul); color: var(--blanco); font-weight: 700; }
+
+/* Del azar al orden: mapa al azar → entrenar.exe → mapa entrenado */
+.del-azar { align-items: center; justify-content: center; gap: 28px; align-self: center; }
+.del-azar > * { transition: opacity .6s var(--curva), translate var(--t) var(--curva), scale .6s var(--curva); }
+.del-azar .pie-mapa { margin: 0; padding: 6px 0 4px; text-align: center; font-size: 26px; }
+.del-azar .pie-mapa .ilustrativo { font-size: 20px; }
+.del-azar .entrenar { width: 360px; }
+.del-azar .entrenar .barra-prob { width: 280px; }
+.del-azar .barra-prob.lleno i { --v: 100; transition: width 2s ease; }
+.del-azar.enfocado > :not(.entrenar) { opacity: .18; }
+.del-azar.enfocado > .entrenar { scale: 1.3; }
+
+/* Clip da cifras de modelos reales */
+.clip-cifras { max-width: 860px; }
+.clip-cifras table { border-collapse: collapse; margin: 14px 0 10px; font-size: 25px; }
+.clip-cifras th { font-size: 19px; font-weight: 700; text-align: right; padding: 4px 12px; vertical-align: bottom; line-height: 1.15; }
+.clip-cifras td { text-align: right; padding: 5px 12px; border-top: 1px solid rgba(0, 0, 0, .25); font-variant-numeric: tabular-nums; }
+.clip-cifras td:first-child { text-align: left; font-weight: 700; }
+.clip-cifras .pie-clip { font-size: 18px; color: #555; }
+
+/* Llave bajo el Excel: «tabla de embeddings» */
+.llave { display: flex; flex-direction: column; align-items: center; margin-top: 6px; }
+.llave svg { display: block; }
+.llave path { fill: none; stroke: #ffff9c; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.llave .frase { color: #ffff9c; margin: 4px 0 0; }
+
+/* El modelo entero: tabla + red, al azar y entrenado */
+.modelo-entero { gap: 22px; align-items: center; }
+.modelo-entero .lado-modelo { gap: 10px; align-items: center; }
+.modelo-entero .genera-lado { margin: 4px 0 0; font-size: 30px; }
+.modelo-entero .pie-mapa { font-size: 24px; margin: 0; }
+.modelo-entero .entrenar { width: 360px; }
+.modelo-entero .entrenar .barra-prob { width: 230px; }
+.modelo-entero .barra-prob.lleno i { --v: 100; transition: width 2s linear; }
+svg.red-pesos { background: #fff; }
+svg.red-pesos .peso { stroke-linecap: round; transition: stroke-width .12s linear; }
+svg.red-pesos .nodo-mini { fill: #fff; stroke: #000; stroke-width: 2.5; }
+svg.red-pesos .nodo-mini.gana { fill: #ffd8d8; stroke: var(--rojo); }
+svg.red-pesos .union-mini { fill: #000; }
+svg.red-pesos .salida-mini { font-family: var(--mono); font-size: 24px; }
+svg.red-pesos .salida-mini.gana { fill: var(--rojo); font-weight: 700; }
+svg.red-pesos .pie-mini { font-family: var(--sans); font-size: 18px; fill: var(--gris-oscuro); text-anchor: middle; }
+
+/* Una neurona: la caja es la neurona; dentro, sus pesos (azul) y su sesgo (morado) */
+#diagrama-neurona .caja-neurona { fill: rgba(255, 255, 156, .25); stroke: var(--gris-oscuro); stroke-width: 3; stroke-dasharray: 12 8; }
+#diagrama-neurona .nombre-neurona { font-size: 26px; font-weight: 700; fill: var(--gris-oscuro); }
+#diagrama-neurona .nombre-neurona.sub { font-size: 21px; font-weight: 400; }
+svg.diagrama .pesos text { font-size: 28px; }
+svg.diagrama .pesos text.sesgo-neurona { font-size: 28px; font-weight: 700; fill: var(--morado); }
+pre.cuenta .c-peso { color: var(--azul); font-weight: 700; }
+pre.cuenta .c-sesgo { color: var(--morado); font-weight: 700; }
+
+/* «Qué es cada cosa»: cabe en su ventana */
+table.tabla.que-es { font-size: 26px; }
+table.tabla.que-es td { padding: 10px 14px; vertical-align: top; line-height: 1.25; }
+table.tabla.que-es th { padding: 6px 14px; }
+
+/* La red: una salida por neurona oculta, que se reparte; zoom en la neurona de «gato» */
+#diagrama-neurona .nodo.union { fill: #000; stroke: none; }
+#diagrama-neurona .nodo.union.b { fill: var(--rojo); }
+#diagrama-neurona .arista.salida { stroke: #000; stroke-width: 5; }
+#diagrama-neurona .arista.salida.b { stroke: var(--rojo); }
+#diagrama-neurona .arista { transition: stroke .5s ease, stroke-width .5s ease, stroke-opacity .4s ease; }
+#diagrama-neurona.zoom-gato .arista.red:not(.hacia-f0):not(.salida) { stroke-opacity: .12; }
+#diagrama-neurona.zoom-gato .arista.hacia-f0 { stroke-width: 5px !important; }
+
+/* Parámetros del juguete: la cuenta pieza a pieza y el total, en grande */
+.dialogo .cuerpo.cuenta-parametros { display: block; padding: 10px 14px 6px; }
+.cuenta-parametros table.tabla { width: 100%; font-size: 22px; }
+.cuenta-parametros table.tabla td { padding: 8px 8px; }
+.cuenta-parametros .total-parametros { margin: 4px 0 0; text-align: center; color: var(--azul); font-size: 140px; }
+
+/* «Un modelo de verdad»: la red grande ocupa la pantalla */
+.red-agrandable { transform-origin: 0 0; transition: scale .9s var(--curva), translate .9s var(--curva); }
+.red-agrandable.agrandada { scale: 1.24; translate: 150px 0; }
+
+/* Textos de nuestra red que vuelven tras el modelo grande (visibles por data-on) */
+#diagrama-neurona .capa-texto.solo-on { transition: opacity .45s ease .95s; }
+#diagrama-neurona .capa-texto.solo-on:not(.visible) { opacity: 0; transition-delay: 0s; }
+.alerta { position: relative; z-index: 5; }
+.alerta .barra { background: linear-gradient(90deg, #800000, #c04000); }
