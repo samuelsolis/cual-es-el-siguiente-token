@@ -1,0 +1,8 @@
+{
+  "texto": "A los 15 años, Lola se fue a vivir a Ceuta.",
+  "respuesta": {
+    "nombre": "Lola",
+    "edad": 15,
+    "ciudad": "Ceuta"
+  }
+}

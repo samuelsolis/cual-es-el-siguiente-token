@@ -1,0 +1,8 @@
+{
+  "texto": "El paciente se llama Javier, tiene 47 años y reside en Murcia.",
+  "respuesta": {
+    "nombre": "Javier",
+    "edad": 47,
+    "ciudad": "Murcia"
+  }
+}

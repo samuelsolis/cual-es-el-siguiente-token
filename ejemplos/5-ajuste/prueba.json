@@ -1,0 +1,42 @@
+[
+  {
+    "texto": "Irene tiene 29 años y vive en Gijón.",
+    "esperado": {
+      "nombre": "Irene",
+      "edad": 29,
+      "ciudad": "Gijón"
+    }
+  },
+  {
+    "texto": "Me llamo Álvaro, soy de Huelva y tengo 54 años.",
+    "esperado": {
+      "nombre": "Álvaro",
+      "edad": 54,
+      "ciudad": "Huelva"
+    }
+  },
+  {
+    "texto": "Desde Lugo, Rosa nos cuenta que ya tiene 80 años.",
+    "esperado": {
+      "nombre": "Rosa",
+      "edad": 80,
+      "ciudad": "Lugo"
+    }
+  },
+  {
+    "texto": "Nombre: Hugo. Edad: 12. Ciudad: Teruel.",
+    "esperado": {
+      "nombre": "Hugo",
+      "edad": 12,
+      "ciudad": "Teruel"
+    }
+  },
+  {
+    "texto": "La clienta, Sara, de 45 años, vive en Almería.",
+    "esperado": {
+      "nombre": "Sara",
+      "edad": 45,
+      "ciudad": "Almería"
+    }
+  }
+]

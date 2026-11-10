@@ -1,0 +1,4 @@
+# Las frases con las que se entrena: una por línea.
+# Las mismas que hacen dudar al juguete sin atención (2-juguete).
+el perro come carne
+el gato come pescado

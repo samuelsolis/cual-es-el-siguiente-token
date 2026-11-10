@@ -74,7 +74,7 @@ Una simplificación que hay que decir en voz alta: **este juguete solo mira la �
 
 Muy breve, solo para que nadie se quede con la idea de que el modelo trabaja con palabras:
 
-- Los modelos trabajan con **tokens**: trozos de texto. Una palabra frecuente es un token (`perro`); una menos común se parte en varios (`token` + `ización`); una rara, en trozos sin significado propio (`int` + `elig` + `encia`). En pantalla salen de una en una. `tokenización` e `inteligencia` son el troceo real con un tokenizador actual (`o200k_base`, comprobado con `tiktoken`); `perro` es una simplificación (ese tokenizador lo parte en `per` + `ro`), elegida para enlazar con el juguete. Cada modelo trocea a su manera.
+- Los modelos trabajan con **tokens**: trozos de texto. Una palabra frecuente es un token (`perro`); una menos común se parte en varios (`token` + `ización`); una rara, en trozos sin significado propio (`int` + `elig` + `encia`). En pantalla salen de una en una. `tokenización` e `inteligencia` son el troceo real con un tokenizador actual (`o200k_base`, comprobado con `tiktoken`); `perro` suelto lo parte en `per` + `ro`, pero dentro de una frase « perro», con el espacio delante, es un solo token: «El perro come carne» son exactamente 4 tokens con `o200k_base`, como en el juguete (comprobado el 2026-11-10 con `ejemplos/1-tokenizador`). Así que la simplificación es verdad en la frase. Cada modelo trocea a su manera.
 - **El corte lo decide la frecuencia** con que cada trozo apareció en los textos de entrenamiento, no la gramática. (Si preguntan: por eso el español suele gastar más tokens que el inglés.)
 - **Para hoy, simplificamos: una palabra, un token.** Solo se dice; en pantalla no sale.
 

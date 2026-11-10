@@ -12,20 +12,23 @@ Abre la caja negra de un modelo de lenguaje con un modelo de juguete de verdad, 
 
 ## El modelo de juguete
 
-Está en [`presentacion/juguete.js`](presentacion/juguete.js), en JavaScript sin dependencias. La presentación lo entrena delante del público: todos los números que salen en pantalla los calcula él.
-
-Para verlo entrenar en la terminal (necesita [Node.js](https://nodejs.org/)):
+Está en [`ejemplos/2-juguete/`](ejemplos/2-juguete/), en JavaScript, con las frases de entrenamiento y las instrucciones. Necesita [Node.js](https://nodejs.org/):
 
 ```bash
 git clone https://github.com/samuelsolis/cual-es-el-siguiente-token.git
-cd cual-es-el-siguiente-token
-node presentacion/herramientas/probar-juguete.js
+cd cual-es-el-siguiente-token/ejemplos
+npm install
+node 2-juguete/train.js              # al azar dice «el gato gato gato»; entrenado, «el perro come carne»
+node 2-juguete/generate.js trained el
 ```
 
-Sale la tabla al azar, la primera neurona, un paso de entrenamiento y las 40 vueltas, hasta que genera «el perro come carne».
+## Ejemplos para hacer en casa
+
+En [`ejemplos/`](ejemplos/) está todo lo que se cuenta en la charla, para ejecutarlo tú con un solo `npm install`: primero con los datos de la charla y luego con los tuyos.
 
 ## Qué hay en el repositorio
 
 - [`presentacion/`](presentacion/): la presentación, en HTML, CSS y JavaScript sin dependencias. También se puede abrir en local con `presentacion/index.html`. Teclas y detalles en [`presentacion/README.md`](presentacion/README.md).
+- [`ejemplos/`](ejemplos/): los ejemplos para hacer en casa.
 - [`charla-drupalcamp-2026.md`](charla-drupalcamp-2026.md): el guion (discurso, notas y preguntas probables).
 - `CLAUDE.md` / `AGENTS.md`: estado del trabajo, decisiones y cómo verificar los cambios.

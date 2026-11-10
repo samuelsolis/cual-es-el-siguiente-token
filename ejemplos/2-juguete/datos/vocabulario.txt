@@ -1,0 +1,10 @@
+# El vocabulario: las palabras que el modelo conoce, en este orden (la primera es la 0).
+# Se decide antes de entrenar. Es opcional: si no hay, se saca de las frases.
+gato
+carne
+yo
+perro
+barco
+el
+pescado
+come

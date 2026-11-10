@@ -1,0 +1,8 @@
+{
+  "texto": "Elena cumplió ayer 30 años en su casa de Cádiz.",
+  "respuesta": {
+    "nombre": "Elena",
+    "edad": 30,
+    "ciudad": "Cádiz"
+  }
+}

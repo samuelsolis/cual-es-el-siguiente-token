@@ -1,0 +1,3 @@
+# Las frases con las que se entrena: una por línea.
+# Una palabra = un token. Las líneas que empiezan por # no cuentan.
+el perro come carne

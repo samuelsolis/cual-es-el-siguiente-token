@@ -1,0 +1,21 @@
+{
+  "name": "cual-es-el-siguiente-token-ejemplos",
+  "version": "1.0.0",
+  "description": "Ejemplos para ejecutar en casa lo que se cuenta en la charla «¿Cuál es el siguiente token?»",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "tokenize": "node 1-tokenizador/tokenize.js",
+    "train": "node 2-juguete/train.js",
+    "generate": "node 2-juguete/generate.js",
+    "train-attention": "node 3-atencion/train.js",
+    "generate-attention": "node 3-atencion/generate.js",
+    "compare": "node 4-base-o-instruct/compare.js"
+  },
+  "dependencies": {
+    "gpt-tokenizer": "^4.1.1"
+  }
+}

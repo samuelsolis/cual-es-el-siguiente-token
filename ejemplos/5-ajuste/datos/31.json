@@ -1,0 +1,8 @@
+{
+  "texto": "Mi vecino Joaquín, de 84 años, vive en Albacete.",
+  "respuesta": {
+    "nombre": "Joaquín",
+    "edad": 84,
+    "ciudad": "Albacete"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+ejemplos/*/models/
+ejemplos/5-ajuste/.cache/
+ejemplos/5-ajuste/adapter/
+ejemplos/5-ajuste/.venv/
+__pycache__/

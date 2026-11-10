@@ -1,0 +1,8 @@
+{
+  "texto": "Fernando tiene 70 años y se ha jubilado en Tarragona.",
+  "respuesta": {
+    "nombre": "Fernando",
+    "edad": 70,
+    "ciudad": "Tarragona"
+  }
+}

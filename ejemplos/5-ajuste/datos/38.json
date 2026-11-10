@@ -1,0 +1,8 @@
+{
+  "texto": "Teresa tiene 76 años y nació en Zamora.",
+  "respuesta": {
+    "nombre": "Teresa",
+    "edad": 76,
+    "ciudad": "Zamora"
+  }
+}

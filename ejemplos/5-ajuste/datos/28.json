@@ -1,0 +1,8 @@
+{
+  "texto": "La usuaria Silvia, 38 años, Lleida.",
+  "respuesta": {
+    "nombre": "Silvia",
+    "edad": 38,
+    "ciudad": "Lleida"
+  }
+}

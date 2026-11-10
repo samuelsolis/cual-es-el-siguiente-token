@@ -1,0 +1,12 @@
+# Ollama, el programa que ejecuta los modelos, en un contenedor.
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-charla
+    ports:
+      - "11434:11434"
+    volumes:
+      - modelos:/root/.ollama
+
+volumes:
+  modelos:

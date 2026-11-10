@@ -1,0 +1,8 @@
+{
+  "texto": "Desde Salamanca nos escribe Alberto, de 58 años.",
+  "respuesta": {
+    "nombre": "Alberto",
+    "edad": 58,
+    "ciudad": "Salamanca"
+  }
+}

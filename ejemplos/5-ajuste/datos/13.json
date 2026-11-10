@@ -1,0 +1,8 @@
+{
+  "texto": "La alumna Marta, de 17 años, estudia en Toledo.",
+  "respuesta": {
+    "nombre": "Marta",
+    "edad": 17,
+    "ciudad": "Toledo"
+  }
+}

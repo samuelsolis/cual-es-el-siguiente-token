@@ -1,0 +1,8 @@
+{
+  "texto": "María tiene 34 años y vive en Sevilla.",
+  "respuesta": {
+    "nombre": "María",
+    "edad": 34,
+    "ciudad": "Sevilla"
+  }
+}

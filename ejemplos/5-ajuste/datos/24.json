@@ -1,0 +1,8 @@
+{
+  "texto": "Úrsula cumplió 62 años en Ávila.",
+  "respuesta": {
+    "nombre": "Úrsula",
+    "edad": 62,
+    "ciudad": "Ávila"
+  }
+}

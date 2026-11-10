@@ -1,0 +1,8 @@
+{
+  "texto": "El cliente Ramón, de 67 años, reside en Ponferrada.",
+  "respuesta": {
+    "nombre": "Ramón",
+    "edad": 67,
+    "ciudad": "Ponferrada"
+  }
+}

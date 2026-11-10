@@ -13,6 +13,7 @@ Sesión de trabajo: del 2026-10-09 al 2026-10-20. Estado: **borrador muy inicial
 | Cómo abrirla, teclas, cómo editarla | `presentacion/README.md` |
 | Modelo de juguete «El perro come carne» | `presentacion/juguete.js` |
 | Herramientas para verificar | `presentacion/herramientas/` (ver abajo) |
+| Ejemplos para hacer en casa (un solo `npm install`) | `ejemplos/`: 1 tokenizador real (`gpt-tokenizer`, `o200k_base`), 2 el juguete (`train.js` / `generate.js`, mismos números que la presentación), 3 el juguete con atención (64 números, con la escala de los modelos reales), 4 base frente a instruct con Ollama (Llama 3.2 3B, en Docker), 5 ajuste con LoRA de SmolLM2-135M base en Docker y Python (40 ejemplos: frase sobre una persona → JSON; 5 de 5 en la prueba, y ya no sabe hacer otra cosa). Lo generado (models/, .cache/, adapter/, node_modules/) no se sube |
 | Datos reales de los dígitos (MNIST) | `~/web/Inteligencia Artificial sin artificios/ejemplos/5.6-digitos/` (`resultados.json`, `resultados-evaluacion.txt`, hoja escaneada) |
 | Fuente de todo lo demás (LoRA, RAG, fases de un LLM) | `~/web/Inteligencia Artificial sin artificios/Fuentes md/` (el libro) |
 
@@ -23,6 +24,7 @@ Sesión de trabajo: del 2026-10-09 al 2026-10-20. Estado: **borrador muy inicial
 - **Cuando pide entender algo ("no escribas nada")**, se le explica en la conversación sin editar ficheros. Después se plasma en guion y presentación.
 - **No inventar datos.** Todo número sale del libro o de una ejecución real. Lo ilustrativo se marca en pantalla como ilustrativo.
 - **Todo el código en JavaScript** de estilo clásico (`function`, `var`, bucles `for`, sin `reduce` ni funciones flecha), para que lo lea cualquiera, también gente de PHP. **Nada de PHP: no mezclar lenguajes.** Única excepción: las cuatro líneas reales de PyTorch del entrenamiento de los dígitos.
+- **Idioma del código:** el código que se ejecuta (`ejemplos/`) va en inglés: nombres, funciones, comentarios, ficheros y opciones; lo que el programa escribe en pantalla, los README, las carpetas y los datos, en castellano. La presentación (también su JavaScript y el código que sale en las diapositivas) se queda entera en castellano.
 - **Concepto antes que técnica.** El objetivo es quitar la magia, no que el público pueda ejecutar algo. Por eso se quitó ReLU (solo queda como respuesta si alguien pregunta).
 - **Menos plana**: transformaciones que conectan un beat con el siguiente, no cambios secos.
 - Comprobar visualmente lo que se cambia (capturas) antes de darlo por hecho.
@@ -61,7 +63,7 @@ Sesión de trabajo: del 2026-10-09 al 2026-10-20. Estado: **borrador muy inicial
 - Al repasar 6.11: la frase de pantalla «Mientras dura la conversación, no se tira» no es exacta; propuesta, «No lo guarda el modelo: lo guarda el programa (Ollama), con la clave y el valor de cada token». La nota del presentador ya cuenta contexto, límites y modelo frente a programa.
 - Encajar dos notas que Samuel dejó al principio del guion: el embedding quizá solo de pasada, y que el objetivo incluye explicar qué es un **harness** (el programa que mete contexto al modelo).
 - Decidir si simplificar el código de `atencion` en el guion (en pantalla ya solo salen los dos `for`).
-- QR del cierre (10.2): hecho, apunta a `https://github.com/samuelsolis/cual-es-el-siguiente-token` (el repo, renombrado el 2026-11-10). Está dibujado en SVG dentro de `index.html`; se generó con `segno` (`pip install --target /tmp/qrlib segno`, borde 4, corrección M). Si cambia la URL del repositorio, hay que regenerarlo. Falta: subir el repo (cuando Samuel lo pida) y escribir en el README las instrucciones para hacer correr el modelo de juguete.
+- QR del cierre (10.2): hecho, apunta a `https://github.com/samuelsolis/cual-es-el-siguiente-token` (el repo, renombrado el 2026-11-10). Está dibujado en SVG dentro de `index.html`; se generó con `segno` (`pip install --target /tmp/qrlib segno`, borde 4, corrección M). Si cambia la URL del repositorio, hay que regenerarlo. Repositorio público desde el 2026-11-10. La presentación se publica sola en GitHub Pages con cada push a `main` (`.github/workflows/pages.yml`, publica solo `presentacion/`): https://www.samuelsolis.es/cual-es-el-siguiente-token/ . El README de la raíz enlaza ahí en grande y explica cómo entrenar el juguete en la terminal.
 - Los iconos son emojis: probar en el equipo con el que se presente.
 - Desde el 2026-10-20 la charla tiene su propio repositorio (este). Commits y subidas, solo cuando Samuel lo pida.
 

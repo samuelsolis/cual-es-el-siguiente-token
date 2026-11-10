@@ -1,0 +1,8 @@
+{
+  "texto": "A sus 26 años, Paula se ha mudado a Pamplona.",
+  "respuesta": {
+    "nombre": "Paula",
+    "edad": 26,
+    "ciudad": "Pamplona"
+  }
+}
