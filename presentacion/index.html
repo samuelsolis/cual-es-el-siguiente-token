@@ -17,8 +17,9 @@
 <section class="escena" data-id="apertura" data-titulo="Apertura">
   <div class="pila">
 
-    <div class="centro" data-out="3">
-      <h1 class="wordart">Inteligencia artificial<br>sin artificios</h1>
+    <div class="centro" data-out="5">
+      <h1 class="wordart titulo-viejo" data-on="2:tachado 3:pequeno-t">Inteligencia artificial<br>sin artificios</h1>
+      <h1 class="wordart titulo-nuevo" data-in="3">¿Cuál es el<br>siguiente token?</h1>
       <div class="ventana dialogo" style="width: 900px; margin-top: 40px;">
         <div class="barra"><span class="icono">💾</span><span class="nombre">Acerca de esta charla</span><span class="botones"><i>×</i></span></div>
         <div class="cuerpo">
@@ -31,77 +32,48 @@
       </div>
     </div>
 
-    <div class="centro" data-in="3" data-out="5">
+    <div class="centro" data-in="5" data-out="7">
       <div class="ventana dialogo" style="width: 1300px;">
         <div class="barra"><span class="icono">❓</span><span class="nombre">Pregunta</span><span class="botones"><i>×</i></span></div>
         <div class="cuerpo columna" style="align-items: stretch; gap: 30px;">
           <p class="frase">¿Cuántos habéis utilizado la IA para resolver un problema esta semana?</p>
-          <p class="frase acento" data-in="4">¿Y cuántos sabríais explicar qué ha pasado dentro?</p>
+          <p class="frase acento" data-in="6">¿Y cuántos sabríais explicar qué ha pasado dentro?</p>
         </div>
       </div>
     </div>
 
-    <div class="centro" data-in="5" data-out="7">
-      <div class="ventana caja-negra" data-on="6:abierta">
+    <div class="centro" data-in="7" data-out="9">
+      <div class="ventana caja-negra" data-on="8:abierta">
         <div class="barra"><span class="icono">⬛</span><span class="nombre">caja_negra.exe</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
         <div class="cuerpo interior">
           <div class="interrogacion">?</div>
           <div class="numeros" id="lluvia"></div>
         </div>
       </div>
-      <p class="frase sobre-escritorio" data-in="6">Muchos datos y unas cuantas funciones matemáticas.</p>
+      <p class="frase sobre-escritorio" data-in="8">Muchos datos y unas cuantas funciones matemáticas.</p>
     </div>
 
-    <div class="centro" data-in="7" data-out="8">
-      <p class="titular sobre-escritorio">Hoy</p>
-      <div class="fila" style="gap: 22px;">
-        <span class="chip">🐕 El perro come carne</span><span class="flecha">→</span>
-        <span class="chip">👀 Atención</span><span class="flecha">→</span>
-        <span class="chip">🔢 De verdad</span><span class="flecha">→</span>
-        <span class="chip">🔧 Afinar</span><span class="flecha">→</span>
-        <span class="chip">📚 RAG</span>
-      </div>
-    </div>
 
-    <div class="centro tipos-ia" data-in="8">
-      <p class="titular sobre-escritorio">Dos tipos principales de IA</p>
-      <div class="fila" style="gap: 50px; align-items: stretch;">
-        <div class="ventana">
-          <div class="barra"><span class="icono">🏷️</span><span class="nombre">Discriminativa</span><span class="botones"><i>×</i></span></div>
-          <div class="cuerpo columna">
-            <p class="texto negrita">¿A qué clase pertenece esto?</p>
-            <p class="texto">📧 correo → <span class="sel">spam</span> / no spam</p>
-            <p class="texto">🔢 dibujo → <span class="sel">un 7</span></p>
-          </div>
-        </div>
-        <div class="ventana" data-in="9" data-on="10:elegida">
-          <div class="barra"><span class="icono">✨</span><span class="nombre">Generativa</span><span class="botones"><i>×</i></span></div>
-          <div class="cuerpo columna">
-            <p class="texto negrita">¿Cómo sería algo nuevo de este tipo?</p>
-            <p class="texto">🖼️ imagen · 🎵 audio</p>
-            <p class="texto">📝 <span class="llm" data-on="10:resaltado">LLM: generan texto</span></p>
-          </div>
-        </div>
-      </div>
-      <p class="frase sobre-escritorio" data-in="9">Misma estrategia, distinto output.</p>
+    <div class="centro" data-in="9">
+      <p class="titular sobre-escritorio">Empezamos por el principio:</p>
+      <p class="frase sobre-escritorio">de palabras a tokens.</p>
     </div>
   </div>
 
-  <div class="clip-dice" data-in="2" data-out="3">
+  <div class="clip-dice" data-in="4" data-out="5">
     Parece que estás intentando entender la inteligencia artificial. ¿Quieres ayuda?
     <div class="opciones"><span>Sí</span><span>No, prefiero la magia</span></div>
   </div>
 
   <aside class="nota" data-beat="1">Arranque. Presentarse en una frase.</aside>
-  <aside class="nota" data-beat="2">Clip asoma: «¿Quieres ayuda?». Clip es el ayudante de antes de la IA: escrito con reglas, a mano. Hoy vemos lo contrario.</aside>
-  <aside class="nota" data-beat="3">Pregunta a la sala. Que levanten la mano.</aside>
-  <aside class="nota" data-beat="4">Segunda pregunta. Pausa. Pocas manos.</aside>
-  <aside class="nota" data-beat="5">Usamos la IA como una caja negra. Hoy la abrimos.</aside>
-  <aside class="nota" data-beat="6">Dentro solo hay números. No vamos a entrenar un ChatGPT (eso son decenas de millones), pero las piezas son las mismas y las vamos a ver todas.</aside>
-  <aside class="nota" data-beat="7">Mapa de la charla. Primero un modelo de juguete entero, con una sola frase; luego qué le falta (la atención); luego uno entrenado de verdad, y al final cómo usarlos sin ser un gran laboratorio.</aside>
-  <aside class="nota" data-beat="8">Hay dos grandes tipos de IA. Las discriminativas tienen una salida sencilla: eligen entre unas pocas respuestas (spam o no spam, qué cifra es). Los dígitos que veremos luego son justo eso.</aside>
-  <aside class="nota" data-beat="9">Las generativas crean algo nuevo: imagen, audio, texto. Por dentro, la misma estrategia (números al azar que los datos corrigen); cambia lo que sale.</aside>
-  <aside class="nota" data-beat="10">Hoy nos centramos en los LLM, las generalistas que generan texto. El código también es texto.</aside>
+  <aside class="nota" data-beat="2">Este es el título del programa. Pero no es el bueno.</aside>
+  <aside class="nota" data-beat="3">El título de verdad es una pregunta: ¿cuál es el siguiente token? Es lo único que hace un modelo de lenguaje, y al final de la charla se entenderá por qué.</aside>
+  <aside class="nota" data-beat="4">Clip asoma: «¿Quieres ayuda?». Clip es el ayudante de antes de la IA: escrito con reglas, a mano. Hoy vemos lo contrario.</aside>
+  <aside class="nota" data-beat="5">Pregunta a la sala. Que levanten la mano.</aside>
+  <aside class="nota" data-beat="6">Segunda pregunta. Pausa. Pocas manos.</aside>
+  <aside class="nota" data-beat="7">Usamos la IA como una caja negra. Hoy la abrimos.</aside>
+  <aside class="nota" data-beat="8">Dentro solo hay números. No vamos a entrenar un ChatGPT (eso son decenas de millones), pero las piezas son las mismas y las vamos a ver todas.</aside>
+  <aside class="nota" data-beat="9">Vamos a abrirla. Empezamos por el principio: cómo se convierten las palabras en algo con lo que se pueda calcular.</aside>
 </section>
 
 <!-- ======================================================================
@@ -220,8 +192,8 @@
       <tr><th></th><th>tokens</th><th>números<br>por token</th></tr>
       <tr><td>nuestro juguete</td><td>8</td><td>2</td></tr>
       <tr><td>Llama 3.2 3B</td><td>128.256</td><td>3.072</td></tr>
-      <tr><td>GPT-3 (2020)</td><td>50.257</td><td>12.288</td></tr>
-      <tr><td>Gemma 3 27B</td><td>≈ 262.000</td><td>5.376</td></tr>
+      <tr><td>Qwen3.6 35B</td><td>248.320</td><td>2.048</td></tr>
+      <tr><td>Kimi K3</td><td>163.840</td><td>7.168</td></tr>
     </table>
   </div>
 
@@ -233,7 +205,7 @@
   <aside class="nota" data-beat="6">Esta tabla tiene nombre: la tabla de embeddings. Una fila por token del vocabulario.</aside>
   <aside class="nota" data-beat="7">Con 3 números por token, cada uno es un punto en el espacio. Con miles, como en un modelo real, ya no se puede dibujar, pero es lo mismo. (Nuestro juguete se queda con 2: el tercero solo está aquí para verlo; también al azar.) Y esta tabla no viene de fuera: también se aprende. Es la primera pieza del modelo.</aside>
   <aside class="nota" data-beat="8">Volvemos a 2 números, que se ven mejor.</aside>
-  <aside class="nota" data-beat="9">Clip, para que os hagáis una idea de la magnitud de esta tabla. Nuestro juguete: 8 tokens, 2 números por token. Llama 3.2 3B, el que montamos en local en el libro: 128.256 tokens, 3.072 números por token; su tabla son unos 394 millones de números. GPT-3, de 2020: 50.257 tokens, 12.288 números por token; unos 618 millones. Y Gemma 3 27B, de Google (2025): el vocabulario más grande de la tabla, unos 262.000 tokens, con 5.376 números por token; su tabla, unos 1.400 millones de números. (Fuentes: ficha de Llama 3.2 y sku_list.py de meta-llama/llama-models; artículos de GPT-3 y GPT-2; informe técnico de Gemma 3 y metadatos de gemma3:27b en Ollama.) De los comerciales de ahora (Claude, GPT-4 y siguientes, Gemini) no hay cifras oficiales.</aside>
+  <aside class="nota" data-beat="9">Clip, para que os hagáis una idea de la magnitud de esta tabla. Nuestro juguete: 8 tokens, 2 números por token. Llama 3.2 3B, el que montamos en local en el libro: 128.256 tokens, 3.072 números por token; su tabla son unos 394 millones de números. Qwen3.6 35B, de Alibaba (abril de 2026): el vocabulario más grande de la tabla, 248.320 tokens, con 2.048 números por token; unos 509 millones. Y Kimi K3, de Moonshot (junio de 2026), de los más grandes con pesos publicados: 163.840 tokens, 7.168 números por token; su tabla, unos 1.174 millones de números. (Fuentes: ficha de Llama 3.2 y sku_list.py de meta-llama/llama-models; config.json de Qwen/Qwen3.6-35B-A3B y de moonshotai/Kimi-K3 en Hugging Face.) De los comerciales de ahora (Claude, GPT-4 y siguientes, Gemini) no hay cifras oficiales.</aside>
   <aside class="nota" data-beat="10">Así empieza cualquier modelo: los tokens repartidos al azar. Gato, lejos de perro; carne, lejos de pescado. Para que esto sirva falta algo.</aside>
   <aside class="nota" data-beat="11">El entrenamiento. Es lo que mueve los números hasta que lo parecido acaba cerca: los animales juntos, la comida junta. (Este mapa final es ilustrativo; el de nuestro juguete lo veremos de verdad enseguida.)</aside>
   <aside class="nota" data-beat="12">Y el entrenamiento no solo mueve la tabla: también ajusta todo lo que hay dentro del modelo. Es lo que vamos a abrir ahora. Para entenderlo hace falta ver qué hay dentro del modelo: neuronas.</aside>
@@ -247,18 +219,17 @@
 
     <div class="columna" style="gap: 30px;">
       <div class="pila titulo-pila">
-        <h2 class="titular sobre-escritorio" data-out="7">Una neurona</h2>
-        <h2 class="titular sobre-escritorio" data-in="7" data-out="8">Una capa</h2>
-        <h2 class="titular sobre-escritorio" data-in="8" data-out="11">Una red: nuestro modelo</h2>
-        <h2 class="titular sobre-escritorio" data-in="11" data-out="13">Un modelo de verdad</h2>
-        <h2 class="titular sobre-escritorio" data-in="13">Volvamos a nuestro modelo</h2>
+        <h2 class="titular sobre-escritorio" data-out="6">Una neurona</h2>
+        <h2 class="titular sobre-escritorio" data-in="6" data-out="7">Una capa</h2>
+        <h2 class="titular sobre-escritorio" data-in="7" data-out="10">Una red: nuestro modelo</h2>
+        <h2 class="titular sobre-escritorio" data-in="10">Un modelo de verdad</h2>
       </div>
 
       <div class="dos-izq" style="height: auto; align-items: start;">
-        <div class="ventana red-agrandable" data-on="11-12:agrandada">
+        <div class="ventana red-agrandable" data-on="10-13:agrandada">
           <div class="barra"><span class="icono">🎨</span><span class="nombre">modelo.bmp - Paint</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
           <div class="cuerpo blanco" style="padding: 10px;">
-            <svg class="diagrama" id="diagrama-neurona" viewBox="0 0 860 620" width="760" height="548" data-on="10:encendida 9-9:zoom-gato">
+            <svg class="diagrama" id="diagrama-neurona" viewBox="0 0 860 620" width="760" height="548" data-on="9:encendida 8-8:zoom-gato">
 
               <!-- La geometría la dibuja escenas.js y se transforma de un beat a otro:
                    neurona → capa → nuestra red → un modelo de verdad. -->
@@ -267,7 +238,7 @@
               <g id="morfo-nodos"></g>
 
               <!-- Una neurona -->
-              <g class="capa-texto" data-out="7">
+              <g class="capa-texto" data-out="6">
                 <!-- la caja es la neurona: dentro, lo suyo (pesos y sesgo); fuera, entradas y salida -->
                 <rect class="caja-neurona" x="222" y="140" width="400" height="345" rx="18"/>
                 <text x="422" y="176" class="nombre-neurona">la neurona</text>
@@ -293,7 +264,7 @@
               </g>
 
               <!-- Una capa: dos neuronas, mismas entradas -->
-              <g class="capa-texto" data-in="7" data-out="8">
+              <g class="capa-texto" data-in="6" data-out="7">
                 <g class="valor">
                   <text x="110" y="210" class="v" data-valor="embeddings.7.0"></text>
                   <text x="110" y="430" class="v" data-valor="embeddings.7.1"></text>
@@ -315,7 +286,7 @@
               </g>
 
               <!-- Nuestra red: tabla → capa oculta → capa final (una neurona por token) -->
-              <g class="capa-texto solo-on" data-on="8-10:visible 13:visible">
+              <g class="capa-texto solo-on" data-on="7-9:visible">
                 <g class="valor pequeno-svg">
                   <text x="90" y="229" data-valor="embeddings.7.0"></text>
                   <text x="90" y="409" data-valor="embeddings.7.1"></text>
@@ -340,13 +311,13 @@
               </g>
 
               <!-- Zoom: una neurona de la capa final, la de «gato» -->
-              <g class="capa-texto" data-in="9" data-out="10">
+              <g class="capa-texto" data-in="8" data-out="9">
                 <rect class="caja-neurona" x="566" y="70" width="282" height="62" rx="14"/>
                 <text x="690" y="56" class="nombre-neurona">la neurona de «gato»</text>
               </g>
 
               <!-- Un modelo de verdad -->
-              <g class="capa-texto" data-in="11" data-out="13">
+              <g class="capa-texto" data-in="10" data-out="12">
                 <text x="90" y="612" class="pie">entrada</text>
                 <text x="260" y="612" class="pie capa-nombre">capa</text>
                 <text x="430" y="612" class="pie">capa</text>
@@ -358,7 +329,15 @@
         </div>
 
         <div class="pila">
-          <div class="columna" data-in="4" data-out="7" style="gap: 24px;">
+          <!-- La misma tabla de la escena 3: de aquí salen las entradas de la neurona -->
+          <div class="ventana" data-out="4">
+            <div class="barra"><span class="icono">📊</span><span class="nombre">embeddings.xls - Microsoft Excel</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="cuerpo blanco" style="padding: 0;">
+              <table class="hoja-calculo grande" id="tabla-neurona" data-on="2:con-come"></table>
+            </div>
+          </div>
+
+          <div class="columna" data-in="4" data-out="6" style="gap: 24px;">
             <div class="ventana">
               <div class="barra"><span class="icono">📄</span><span class="nombre">neurona.js - Bloc de notas</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
               <div class="cuerpo blanco">
@@ -385,7 +364,7 @@ function neurona(entradas, pesos, sesgo) {
             </div>
           </div>
 
-          <div class="columna" data-in="7" data-out="8">
+          <div class="columna" data-in="6" data-out="7">
             <div class="ventana">
               <div class="barra"><span class="icono">📄</span><span class="nombre">capa.js - Bloc de notas</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
               <div class="cuerpo blanco">
@@ -403,15 +382,7 @@ function capa(entradas, pesos, sesgos) {
             <p class="texto sobre-escritorio"><b>Mismas entradas, pesos distintos.</b><br>Cada neurona busca un patrón distinto.</p>
           </div>
 
-          <div class="ventana" data-in="13">
-            <div class="barra"><span class="icono">⚙️</span><span class="nombre">modelo.exe</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="cuerpo columna" style="gap: 20px; align-items: flex-start;">
-              <p class="frase mono enunciado">el perro come <span class="sel" data-generado-inicial>gato</span></p>
-              <p class="texto">Gana «<span data-generado-inicial>gato</span>», con un <b><span data-pct="7.0"></span></b>.</p>
-            </div>
-          </div>
-
-          <div class="columna" data-in="8" data-out="11">
+          <div class="columna" data-in="7" data-out="10">
             <div class="ventana">
               <div class="barra"><span class="icono">📄</span><span class="nombre">modelo.js - Bloc de notas</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
               <div class="cuerpo blanco">
@@ -424,7 +395,7 @@ var p       = porcentajes(final);
               </div>
             </div>
             <div class="pila">
-            <div class="ventana" data-in="9" data-out="10">
+            <div class="ventana" data-in="8" data-out="9">
               <div class="barra"><span class="icono">🧮</span><span class="nombre">Calculadora · neurona de «gato»</span><span class="botones"><i>×</i></span></div>
               <div class="cuerpo blanco">
                 <pre class="cuenta"> <span data-valor="oculta.7.0"></span> × <span class="c-peso" data-valor="pesos2.0.0"></span>  = <span data-producto2="7.0.0" data-decimales="3"></span>
@@ -435,8 +406,8 @@ var p       = porcentajes(final);
                 <p class="pequeno tenue" style="margin-top: 10px;">Sus entradas: la salida de A y la de B. Las 8 puntuaciones se pasan luego a porcentajes: «gato», <span data-pct="7.0"></span>.</p>
               </div>
             </div>
-            <p class="texto sobre-escritorio" data-out="9">La capa final tiene <b>una neurona por token</b> del vocabulario: sale un porcentaje para cada uno.</p>
-            <div class="ventana dialogo" data-in="10">
+            <p class="texto sobre-escritorio" data-out="8">La capa final tiene <b>una neurona por token</b> del vocabulario: sale un porcentaje para cada uno.</p>
+            <div class="ventana dialogo" data-in="9">
               <div class="barra"><span class="icono">🔢</span><span class="nombre">Parámetros</span><span class="botones"><i>×</i></span></div>
               <div class="cuerpo blanco cuenta-parametros">
                 <table class="tabla">
@@ -454,29 +425,28 @@ var p       = porcentajes(final);
       </div>
     </div>
 
-    <div class="centro" data-in="14">
+    <div class="centro" data-in="12">
       <div class="ventana dialogo alerta" style="width: 1150px;">
         <div class="barra"><span class="icono">⚠️</span><span class="nombre">Un momento…</span><span class="botones"><i>×</i></span></div>
         <div class="cuerpo">
           <div class="icono-grande">⚠️</div>
           <div class="columna" style="gap: 22px; align-items: flex-start;">
-            <p class="frase">¿Quién decide cada número?<br>¿Y por qué sale «<span data-generado-inicial>gato</span>»?</p>
-            <p class="titular acento" data-in="15">Nadie. Se aprenden.</p>
+            <p class="frase">¡Pero todos estos números están al azar!</p>
+            <p class="titular acento" data-in="13">Hasta que dejan de ser azar.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="clip-dice" data-in="6" data-out="7"><b>Adiós, magia.</b></div>
-  <div class="clip-dice clip-cifras" data-in="12" data-out="13">
+  <div class="clip-dice clip-cifras" data-in="11" data-out="12">
     Y los de verdad, ¿cuánto miden?
     <table>
       <tr><th></th><th>capas</th><th>parámetros</th></tr>
       <tr><td>nuestro juguete</td><td>2</td><td>46</td></tr>
       <tr><td>Llama 3.2 3B</td><td>28</td><td>3.210 millones</td></tr>
-      <tr><td>Gemma 3 27B</td><td>62</td><td>≈ 27.000 millones</td></tr>
-      <tr><td>GPT-3 (2020)</td><td>96</td><td>175.000 millones</td></tr>
+      <tr><td>Qwen3.6 35B</td><td>40</td><td>≈ 36.000 millones</td></tr>
+      <tr><td>Kimi K3</td><td>93</td><td>2.800.000 millones</td></tr>
     </table>
   </div>
 
@@ -484,17 +454,15 @@ var p       = porcentajes(final);
   <aside class="nota" data-beat="2">Sus entradas son la fila de «come» en la tabla: los dos números de su embedding.</aside>
   <aside class="nota" data-beat="3">Cada entrada llega con un peso. Y la neurona tiene un sesgo. Todo al azar, de momento.</aside>
   <aside class="nota" data-beat="4">En código: un bucle, una multiplicación y una suma. Cada entrada por su peso, todo sumado, y el sesgo al final.</aside>
-  <aside class="nota" data-beat="5">Con los números de verdad: cada entrada por su peso, sumar, añadir el sesgo. Sale un número: la salida.</aside>
-  <aside class="nota" data-beat="6">Pausa. No hay nada más dentro de una neurona. Adiós, magia.</aside>
-  <aside class="nota" data-beat="7">Una capa: varias neuronas con las mismas entradas y pesos distintos. Cada una busca un patrón distinto.</aside>
-  <aside class="nota" data-beat="8">Nuestro modelo completo: la fila del token, una capa oculta de 2 neuronas y una capa final con una neurona por token del vocabulario. Cada neurona oculta tiene una sola salida, que se reparte a todas las finales. Sale un porcentaje para cada token. Ojo: este juguete solo mira la última palabra.</aside>
-  <aside class="nota" data-beat="9">Ojo a cómo se conectan: A tiene una sola salida, 0,48, y B otra, 1,36. Cada una va entera a las 8 neuronas finales. Por ejemplo, la de «gato»: es la misma neurona de antes, con 2 entradas (la salida de A y la de B), sus 2 pesos y su sesgo. Su cuenta da la puntuación de «gato». Las 8 puntuaciones se pasan a porcentajes: por eso «gato» sale con un 40,5 %.</aside>
-  <aside class="nota" data-beat="10">Cada línea es un número, cada fila y cada sesgo también: 46. Eso es el modelo entero.</aside>
-  <aside class="nota" data-beat="11">Un modelo de los que usáis: lo mismo, con muchas más capas y muchas más neuronas.</aside>
-  <aside class="nota" data-beat="12">Clip, con tamaños reales: nuestro juguete, 2 capas y 46 números. Llama 3.2 3B: 28 capas, unos 3.200 millones. Gemma 3 27B: 62 capas, unos 27.000 millones. GPT-3: 96 capas, 175.000 millones. (En los modelos reales cada «capa» es un bloque que incluye la atención, que veremos luego. Fuentes: ficha y sku_list.py de Meta; informe técnico de Gemma 3 y metadatos de Ollama; artículo de GPT-3.)</aside>
-  <aside class="nota" data-beat="13">Volvemos a nuestro juguete, con sus 46 números al azar. Le damos «el perro come»: mira solo «come», pasa por las neuronas y gana «gato», con un 40,5 %.</aside>
-  <aside class="nota" data-beat="14">Un momento. ¿Quién ha decidido cada uno de esos números? ¿Y por qué sale «gato»?</aside>
-  <aside class="nota" data-beat="15">Nadie decide los números. Se aprenden. Y sale «gato» porque todavía están al azar. Vamos a ver cómo se aprenden.</aside>
+  <aside class="nota" data-beat="5">Con los números de verdad: cada entrada por su peso, sumar, añadir el sesgo. Sale un número: la salida. No hay nada más dentro de una neurona.</aside>
+  <aside class="nota" data-beat="6">Una capa: varias neuronas con las mismas entradas y pesos distintos. Cada una busca un patrón distinto.</aside>
+  <aside class="nota" data-beat="7">Nuestro modelo completo: la fila del token, una capa oculta de 2 neuronas y una capa final con una neurona por token del vocabulario. Cada neurona oculta tiene una sola salida, que se reparte a todas las finales. Sale un porcentaje para cada token. Ojo: este juguete solo mira la última palabra.</aside>
+  <aside class="nota" data-beat="8">Ojo a cómo se conectan: A tiene una sola salida, 0,48, y B otra, 1,36. Cada una va entera a las 8 neuronas finales. Por ejemplo, la de «gato»: es la misma neurona de antes, con 2 entradas (la salida de A y la de B), sus 2 pesos y su sesgo. Su cuenta da la puntuación de «gato». Las 8 puntuaciones se pasan a porcentajes: por eso «gato» sale con un 40,5 %.</aside>
+  <aside class="nota" data-beat="9">Cada línea es un número, cada fila y cada sesgo también: 46. Eso es el modelo entero.</aside>
+  <aside class="nota" data-beat="10">Un modelo de los que usáis: lo mismo, con muchas más capas y muchas más neuronas.</aside>
+  <aside class="nota" data-beat="11">Clip, con tamaños reales: nuestro juguete, 2 capas y 46 números. Llama 3.2 3B: 28 capas, unos 3.200 millones. Qwen3.6 35B: 40 capas, unos 36.000 millones. Kimi K3: 93 capas y 2,8 billones, es decir, 2.800.000 millones. (En los modelos reales cada «capa» es un bloque que incluye la atención, que veremos luego. Si preguntan: Qwen y Kimi son de «mezcla de expertos» y cada token usa solo una parte: unos 3.000 millones en Qwen y 104.000 millones en Kimi. Fuentes: ficha y sku_list.py de Meta; config.json y ficha de Qwen/Qwen3.6-35B-A3B y de moonshotai/Kimi-K3 en Hugging Face.)</aside>
+  <aside class="nota" data-beat="12">Un momento. Todo esto, el nuestro y los de verdad, tiene sus números al azar. Ahora mismo no sirve para nada: a «el perro come» respondería cualquier cosa.</aside>
+  <aside class="nota" data-beat="13">Hasta que dejan de ser azar: eso es entrenar. Nadie decide esos números a mano; se aprenden. Vamos a verlo.</aside>
 </section>
 
 <!-- ======================================================================
@@ -503,12 +471,12 @@ var p       = porcentajes(final);
 <section class="escena" data-id="juguete" data-titulo="Entrenar" data-seccion="juguete">
   <div class="columna" style="gap: 26px; height: 100%;">
     <div class="pila titulo-pila">
-      <h2 class="titular sobre-escritorio" data-out="9">Entrenar: <span style="color:#ffff9c">esperado</span> → generado</h2>
-      <h2 class="titular sobre-escritorio" data-in="9">El modelo entero: tabla + red</h2>
+      <h2 class="titular sobre-escritorio" data-out="10">Entrenar: <span style="color:#ffff9c">esperado</span> → generado</h2>
+      <h2 class="titular sobre-escritorio" data-in="10">Pero solo ha mirado «come»</h2>
     </div>
 
     <div class="pila" style="flex: 1;">
-    <div class="dos" data-out="9" style="grid-template-columns: 900px 1fr; align-items: start;">
+    <div class="dos" data-out="10" style="grid-template-columns: 900px 1fr; align-items: start;">
       <div class="pila">
         <div class="ventana" data-out="7">
           <div class="barra"><span class="icono">⚙️</span><span class="nombre">modelo.exe</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
@@ -528,7 +496,8 @@ var p       = porcentajes(final);
           </div>
         </div>
 
-        <div class="ventana" data-in="7">
+        <div class="columna" data-in="7">
+        <div class="ventana">
           <div class="barra"><span class="icono">⚙️</span><span class="nombre">entrenando… vuelta <span id="vuelta-juguete">0</span></span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
           <div class="cuerpo columna" style="gap: 18px;">
             <div class="ejemplo-juguete" data-ej="0"><span class="mono">el → <b>perro</b></span><div class="barra-prob ancha"><i></i><span></span></div></div>
@@ -536,6 +505,15 @@ var p       = porcentajes(final);
             <div class="ejemplo-juguete" data-ej="2"><span class="mono">come → <b>carne</b></span><div class="barra-prob ancha"><i></i><span></span></div></div>
             <p class="pequeno tenue">Cada vuelta: los tres ejemplos de la frase, una vez.</p>
           </div>
+        </div>
+        <div class="ventana dialogo" data-in="8">
+          <div class="barra"><span class="icono">⌨️</span><span class="nombre">Generar</span><span class="botones"><i>×</i></span></div>
+          <div class="cuerpo columna" style="gap: 10px; align-items: stretch;">
+            <p class="texto mono">antes: <span class="rojo" id="genera-antes"></span></p>
+            <p class="texto mono">ahora: <span class="verde" id="genera-despues"></span></p>
+            <p class="pequeno">Al generar no cambia nada: solo se consulta.</p>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -576,59 +554,25 @@ var p       = porcentajes(final);
               <svg class="mapa" id="mapa-entreno-juguete" viewBox="0 0 640 400" width="560" height="350"></svg>
             </div>
           </div>
-          <div class="ventana dialogo" data-in="8">
-            <div class="barra"><span class="icono">⌨️</span><span class="nombre">Generar</span><span class="botones"><i>×</i></span></div>
-            <div class="cuerpo columna" style="gap: 10px; align-items: stretch;">
-              <p class="texto mono">antes: <span class="rojo" id="genera-antes"></span></p>
-              <p class="texto mono">ahora: <span class="verde" id="genera-despues"></span></p>
-              <p class="pequeno">Al generar no cambia nada: solo se consulta.</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
-      <div class="fila del-azar modelo-entero" data-in="9">
-        <div class="columna lado-modelo">
-          <div class="ventana">
-            <div class="barra"><span class="icono">🗺️</span><span class="nombre">tabla de embeddings</span><span class="botones"><i>×</i></span></div>
-            <div class="cuerpo blanco" style="padding: 4px;"><svg class="mapa" id="mapa-m0" viewBox="0 0 640 400" width="460" height="288"></svg></div>
-          </div>
-          <div class="ventana">
-            <div class="barra"><span class="icono">🎨</span><span class="nombre">red: pesos y sesgos</span><span class="botones"><i>×</i></span></div>
-            <div class="cuerpo blanco" style="padding: 4px;"><svg class="red-pesos" id="red-m0" viewBox="0 0 640 330" width="460" height="237"></svg></div>
-          </div>
-          <p class="texto mono sobre-escritorio genera-lado">genera: <b id="genera-m0"></b></p>
-          <p class="pie-mapa sobre-escritorio">al azar</p>
-        </div>
-        <span class="flecha">→</span>
-        <div class="ventana dialogo entrenar">
-          <div class="barra"><span class="icono">⚙️</span><span class="nombre">entrenar.exe</span><span class="botones"><i>×</i></span></div>
-          <div class="cuerpo columna" style="align-items: center; gap: 18px;">
-            <div class="icono-grande">⚙️</div>
-            <p class="texto negrita">Entrenamiento</p>
-            <div class="barra-prob" data-on="10:lleno"><i></i></div>
-            <p class="pequeno">vuelta <span id="vuelta-entero">0</span> de 40</p>
-          </div>
-        </div>
-        <span class="flecha" data-in="10">→</span>
-        <div class="columna lado-modelo" data-in="10">
-          <div class="ventana">
-            <div class="barra"><span class="icono">🗺️</span><span class="nombre">tabla de embeddings</span><span class="botones"><i>×</i></span></div>
-            <div class="cuerpo blanco" style="padding: 4px;"><svg class="mapa" id="mapa-mf" viewBox="0 0 640 400" width="460" height="288"></svg></div>
-          </div>
-          <div class="ventana">
-            <div class="barra"><span class="icono">🎨</span><span class="nombre">red: pesos y sesgos</span><span class="botones"><i>×</i></span></div>
-            <div class="cuerpo blanco" style="padding: 4px;"><svg class="red-pesos" id="red-mf" viewBox="0 0 640 330" width="460" height="237"></svg></div>
-          </div>
-          <p class="texto mono sobre-escritorio genera-lado">genera: <b id="genera-mf"></b></p>
-          <p class="pie-mapa sobre-escritorio">entrenado: los mismos 46 números, ajustados</p>
+
+    <!-- El juguete entrenado solo mira la última palabra: lo de antes no cuenta -->
+    <div class="centro" data-in="10" style="justify-content: flex-start;">
+      <div class="ventana" style="width: 1250px;">
+        <div class="barra"><span class="icono">⚙️</span><span class="nombre">modelo.exe · entrenado</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
+        <div class="cuerpo columna solo-come" style="gap: 26px; align-items: stretch;">
+          <p class="frase mono"><span class="ignorado">el perro</span> <span class="mirado">come</span> <span class="sel">carne</span> <span class="pct-mf" data-pct-mf="7.1"></span></p>
+          <p class="frase mono" data-in="11"><span class="ignorado">el gato&nbsp;</span> <span class="mirado">come</span> <span class="sel">carne</span> <span class="pct-mf" data-pct-mf="7.1"></span></p>
         </div>
       </div>
+    </div>
     </div>
   </div>
 
-  <div class="clip-dice" data-in="11">46 números. Y ya “sabe” que el perro come carne. <b>Eso es el modelo.</b></div>
+  <div class="clip-dice" data-in="9" data-out="10">46 números. Y ya “sabe” que el perro come carne. <b>Eso es el modelo.</b></div>
 
   <aside class="nota" data-beat="1">Le damos «el perro come». Este juguete solo mira la última palabra: «come». Sale un porcentaje por cada uno de los 8 tokens. Gana «gato»: está todo al azar.</aside>
   <aside class="nota" data-beat="2">¿Qué se esperaba? Lo que venía en la frase: «carne». El valor esperado viene en el propio texto; nadie etiqueta nada.</aside>
@@ -638,9 +582,9 @@ var p       = porcentajes(final);
   <aside class="nota" data-beat="6">Un solo paso y carne ya sube mucho. Ahora, repetirlo.</aside>
   <aside class="nota" data-beat="7">Entrenando de verdad, en el navegador: cada vuelta pasa por los tres ejemplos de la frase. Mirad las barras y cómo se mueven los puntos del mapa: son las filas de la tabla.</aside>
   <aside class="nota" data-beat="8">Y ahora genera: antes «el gato gato gato», ahora «el perro come carne». La frase se ha formado sola. Al generar no se toca ningún número.</aside>
-  <aside class="nota" data-beat="9">Lo mismo que vimos al principio con el mapa, pero ahora con el modelo entero: la tabla y la red. Al azar: puntos repartidos, líneas de la red con pesos al azar (el grosor es el tamaño del peso; azul, positivo; naranja, negativo). Y genera «el gato gato gato».</aside>
-  <aside class="nota" data-beat="10">Entrenamos: los mismos 46 números, todos a la vez. El mapa se mueve y las líneas cambian de grosor. Ojo: en las líneas no se ve un «orden» como en el mapa; nadie puede mirarlas y decir que están bien. Se nota en lo que hace: ahora genera «el perro come carne». Por eso es tan difícil saber qué ha aprendido un modelo mirando sus números.</aside>
-  <aside class="nota" data-beat="11">46 números ajustados a base de comparar lo generado con lo esperado. Eso es el modelo. Un LLM es esto con miles de millones de números y todo internet.</aside>
+  <aside class="nota" data-beat="9">46 números ajustados a base de comparar lo generado con lo esperado. Eso es el modelo. Un LLM es esto con miles de millones de números y todo internet.</aside>
+  <aside class="nota" data-beat="10">Pero ojo: para decir «carne», el modelo solo ha mirado «come». «El perro» no ha entrado en ninguna cuenta.</aside>
+  <aside class="nota" data-beat="11">La prueba: le damos «el gato come». Dice «carne», con el mismo 99,7 %, porque lo único que entra es «come». Y eso que en el vocabulario tiene «pescado». No tiene en cuenta nada de lo anterior: le falta contexto. Eso es lo que arregla la atención.</aside>
 </section>
 
 <!-- ======================================================================
@@ -648,79 +592,236 @@ var p       = porcentajes(final);
      ====================================================================== -->
 <section class="escena" data-id="atencion" data-titulo="Atención" data-seccion="texto">
   <div class="columna" style="gap: 30px; height: 100%;">
-    <h2 class="titular sobre-escritorio">Atención</h2>
+    <div class="pila titulo-pila">
+      <h2 class="titular sobre-escritorio" data-out="8">Atención</h2>
+      <h2 class="titular sobre-escritorio" data-in="8" data-out="10">Un modelo de verdad</h2>
+      <h2 class="titular sobre-escritorio" data-in="10">Atención</h2>
+    </div>
 
     <div class="pila" style="flex: 1;">
 
-      <div class="dos" data-out="5" style="grid-template-columns: 820px 1fr; align-items: start;">
-        <div class="columna frases-banco" style="gap: 22px;">
-          <div class="frase-banco" data-on="2:viva 3-4:apagada">
-            <span class="tok banco">banco<em>25 %</em></span><span class="tok">de<em>10 %</em></span><span class="tok fuerte">peces<em>65 %</em></span>
+      <!-- «el perro come»: dónde entra la atención y qué hace, sobre nuestra red -->
+      <div class="dos-atencion" data-out="10" data-on="8:ancha">
+        <div class="ventana">
+          <div class="barra"><span class="icono">🎨</span><span class="nombre">atencion.bmp - Paint</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
+          <div class="cuerpo blanco" style="padding: 8px;">
+            <svg class="diagrama" id="diagrama-atencion" viewBox="0 0 1440 700" width="1160" height="564" data-on="1-1:cerrada 3-3:capa-q 4-5:mirando 6-6:sigue 7:guarda">
+
+              <!-- Las filas de la tabla: los números son los del juguete -->
+              <text x="145" y="160" class="pie">filas de la tabla</text>
+              <g class="fila-tok" data-on="1-1:fuera">
+                <rect x="20" y="183" width="250" height="64"/>
+                <text x="34" y="224" class="tok-nombre">el</text>
+                <text x="168" y="223" data-valor="embeddings.5.0"></text><text x="234" y="223" data-valor="embeddings.5.1"></text>
+              </g>
+              <g class="fila-tok" data-on="1-1:fuera">
+                <rect x="20" y="353" width="250" height="64"/>
+                <text x="34" y="394" class="tok-nombre">perro</text>
+                <text x="168" y="393" data-valor="embeddings.3.0"></text><text x="234" y="393" data-valor="embeddings.3.1"></text>
+              </g>
+              <g class="fila-tok">
+                <rect x="20" y="523" width="250" height="64"/>
+                <text x="34" y="564" class="tok-nombre">come</text>
+                <text x="168" y="563" data-valor="embeddings.7.0"></text><text x="234" y="563" data-valor="embeddings.7.1"></text>
+              </g>
+              <g class="vista-juguete" data-out="8">
+              <g data-out="2" class="no-entra">
+                <text x="145" y="276">no entra</text>
+                <text x="145" y="446">no entra</text>
+              </g>
+
+              <!-- El hueco que se abre entre la tabla y las capas -->
+              <g data-in="2">
+                <rect class="caja-atencion" x="290" y="40" width="570" height="590" rx="18"/>
+                <text x="575" y="80" class="nombre-atencion">atención</text>
+              </g>
+              <text x="575" y="380" class="hueco" data-in="2" data-out="3">?</text>
+
+              <g class="por-dentro">
+                <!-- Las tres capas: las mismas para todos los tokens -->
+                <g class="capas-qkv" data-in="3">
+                  <g class="q"><rect x="310" y="88" width="150" height="86" rx="10"/><circle class="nodo nucleo" cx="329" cy="111" r="14"/><circle class="nodo nucleo b" cx="329" cy="151" r="14"/><text x="403" y="126" class="qkv-nombre">consulta</text><text x="403" y="152" class="qkv-pregunta">qué busco</text></g>
+                  <g class="k"><rect x="500" y="88" width="150" height="86" rx="10"/><circle class="nodo nucleo" cx="519" cy="111" r="14"/><circle class="nodo nucleo b" cx="519" cy="151" r="14"/><text x="593" y="126" class="qkv-nombre">clave</text><text x="593" y="152" class="qkv-pregunta">qué ofrezco</text></g>
+                  <g class="v"><rect x="690" y="88" width="150" height="86" rx="10"/><circle class="nodo nucleo" cx="709" cy="111" r="14"/><circle class="nodo nucleo b" cx="709" cy="151" r="14"/><text x="783" y="126" class="qkv-nombre">valor</text><text x="783" y="152" class="qkv-pregunta">qué aporto</text></g>
+                </g>
+
+                <!-- Cada fila pasa por las tres capas: tres vectores por token (sin números: ilustrativo) -->
+                <g class="vectores-qkv" data-in="3">
+                  <g class="ramas">
+                    <path d="M270,215 C290,265 345,265 385,239"/><path d="M270,215 C300,275 535,275 575,239"/><path d="M270,215 C310,285 725,285 765,239"/>
+                    <path d="M270,385 C290,435 345,435 385,409"/><path d="M270,385 C300,445 535,445 575,409"/><path d="M270,385 C310,455 725,455 765,409"/>
+                    <path class="rama-q-come" d="M270,555 C290,605 345,605 385,581"/><path d="M270,555 C300,615 535,615 575,579"/><path d="M270,555 C310,625 725,625 765,579"/>
+                  </g>
+                  <g id="chips-qkv"></g>
+                </g>
+
+                <!-- Mirar: la consulta de «come» contra la clave de cada uno -->
+                <g class="mirar" data-in="4" data-on="5:atenuado">
+                  <path d="M465,555 C482,555 478,215 495,215" style="stroke-width: 3"/>
+                  <path d="M465,555 C482,555 478,385 495,385" style="stroke-width: 14"/>
+                  <path d="M465,555 C482,555 478,555 495,555" style="stroke-width: 5"/>
+                </g>
+                <g class="reparto" data-in="4">
+                  <text x="575" y="184">9 %</text>
+                  <text x="575" y="354">70 %</text>
+                  <text x="575" y="524">21 %</text>
+                </g>
+
+                <!-- Mezclar: «come» se queda con un poco del valor de cada uno -->
+                <g class="mezclar" data-in="5">
+                  <path d="M845,215 C875,215 870,555 900,555" style="stroke-width: 3"/>
+                  <path d="M845,385 C875,385 870,555 900,555" style="stroke-width: 14"/>
+                  <path d="M845,555 C875,555 870,555 900,555" style="stroke-width: 5"/>
+                  <path class="propia" d="M145,587 V665 H1025 V587"/>
+                  <text x="575" y="692" class="pie">+ su propia fila</text>
+                </g>
+              </g>
+              <text x="575" y="610" class="ilustrativo-svg" data-in="4" data-out="6">porcentajes ilustrativos</text>
+
+              <!-- Nuestra red, igual que en la escena 4. Cerrada, su entrada es la fila de «come». -->
+              <g id="red-atencion">
+                <g id="red-atencion-lineas"></g>
+                <g data-in="2">
+                  <rect class="entrada-hueco" x="900" y="523" width="230" height="64" data-out="5"/>
+                  <text x="1025" y="567" class="hueco-peque" data-out="5">?</text>
+                  <g class="mezclado" data-in="5">
+                    <rect x="900" y="523" width="250" height="64"/>
+                    <text x="914" y="564" class="tok-nombre">come</text>
+                    <rect class="celda" x="992" y="535" width="72" height="40"/><rect class="celda" x="1070" y="535" width="72" height="40"/>
+                    <text x="1028" y="563" class="num-mezcla">0,99</text><text x="1106" y="563" class="num-mezcla">−1,18</text>
+                    <text x="1025" y="505" class="pie">«come» en esta frase</text>
+                  </g>
+                </g>
+                <rect class="caja" x="1177" y="440" width="56" height="230" rx="12"/>
+                <g id="red-atencion-nodos"></g>
+                <g class="salida-token" data-out="2">
+                  <text x="1306" y="138">gato<tspan x="1410" data-pct="7.0"></tspan></text>
+                  <text x="1306" y="208">carne<tspan x="1410" data-pct="7.1"></tspan></text>
+                  <text x="1306" y="278">yo<tspan x="1410" data-pct="7.2"></tspan></text>
+                  <text x="1306" y="348">perro<tspan x="1410" data-pct="7.3"></tspan></text>
+                  <text x="1306" y="418">barco<tspan x="1410" data-pct="7.4"></tspan></text>
+                  <text x="1306" y="488">el<tspan x="1410" data-pct="7.5"></tspan></text>
+                  <text x="1306" y="558">pescado<tspan x="1410" data-pct="7.6"></tspan></text>
+                  <text x="1306" y="628">come<tspan x="1410" data-pct="7.7"></tspan></text>
+                </g>
+                <g class="salida-token sin-pct" data-in="2">
+                  <text x="1306" y="138">gato ?</text><text x="1306" y="208">carne ?</text><text x="1306" y="278">yo ?</text><text x="1306" y="348">perro ?</text>
+                  <text x="1306" y="418">barco ?</text><text x="1306" y="488">el ?</text><text x="1306" y="558">pescado ?</text><text x="1306" y="628">come ?</text>
+                </g>
+                <text x="1205" y="696" class="pie capa-nombre">capa oculta</text>
+                <text x="1282" y="72" class="pie capa-nombre">capa final</text>
+              </g>
+                          </g>
+
+              <!-- Un modelo de verdad: bloques [atención → capas] apilados, hasta la capa final -->
+              <g class="modelo-real" data-in="8">
+                <g class="carriles">
+                  <path d="M270,215 H1040"/><path d="M270,385 H1040"/><path d="M270,555 H1090"/>
+                </g>
+                <g id="bloques-reales"></g>
+                <g class="final-real">
+                  <circle cx="1090" cy="555" r="6" class="union"/>
+                  <g id="final-real"></g>
+                  <text x="1150" y="112" class="pie capa-nombre">capa final</text>
+                  <text x="1065" y="652" class="pie">solo el último</text>
+                  <text x="1290" y="360" class="pie">una neurona</text>
+                  <text x="1290" y="390" class="pie">por token del</text>
+                  <text x="1290" y="420" class="pie">vocabulario</text>
+                  <text x="1290" y="470" class="pie capa-nombre">→ porcentajes</text>
+                </g>
+              </g>
+</svg>
           </div>
-          <div class="frase-banco" data-on="2:apagada 3:viva 4:apagada">
-            <span class="tok banco">banco<em>30 %</em></span><span class="tok">del<em>10 %</em></span><span class="tok fuerte">parque<em>60 %</em></span>
-          </div>
-          <div class="frase-banco" data-on="2-3:apagada 4:viva">
-            <span class="tok banco">banco<em>35 %</em></span><span class="tok fuerte">central<em>65 %</em></span>
-          </div>
-          <p class="ilustrativo sobre-escritorio" data-in="2" style="color: #cfe;">porcentajes ilustrativos</p>
         </div>
 
         <div class="pila">
-          <div class="columna" data-out="2">
-            <div class="ventana">
-              <div class="barra"><span class="icono">📊</span><span class="nombre">embeddings.xls · fila “banco”</span><span class="botones"><i>×</i></span></div>
-              <div class="cuerpo blanco" style="padding: 18px;">
-                <div class="vector-fila" id="vector-banco"></div>
-                <div class="vector-fila" id="vector-banco-2"></div>
-                <div class="vector-fila" id="vector-banco-3"></div>
-              </div>
+          <div class="ventana" data-out="2">
+            <div class="barra"><span class="icono">⚙️</span><span class="nombre">modelo.exe</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
+            <div class="cuerpo columna" style="gap: 20px; align-items: flex-start;">
+              <p class="frase mono enunciado" style="font-size: 44px;">el perro come <span class="sel" data-generado-inicial>gato</span></p>
+              <p class="pequeno">Solo ha entrado «come».<br><b>¿Quién come?</b> No lo sabe.</p>
             </div>
-            <p class="texto sobre-escritorio">Nuestro juguete solo mira la última palabra. No basta: <b>la misma fila de la tabla</b> en las tres frases. El vector no sabe en qué frase está.</p>
           </div>
 
-          <div class="columna" data-in="2">
+          <p class="texto sobre-escritorio" data-in="2" data-out="3">Ahora entran <b>las tres</b>.<br><br>Y entre la tabla y las capas, un paso nuevo: <b>la atención</b>.</p>
+
+          <div class="columna" data-in="3" data-out="4">
             <div class="ventana">
-              <div class="barra"><span class="icono">🗺️</span><span class="nombre">mapa.bmp - Paint</span><span class="botones"><i>×</i></span></div>
-              <div class="cuerpo blanco" style="padding: 6px;">
-                <svg class="mapa" viewBox="0 0 860 520" width="850" height="514">
-                  <g class="zona"><ellipse cx="190" cy="140" rx="150" ry="95"/><text x="190" y="62">animales</text></g>
-                  <g class="zona"><ellipse cx="660" cy="140" rx="150" ry="95"/><text x="660" y="62">lugares</text></g>
-                  <g class="zona"><ellipse cx="430" cy="400" rx="170" ry="90"/><text x="430" y="330">dinero</text></g>
-                  <g class="palabra"><circle cx="150" cy="150" r="7"/><text x="150" y="182">peces</text></g>
-                  <g class="palabra"><circle cx="245" cy="120" r="7"/><text x="245" y="152">perro</text></g>
-                  <g class="palabra"><circle cx="620" cy="150" r="7"/><text x="620" y="182">parque</text></g>
-                  <g class="palabra"><circle cx="710" cy="115" r="7"/><text x="710" y="147">plaza</text></g>
-                  <g class="palabra"><circle cx="380" cy="410" r="7"/><text x="380" y="442">central</text></g>
-                  <g class="palabra"><circle cx="490" cy="385" r="7"/><text x="490" y="417">euro</text></g>
-                  <g class="banco-movil" data-on="2:a-peces 3:a-parque 4:a-central">
-                    <circle cx="0" cy="0" r="16"/><text x="0" y="-26">banco</text>
-                  </g>
-                </svg>
+              <div class="barra"><span class="icono">🧮</span><span class="nombre">Una capa: consulta</span><span class="botones"><i>×</i></span></div>
+              <div class="cuerpo blanco" style="padding: 20px 22px;">
+                <pre class="cuenta paso">entra: fila de «come»
+       [<span data-valor="embeddings.7.0"></span>  <span data-valor="embeddings.7.1"></span>]
+         ↓  2 neuronas:
+         entradas × pesos + sesgo
+sale:  consulta de «come»
+       [1,0  2,0]</pre>
+                <p class="ilustrativo">salida ilustrativa: el juguete no tiene atención</p>
               </div>
             </div>
-            <p class="texto sobre-escritorio">Cada token se mezcla con los demás: <b>mucho de los que importan, poco del resto</b>.</p>
+            <p class="pequeno sobre-escritorio">Lo mismo con cada fila y cada capa: <b>9 vectores</b> de 2 números.</p>
+          </div>
+
+          <div class="columna" data-in="4" data-out="5">
+            <div class="ventana">
+              <div class="barra"><span class="icono">🧮</span><span class="nombre">Mirar</span><span class="botones"><i>×</i></span></div>
+              <div class="cuerpo blanco" style="padding: 20px 22px;">
+                <pre class="cuenta paso">consulta «come»  [1,0  2,0]
+  × clave «el»    [0,1 −0,2] → −0,3
+  × clave «perro» [0,5  0,6] →  1,7
+  × clave «come»  [0,3  0,1] →  0,5
+
+porcentajes:  9 % · <b>70 %</b> · 21 %</pre>
+                <p class="ilustrativo">números ilustrativos</p>
+              </div>
+            </div>
+            <p class="pequeno sobre-escritorio">Multiplicar y sumar: <b>una neurona sin sesgo</b>. Y luego porcentajes, como en la capa final.</p>
+          </div>
+
+          <div class="columna" data-in="5" data-out="6">
+            <div class="ventana">
+              <div class="barra"><span class="icono">🧮</span><span class="nombre">Mezclar</span><span class="botones"><i>×</i></span></div>
+              <div class="cuerpo blanco" style="padding: 20px 22px;">
+                <pre class="cuenta paso">  fila «come»      [ <span data-valor="embeddings.7.0"></span> <span data-valor="embeddings.7.1"></span>]
++  9 % de «el»     [ 0,02  0,01]
++ <b>70 %</b> de «perro»  [ 0,56 −0,35]
++ 21 % de «come»   [−0,02  0,06]
+───────────────────────────────
+= «come» aquí      <b>[ 0,99 −1,18]</b></pre>
+                <p class="ilustrativo">números ilustrativos, salvo la fila de «come»</p>
+              </div>
+            </div>
+            <p class="pequeno sobre-escritorio">Mismo tamaño que la fila, pero ahora <b>sabe algo de su frase</b>.</p>
+          </div>
+
+          <p class="texto sobre-escritorio" data-in="6" data-out="7">Y de aquí en adelante, <b>todo igual</b>: capa oculta, capa final, porcentajes.<br><br>Pero ahora «come» ya sabe <b>quién come</b>.</p>
+
+          <div class="columna" data-in="7" data-out="8" style="gap: 20px;">
+            <div class="ventana dialogo">
+              <div class="barra"><span class="icono">🔢</span><span class="nombre">Parámetros</span><span class="botones"><i>×</i></span></div>
+              <div class="cuerpo blanco cuenta-parametros">
+                <table class="tabla">
+                  <tr><td>Tabla</td><td class="der">16</td></tr>
+                  <tr class="nuevo"><td><b>Consulta</b> 2 × (2 + 1)</td><td class="der">6</td></tr>
+                  <tr class="nuevo"><td><b>Clave</b> 2 × (2 + 1)</td><td class="der">6</td></tr>
+                  <tr class="nuevo"><td><b>Valor</b> 2 × (2 + 1)</td><td class="der">6</td></tr>
+                  <tr><td>Capa oculta</td><td class="der">6</td></tr>
+                  <tr><td>Capa final</td><td class="der">24</td></tr>
+                  <tr><td><b>Total</b></td><td class="der"><b>64</b></td></tr>
+                </table>
+                <p class="ilustrativo">si nuestro juguete tuviera atención (hipotético)</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="columna" data-in="5" data-out="6" style="gap: 40px; justify-content: center; align-self: stretch;">
-        <div class="tres">
-          <div class="ventana"><div class="barra"><span class="icono">🔎</span><span class="nombre">Consulta</span></div>
-            <div class="cuerpo"><p class="frase">¿Qué busco?</p></div></div>
-          <div class="ventana"><div class="barra"><span class="icono">🏷️</span><span class="nombre">Clave</span></div>
-            <div class="cuerpo"><p class="frase">¿Qué ofrezco?</p></div></div>
-          <div class="ventana"><div class="barra"><span class="icono">📦</span><span class="nombre">Valor</span></div>
-            <div class="cuerpo"><p class="frase">¿Qué aporto?</p></div></div>
-        </div>
-        <p class="texto sobre-escritorio">Cada token saca los tres con <b>su propia capa</b>.<br>Mi consulta × tu clave = cuánto me importas. <span class="tenue" style="color:#cfe">(Una neurona sin sesgo.)</span></p>
-      </div>
-
-      <div class="dos" data-in="6" data-out="7" style="grid-template-columns: 1fr 560px;">
-        <div class="columna">
-          <div class="ventana">
-            <div class="barra"><span class="icono">📄</span><span class="nombre">atencion.js - Bloc de notas</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
-            <div class="cuerpo blanco">
+      <!-- El precio: más contexto, más trabajo y más memoria -->
+      <div class="dos" data-in="10" style="grid-template-columns: 1fr 560px; align-items: start;">
+        <div class="pila">
+          <div class="columna" data-out="11" style="justify-content: center;">
+            <div class="ventana">
+              <div class="barra"><span class="icono">📄</span><span class="nombre">atencion.js - Bloc de notas</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
+              <div class="cuerpo blanco">
 <pre class="codigo compacto">
 for (var yo = 0; yo < tokens.length; yo++) {
   for (var otro = 0; otro < tokens.length; otro++) {
@@ -729,53 +830,69 @@ for (var yo = 0; yo < tokens.length; yo++) {
   // mezclar los valores de todos según importa
 }
 </pre>
+              </div>
             </div>
+            <p class="frase sobre-escritorio">Cada token contra todos.</p>
           </div>
-          <p class="frase sobre-escritorio">Cada token contra todos.</p>
+
+          <div class="columna" data-in="11" style="justify-content: center;">
+            <div class="ventana">
+              <div class="barra"><span class="icono">💾</span><span class="nombre">Ollama · llama3.2:3b</span><span class="botones"><i>×</i></span></div>
+              <div class="cuerpo blanco columna" style="gap: 14px;">
+                <table class="tabla" style="width: 100%;">
+                  <tr><th>contexto</th><th class="der">memoria ocupada</th></tr>
+                  <tr><td>4.096 tokens</td><td class="der">2,39 GB</td></tr>
+                  <tr><td>16.384 tokens</td><td class="der">3,80 GB</td></tr>
+                  <tr><td>32.768 tokens</td><td class="der"><b class="rojo">5,58 GB</b></td></tr>
+                </table>
+                <p class="pequeno">El modelo pesa siempre <b>2,0 GB</b>. El resto es el contexto: para cada token se guarda lo que aporta a los demás.</p>
+              </div>
+            </div>
+            <p class="texto sobre-escritorio">Mientras dura la conversación, <b>no se tira</b>: así no se recalcula con cada token nuevo.</p>
+          </div>
         </div>
         <div class="ventana">
           <div class="barra"><span class="icono">🧮</span><span class="nombre">Coste</span><span class="botones"><i>×</i></span></div>
           <div class="cuerpo blanco columna" style="gap: 18px;">
             <div class="rejilla-coste" id="rejilla-coste"></div>
             <table class="tabla" style="width: 100%;">
-              <tr><th>tokens</th><th class="der">comparaciones</th></tr>
+              <tr><th>tokens</th><th class="der">tokens × tokens</th></tr>
+              <tr><td>3</td><td class="der">9</td></tr>
               <tr><td>1.000</td><td class="der">1.000.000</td></tr>
               <tr><td>2.000</td><td class="der"><b class="rojo">4.000.000</b></td></tr>
             </table>
-            <p class="pequeno">Doble de contexto ≈ <b>cuatro veces</b> el trabajo.</p>
           </div>
         </div>
       </div>
 
-      <div class="centro" data-in="7">
-        <div class="pila-modelo">
-          <div class="chip">“le di de comer al”</div>
-          <div class="flecha">↓</div>
-          <div class="chip">tabla de embeddings</div>
-          <div class="flecha">↓</div>
-          <div class="bloque-repetido">
-            <div class="chip">atención</div><div class="flecha">→</div><div class="chip">capa</div>
-            <span class="veces">× decenas</span>
-          </div>
-          <div class="flecha">↓</div>
-          <div class="chip">capa final: una neurona por token del vocabulario</div>
-          <div class="flecha">↓</div>
-          <div class="chip activo">un porcentaje por token</div>
-        </div>
-        <p class="frase sobre-escritorio" data-in="8">No hay piezas nuevas. Solo muchas más.<br><span style="font-size: 40px; font-weight: 400;">Y todos esos pesos empiezan al azar.</span></p>
-      </div>
     </div>
   </div>
 
 
-  <aside class="nota" data-beat="1">Nuestro juguete solo mira la última palabra. Con eso no basta: “banco” es la misma fila de la tabla en las tres frases. El vector no sabe en qué frase está. Lo desambigua el resto de la frase.</aside>
-  <aside class="nota" data-beat="2">La idea: mezclar al vector de cada token un poco de los demás. En “banco de peces”, banco toma mucho de peces y se desplaza hacia los animales.</aside>
-  <aside class="nota" data-beat="3">“Banco del parque”: se va hacia los lugares.</aside>
-  <aside class="nota" data-beat="4">“Banco central”: hacia el dinero. Mismo token de partida, vector distinto según la frase.</aside>
-  <aside class="nota" data-beat="5">¿Cómo decide cuánto le importa cada uno? Cada token saca tres vectores, cada uno con su propia capa. Mi consulta contra tu clave: multiplicar y sumar, una neurona sin sesgo. Eso da cuánto me importas, y con eso mezclo los valores.</aside>
-  <aside class="nota" data-beat="6">Fijaos en el código: un bucle de tokens dentro de otro bucle de tokens. Coste cuadrático. Por eso el contexto es finito y caro.</aside>
-  <aside class="nota" data-beat="7">El modelo completo: tabla, atención y capas repetido decenas de veces, y una capa final con una neurona por cada token del vocabulario. Sale un porcentaje por token.</aside>
-  <aside class="nota" data-beat="8">Todo son tablas de pesos, capas y neuronas. Y todo empieza al azar. ¿Quién decide qué es buscar y qué es ofrecer? Nadie: se entrena.</aside>
+  <div class="clip-dice clip-cifras" data-in="9" data-out="10">
+    ¿Y cuántos bloques?
+    <table>
+      <tr><th></th><th>bloques</th><th>números<br>por token</th></tr>
+      <tr><td>Llama 3.2 3B</td><td>28</td><td>3.072</td></tr>
+      <tr><td>Qwen3.6 35B</td><td>40</td><td>2.048</td></tr>
+      <tr><td>Kimi K3</td><td>93</td><td>7.168</td></tr>
+    </table>
+  </div>
+
+  <div class="clip-dice" data-in="12"><b>Adiós, magia.</b></div>
+
+  <aside class="nota" data-beat="1">Volvemos a nuestro juguete. Le damos «el perro come», pero solo entra «come»: «el» y «perro» se quedan fuera. ¿Quién come? No lo sabe. Por eso, al azar, dice «gato».</aside>
+  <aside class="nota" data-beat="2">Ahora entran las tres filas, las de la tabla de siempre. Y entre la tabla y las capas se abre un hueco: un paso nuevo, la atención.</aside>
+  <aside class="nota" data-beat="3">Dentro hay tres capas pequeñas, normales, de 2 neuronas: consulta, clave y valor. Cada fila de la tabla pasa por las tres. Por ejemplo, la fila de «come», [0,44 −0,90], entra en la capa de consulta: cada neurona hace entradas × pesos + sesgo y sale un número; salen 2, la consulta de «come», [1,0 2,0]. Lo mismo con cada fila y cada capa: 3 tokens × 3 capas, 9 vectores de 2 números. (Lo que sale de las capas es ilustrativo: nuestro juguete no tiene atención.) Los nombres, qué busco, qué ofrezco, qué aporto, son el papel que cumplen en la cuenta.</aside>
+  <aside class="nota" data-beat="4">Mirar: la consulta de «come», [1,0 2,0], se multiplica por la clave de cada uno y se suma, una neurona sin sesgo. Con «el»: 1,0 × 0,1 + 2,0 × (−0,2) = −0,3. Con «perro»: 1,7. Con «come»: 0,5. Esas tres puntuaciones pasan por porcentajes, como en la capa final: 9 %, 70 %, 21 %. Las consultas de «el» y «perro» no se usan aquí: sirven para los vectores nuevos de «el» y «perro».</aside>
+  <aside class="nota" data-beat="5">Mezclar: a la fila de «come», [0,44 −0,90], se le suma cada valor por su porcentaje: el 9 % del valor de «el», el 70 % del de «perro» y el 21 % del suyo. Sale [0,99 −1,18]: mismo tamaño que la fila, pero lleva dentro, sobre todo, un poco de «perro». Esto es lo que sale de la atención, no la palabra: no se guarda, se calcula para esta frase.</aside>
+  <aside class="nota" data-beat="6">Y de aquí en adelante, todo igual que en el juguete: en la capa oculta entra [0,99 −1,18] en lugar de [0,44 −0,90], y luego capa final y porcentajes. Pero ahora «come» ya sabe que quien come es el perro.</aside>
+  <aside class="nota" data-beat="7">¿Qué se guarda? Las tres capas: si nuestro juguete tuviera atención, serían 18 números más. Es hipotético, nuestro juguete no la tiene. Lo que no se guarda es quién mira a quién: se calcula en cada frase y se tira.</aside>
+  <aside class="nota" data-beat="8">Subimos de nivel, como antes. Un modelo de verdad es esto mismo, apilado: bloques de atención seguida de capas normales, cada uno con sus propios pesos. De cada bloque sale un vector por token, del mismo tamaño, y entra en el siguiente. En el segundo, «come» vuelve a mirar, pero los vectores que ve ya vienen mezclados: la información se encadena. Las capas de cada bloque procesan todos los tokens, cada uno por separado. Al final, solo el vector del último token pasa a la capa final, que da un porcentaje por token del vocabulario.</aside>
+  <aside class="nota" data-beat="9">Clip, con tamaños reales. Llama 3.2 3B: 28 bloques, y cada token viaja como un vector de 3.072 números. Qwen3.6 35B: 40 bloques, 2.048 números. Kimi K3: 93 bloques, 7.168. Las «capas» de la escena 4 eran estos bloques. Y dentro de cada bloque hay varias atenciones en paralelo, cada una con su consulta, su clave y su valor, para fijarse en cosas distintas; el artículo original usa ocho. (Fuentes de bloques y números por token: las del guion, escenas 3 y 4.)</aside>
+  <aside class="nota" data-beat="10">El precio. Fijaos en el código: un bucle de tokens dentro de otro bucle de tokens. Cada token contra todos. Comparaciones: tokens por tokens. Con nuestras tres palabras, 3 × 3 = 9; con mil, un millón; con dos mil, cuatro millones. Por eso el doble de contexto es cuatro veces el trabajo.</aside>
+  <aside class="nota" data-beat="11">Y la memoria. Esto es el contexto: todos los tokens que el modelo tiene delante a la vez. Por eso tiene límites: el trabajo crece con tokens × tokens, la memoria crece con cada token, y cada modelo se entrena para un máximo (Kimi K3 declara 1.048.576 tokens). Más contexto es más información, pero los porcentajes de mirar siempre suman 100 %: hay que repartir entre más. Aquí se separa el modelo del programa. El modelo son ficheros con números: el vocabulario, la tabla y los pesos y sesgos de todas las neuronas. El programa, Ollama, hace las cuentas y gestiona esta memoria: guarda la clave y el valor de cada token ya procesado, en cada bloque. Un token nuevo solo calcula lo suyo, compara su consulta con las claves guardadas y mezcla los valores guardados; luego añade su clave y su valor. Llama 3.2 3B en Ollama: el modelo pesa 2 GB; con 4.096 tokens de contexto ocupa 2,39 GB, con 32.768, 5,58. (Pendiente de repasar: la frase de pantalla «no se tira» quedaría mejor como «No lo guarda el modelo: lo guarda el programa (Ollama), con la clave y el valor de cada token».)</aside>
+  <aside class="nota" data-beat="12">Adiós, magia. Hasta aquí, todo lo que hay dentro: tokens, la tabla, neuronas, entrenar y la atención. No hay más piezas: solo muchas más.</aside>
 </section>
 
 <!-- ======================================================================
@@ -819,37 +936,14 @@ for (var yo = 0; yo < tokens.length; yo++) {
             <svg class="mapa" id="mapa-entreno" viewBox="0 0 980 600" width="970" height="594" data-on="2:entrenado"></svg>
           </div>
         </div>
-        <div class="pila">
-          <div class="columna" data-out="4">
-            <p class="frase sobre-escritorio">Nadie ha escrito que perro y gato se parecen.</p>
-            <div class="ventana dialogo" data-in="3">
-              <div class="barra"><span class="icono">💡</span><span class="nombre">La clave</span><span class="botones"><i>×</i></span></div>
-              <div class="cuerpo">
-                <p class="texto">Para predecir, <b>da casi igual uno que otro</b>. Reciben correcciones parecidas y sus filas acaban juntas.</p>
-              </div>
-            </div>
-          </div>
-          <div class="columna" data-in="4">
-            <div class="ventana">
-              <div class="barra"><span class="icono">🗺️</span><span class="nombre">Parecido</span></div>
-              <div class="cuerpo"><p class="texto"><b>perro ≈ gato</b><br>En la tabla. Fijo.</p></div>
-            </div>
-            <div class="ventana">
-              <div class="barra"><span class="icono">👀</span><span class="nombre">Relevancia en la frase</span></div>
-              <div class="cuerpo"><p class="texto"><b>banco ↔ peces</b><br>En la atención. Cambia en cada frase.</p></div>
-            </div>
-          </div>
-        </div>
+        <p class="frase sobre-escritorio">Nadie ha escrito que perro y gato se parecen.</p>
       </div>
     </div>
   </div>
 
-  <div class="clip-dice" data-in="3" data-out="4">En mis tiempos esto se hacía con reglas escritas a mano. <b>Si la frase contiene “carta”, ofrecer ayuda.</b></div>
 
   <aside class="nota" data-beat="1">El mismo bucle del juguete, con miles de frases. «Le di de comer al gato» empuja gato arriba; «al perro», al revés. Tras muchas frases, ahí valen los dos.</aside>
-  <aside class="nota" data-beat="2">¿Dónde se dice que perro y gato están relacionados? En ninguna parte. Mirad el mapa: son las filas de la tabla.</aside>
-  <aside class="nota" data-beat="3">Aparecen en frases parecidas, así que reciben correcciones parecidas y acaban juntos. La relación es un efecto secundario de predecir bien.</aside>
-  <aside class="nota" data-beat="4">Dos tipos de relación: el parecido está en la tabla y queda fijo; la relevancia en la frase la calcula la atención cada vez.</aside>
+  <aside class="nota" data-beat="2">¿Dónde se dice que perro y gato están relacionados? En ninguna parte. Mirad el mapa: son las filas de la tabla. Aparecen en frases parecidas, así que reciben correcciones parecidas y acaban juntos. La relación es un efecto secundario de predecir bien.</aside>
 </section>
 
 <!-- ======================================================================
@@ -869,40 +963,51 @@ for (var yo = 0; yo < tokens.length; yo++) {
           <p class="ilustrativo" style="margin-top: 14px;">porcentajes ilustrativos</p>
         </div>
       </div>
-        <div class="ventana dialogo" data-in="2">
-          <div class="barra"><span class="icono">🎲</span><span class="nombre">Sorteo</span><span class="botones"><i>×</i></span></div>
-          <div class="cuerpo"><p class="pequeno">El código que envuelve al modelo <b>sortea</b> uno (no siempre el más probable), lo añade y vuelve a preguntar.</p></div>
-        </div>
       </div>
 
-      <div class="columna">
-        <div class="ventana" data-in="3">
+      <div class="pila">
+        <div class="ventana dialogo" data-in="2" data-out="5">
+          <div class="barra"><span class="icono">🎲</span><span class="nombre">Sorteo</span><span class="botones"><i>×</i></span></div>
+          <div class="cuerpo columna" style="gap: 14px; align-items: stretch;">
+            <p class="pequeno">El código que envuelve al modelo <b>sortea</b> uno, lo añade y vuelve a preguntar.</p>
+            <div class="temperatura" data-on="3-3:baja 4-4:alta">
+              <span class="t-nombre">temperatura</span>
+              <span class="t-pista"><i class="t-mando"></i></span>
+              <span class="t-valor"><b class="t-1">1</b><b class="t-baja">0,5</b><b class="t-alta">2</b></span>
+            </div>
+          </div>
+        </div>
+      <div class="columna" data-in="5">
+        <div class="ventana">
           <div class="barra"><span class="icono">🎲</span><span class="nombre">1. No determinismo</span></div>
           <div class="cuerpo"><p class="pequeno">Mismo prompt, respuestas distintas. <b>No es un fallo</b>: hay sorteo.</p></div>
         </div>
-        <div class="ventana" data-in="4">
+        <div class="ventana" data-in="6">
           <div class="barra"><span class="icono">🧭</span><span class="nombre">2. Sin plan</span></div>
           <div class="cuerpo"><p class="pequeno">No sabe cómo acabará la frase cuando la empieza.</p></div>
         </div>
-        <div class="ventana" data-in="5">
+        <div class="ventana" data-in="7">
           <div class="barra"><span class="icono">⚠️</span><span class="nombre">3. Alucinaciones</span></div>
           <div class="cuerpo"><p class="pequeno">No son una avería. Hace lo mismo al acertar que al inventar: <b>plausible, no veraz</b>.</p></div>
         </div>
+      </div>
       </div>
     </div>
   </div>
 
   <aside class="nota" data-beat="1">Con el modelo ya entrenado, la misma lista de porcentajes sirve para escribir. Un token, se añade, y otra vez.</aside>
-  <aside class="nota" data-beat="2">Quien elige no es el modelo: es el código que lo envuelve. Y no siempre elige el más probable (temperatura).</aside>
-  <aside class="nota" data-beat="3">Primera consecuencia: si hay sorteo, el mismo prompt da respuestas distintas.</aside>
-  <aside class="nota" data-beat="4">Segunda: no hay un plan de la frase entera. Un token, otro, otro.</aside>
-  <aside class="nota" data-beat="5">Tercera: alucinar no es una avería. Plausible, que no veraz. Tienden a coincidir gracias al entrenamiento, pero no son lo mismo.</aside>
+  <aside class="nota" data-beat="2">Quien elige no es el modelo: es el código que lo envuelve. Y no siempre elige el más probable: sortea. Cómo de arriesgado es ese sorteo lo decide una perilla del programa, no del modelo: la temperatura.</aside>
+  <aside class="nota" data-beat="3">Temperatura baja: los porcentajes se afilan y el favorito gana casi siempre. A cero, siempre el más probable: misma pregunta, misma respuesta.</aside>
+  <aside class="nota" data-beat="4">Temperatura alta: los porcentajes se aplanan y salen más a menudo los menos probables. Más variedad, y más riesgo. El modelo no ha cambiado ni un número: solo cambia cómo se sortea.</aside>
+  <aside class="nota" data-beat="5">Primera consecuencia: si hay sorteo, el mismo prompt da respuestas distintas.</aside>
+  <aside class="nota" data-beat="6">Segunda: no hay un plan de la frase entera. Un token, otro, otro.</aside>
+  <aside class="nota" data-beat="7">Tercera: alucinar no es una avería. Plausible, que no veraz. Tienden a coincidir gracias al entrenamiento, pero no son lo mismo.</aside>
 </section>
 
 <!-- ======================================================================
      9 · PARA MUESTRA, UN BOTÓN
      ====================================================================== -->
-<section class="escena" data-id="boton" data-titulo="Para muestra, un botón" data-seccion="verdad">
+<section class="escena" data-fuera data-id="boton" data-titulo="Para muestra, un botón" data-seccion="verdad">
   <div class="pila">
 
     <div class="centro" data-out="4">
@@ -1077,15 +1182,32 @@ optimizador.step()                  # corregir un poquito
      ====================================================================== -->
 <section class="escena" data-id="llm" data-titulo="Cómo se entrena un LLM" data-seccion="llm">
   <div class="columna" style="gap: 34px; height: 100%;">
-    <h2 class="titular sobre-escritorio">Y un LLM de verdad, ¿cómo?</h2>
+    <div class="pila titulo-pila">
+      <h2 class="titular sobre-escritorio" data-out="2">¿Y si le preguntamos algo?</h2>
+      <h2 class="titular sobre-escritorio" data-in="2">Entrenar de verdad: tres pasos</h2>
+    </div>
 
     <div class="pila" style="flex: 1;">
-      <div class="tres fases" data-on="3-3:atenuada">
+      <!-- El modelo ya genera. Le preguntamos… y no responde: continúa el texto. -->
+      <div class="centro" data-out="2" style="justify-content: flex-start;">
+        <div class="ventana" style="width: 1300px;">
+          <div class="barra"><span class="icono">🖥️</span><span class="nombre">bash · modelo base (solo preentrenado)</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
+<div class="dos-prompt"><span class="verde">samuel@portatil</span>:<span class="azul-bash">~</span>$ <span class="claro">./generar "¿Cuál es la capital de Francia?"</span>
+<span class="amarillo">¿Cuál es la capital de Italia?
+¿Cuál es el río más largo de Europa?
+¿En qué año cayó el Muro de Berlín?</span>
+<span class="verde">samuel@portatil</span>:<span class="azul-bash">~</span>$ <span class="claro">_</span></div>
+          <p class="ilustrativo" style="padding: 6px 10px;">respuesta ilustrativa</p>
+        </div>
+      </div>
+
+      <div class="columna" data-in="2" style="gap: 30px;">
+      <div class="tres fases">
         <div class="ventana">
           <div class="barra"><span class="icono">🏭</span><span class="nombre">1. Preentrenamiento</span></div>
           <div class="cuerpo columna" style="gap: 18px;">
             <p class="frase acento">Capacidad</p>
-            <div class="columna" data-in="2" style="gap: 14px;">
+            <div class="columna" data-in="3" style="gap: 14px;">
               <p class="texto">El bucle de antes, sobre <b>billones de tokens</b>.</p>
               <p class="pequeno">Meses. Miles de GPUs. Decenas de millones.</p>
               <div><span class="sello">Fuera de tu alcance</span></div>
@@ -1096,9 +1218,9 @@ optimizador.step()                  # corregir un poquito
           <div class="barra"><span class="icono">✍️</span><span class="nombre">2. Ajuste supervisado</span></div>
           <div class="cuerpo columna" style="gap: 18px;">
             <p class="frase acento">Forma</p>
-            <div class="columna" data-in="4" style="gap: 14px;">
+            <div class="columna" data-in="5" style="gap: 14px;">
               <p class="texto">Ejemplos <b>instrucción → respuesta</b>.</p>
-              <p class="pequeno">Unos 13.000 en el trabajo de referencia. Enseña a responder, no conocimiento.</p>
+              <p class="pequeno">Al lado del preentrenamiento, <b>una gota</b>: varios órdenes de magnitud menos datos. Enseña a responder, no conocimiento.</p>
             </div>
           </div>
         </div>
@@ -1106,194 +1228,52 @@ optimizador.step()                  # corregir un poquito
           <div class="barra"><span class="icono">👍</span><span class="nombre">3. Preferencias (RLHF)</span></div>
           <div class="cuerpo columna" style="gap: 18px;">
             <p class="frase acento">Criterio</p>
-            <div class="columna" data-in="5" style="gap: 14px;">
+            <div class="columna" data-in="7" style="gap: 14px;">
               <p class="texto">Personas eligen <b>la mejor de varias respuestas</b>.</p>
-              <p class="pequeno">Un modelo de 1.300 M así entrenado fue preferido a uno de 175.000 M.</p>
+              <p class="pequeno">En ese trabajo, un modelo de <b>1.300 millones de parámetros</b> con las tres fases gustó más que GPT-3, de 175.000 millones.</p>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="centro" data-in="3" data-out="4">
-        <div class="ventana" style="width: 1300px;">
-          <div class="barra"><span class="icono">💻</span><span class="nombre">MS-DOS · modelo_base.exe (solo preentrenado)</span><span class="botones"><i>×</i></span></div>
-<div class="dos-prompt"><span class="claro">C:\&gt; ¿Cuál es la capital de Francia?</span>
-<span class="amarillo">¿Cuál es la capital de Italia?
-¿Cuál es el río más largo de Europa?
-¿En qué año cayó el Muro de Berlín?</span>
-<span class="claro">C:\&gt; _</span></div>
-        </div>
-        <p class="texto sobre-escritorio">El modelo base no responde: <b>continúa el texto</b>.<br>En internet, esas preguntas aparecen en listas de examen.</p>
+      <p data-out="3" class="frase sobre-escritorio" style="text-align: center;">El mismo bucle en los tres. <b>Cambian los datos.</b></p>
       </div>
     </div>
   </div>
 
-  <div class="clip-dice" data-in="5">¡Qué pregunta tan brillante! <span class="tenue">(Esto es adulación. También se aprende aquí.)</span></div>
+  <div class="pila datos-fase">
 
-  <aside class="nota" data-beat="1">Tres fases: capacidad, forma, criterio.</aside>
-  <aside class="nota" data-beat="2">Preentrenamiento: exactamente el bucle que hemos visto, sobre billones de tokens. El valor esperado ya viene en el texto. Esto no lo vais a hacer nunca.</aside>
-  <aside class="nota" data-beat="3">El resultado es un modelo base: no conversa. Le preguntas por la capital de Francia y te continúa la lista de preguntas.</aside>
-  <aside class="nota" data-beat="4">Ajuste supervisado: unos 13.000 ejemplos de instrucción y respuesta (Ouyang et al., 2022). Enseña la forma, no conocimiento.</aside>
-  <aside class="nota" data-beat="5">Preferencias: humanos eligen entre respuestas. Juzgar es más fácil que demostrar. Efecto secundario: si a los evaluadores les gusta que les den la razón, el modelo aprende a dar la razón.</aside>
-</section>
-
-<!-- ======================================================================
-     11 · AFINAR: LoRA
-     ====================================================================== -->
-<section class="escena" data-id="lora" data-titulo="Afinar: LoRA" data-seccion="afinar">
-  <div class="columna" style="gap: 30px; height: 100%;">
-    <h2 class="titular sobre-escritorio">Afinar: LoRA</h2>
-
-    <div class="pila" style="flex: 1;">
-      <div class="dos" data-out="3" style="grid-template-columns: 900px 1fr;">
-        <div class="ventana">
-          <div class="barra"><span class="icono">🧱</span><span class="nombre">modelo.bin</span><span class="botones"><i>×</i></span></div>
-          <div class="cuerpo blanco" style="padding: 20px;">
-            <div class="bloques-modelo" id="bloques-modelo" data-on="2:congelado"></div>
-          </div>
-        </div>
-        <div class="pila">
-          <div class="columna" data-out="2">
-            <p class="frase sobre-escritorio">Afinar = recalcular pesos.</p>
-            <p class="texto sobre-escritorio">Entrenar pide varias veces más memoria que usarlo.<br>Y sale <b>otro modelo entero</b>.</p>
-          </div>
-          <div class="columna" data-in="2">
-            <p class="frase sobre-escritorio">LoRA: congelar el modelo y añadir <span style="color: #ffd27a;">unas matrices pequeñitas</span>.</p>
-            <p class="cifra sobre-escritorio">0,341 %</p>
-            <p class="texto sobre-escritorio">de los parámetros se entrenan. Tres por mil.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="columna" data-in="3" style="gap: 30px;">
-        <div class="fila arriba" style="gap: 30px;">
-          <div class="ventana" style="width: 760px;">
-            <div class="barra"><span class="icono">🎫</span><span class="nombre">ticket → clasificación</span><span class="botones"><i>×</i></span></div>
-            <div class="cuerpo blanco columna" style="gap: 14px;">
-              <p class="pequeno">“Buenas, el botón de exportar a PDF no hace nada cuando lo pulso. Un saludo.”</p>
-              <p class="pequeno mono acento">{"categoria": "funcionalidad",<br>&nbsp;"prioridad": "media"}</p>
-            </div>
-          </div>
-          <div class="ventana" style="flex: 1;">
-            <div class="barra"><span class="icono">⏱️</span><span class="nombre">El experimento · en CPU</span></div>
-            <div class="cuerpo columna" style="gap: 10px;">
-              <p class="texto"><b>99</b> ejemplos · <b>190 s</b> de entrenamiento</p>
-              <p class="texto">Adaptador: <b>1,78 MB</b> <span class="tenue">(el modelo: ~270 MB)</span></p>
-            </div>
+        <!-- 1. Preentrenamiento: texto en bruto, de todo y revuelto -->
+        <div class="ventana" data-in="4" data-out="5">
+          <div class="barra"><span class="icono">📄</span><span class="nombre">corpus.txt - Bloc de notas</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
+          <div class="cuerpo blanco" style="padding: 18px 26px;">
+<pre class="texto-bruto">En un agujero en el suelo, vivía un hobbit. No un agujero sucio, húmedo, repugnante, con restos de gusanos y olor a fango, ni tampoco un agujero seco, desnudo y arenoso, sin nada en qué sentarse o qué comer: era un agujero hobbit, y eso significa comodidad.</pre>
           </div>
         </div>
 
-        <div class="ventana" data-in="4">
-          <div class="barra"><span class="icono">📊</span><span class="nombre">resultados.xls · 27 tickets que no ha visto nunca</span></div>
-          <div class="cuerpo blanco" style="padding: 10px;">
-            <table class="tabla lora" style="width: 100%;" data-on="4:col-formato 5:col-acierto">
-              <tr><th>Modelo</th><th class="der">JSON válido</th><th class="der">Categoría</th><th class="der">Cat. + prioridad</th></tr>
-              <tr><td>135 M sin afinar</td><td class="der f">0 / 27</td><td class="der a">0 / 27</td><td class="der a">0 / 27</td></tr>
-              <tr><td>135 M + LoRA</td><td class="der f"><b>27 / 27</b></td><td class="der a">12 / 27</td><td class="der a">4 / 27</td></tr>
-              <tr data-in="6"><td>360 M sin afinar</td><td class="der f">14 / 27</td><td class="der a">6 / 27</td><td class="der a">0 / 27</td></tr>
-              <tr data-in="6"><td>360 M + LoRA</td><td class="der f"><b>27 / 27</b></td><td class="der a">16 / 27</td><td class="der a"><b>11 / 27</b></td></tr>
-            </table>
+        <!-- 2. Ajuste supervisado: conversaciones de ejemplo -->
+        <div class="ventana" data-in="6" data-out="7">
+          <div class="barra"><span class="icono">📄</span><span class="nombre">ejemplos.txt - Bloc de notas</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
+          <div class="cuerpo blanco" style="padding: 18px 26px;">
+<pre class="texto-bruto">&lt;usuario&gt; ¿Cuál es la capital de Francia? &lt;fin&gt;
+&lt;asistente&gt; <span class="respuesta">La capital de Francia es París. &lt;fin&gt;</span>
+
+&lt;usuario&gt; Escribe una función que sume dos números. &lt;fin&gt;
+&lt;asistente&gt; <span class="respuesta">function suma(a, b) { return a + b; } &lt;fin&gt;</span></pre>
+            <p class="ilustrativo">ilustrativo: cada modelo usa sus propias marcas · <span class="respuesta">subrayado</span>: donde se mide el error</p>
           </div>
         </div>
-        <p class="frase sobre-escritorio" data-in="5" data-out="6">Forma, sí. Criterio, no.</p>
-        <p class="frase sobre-escritorio" data-in="6">Mismos datos, modelo mayor: el acierto casi se triplica.</p>
-      </div>
-    </div>
   </div>
 
-  <aside class="nota" data-beat="1">Afinar es recalcular pesos. Problema: entrenar pide varias veces más memoria que servir, y sale un modelo entero nuevo.</aside>
-  <aside class="nota" data-beat="2">LoRA: se congela el modelo y se añaden unas matrices pequeñas que sí se entrenan. Sale un adaptador aparte, pequeño, intercambiable. (QLoRA además comprime el modelo base a 4 bits mientras se entrena.)</aside>
-  <aside class="nota" data-beat="3">El experimento: clasificar tickets en categoría y prioridad devolviendo JSON. 99 ejemplos. Tres minutos de CPU. 1,78 MB.</aside>
-  <aside class="nota" data-beat="4">El formato pasa a ser perfecto de inmediato: de 0 a 27 de 27.</aside>
-  <aside class="nota" data-beat="5">El acierto se queda a medias. Ha aprendido a rellenar el molde, no a distinguir. Afinar enseña la forma, no el conocimiento.</aside>
-  <aside class="nota" data-beat="6">Con un modelo mayor y los mismos datos, el acierto completo casi se triplica. Detalle: el reparto entrenamiento/evaluación se hizo por redacción, no al azar.</aside>
-</section>
+  <div class="clip-dice" data-in="8" style="bottom: 60px;">¡Qué pregunta tan brillante! <span class="tenue">(Esto es adulación. También se aprende aquí.)</span></div>
 
-<!-- ======================================================================
-     12 · RAG
-     ====================================================================== -->
-<section class="escena" data-id="rag" data-titulo="RAG" data-seccion="rag">
-  <div class="columna" style="gap: 30px; height: 100%;">
-    <h2 class="titular sobre-escritorio">RAG: datos propios sin reentrenar</h2>
-
-    <div class="pila" style="flex: 1;">
-      <div class="columna" data-out="3" style="gap: 40px; justify-content: center; align-items: center; align-self: stretch;">
-        <p class="frase sobre-escritorio" style="text-align: center;">Que no lo recuerde:<br>ponérselo delante.</p>
-        <div class="fila" style="gap: 22px;">
-          <span class="chip">🔎 Recuperar</span><span class="flecha">→</span>
-          <span class="chip">📎 Aumentar</span><span class="flecha">→</span>
-          <span class="chip">✍️ Generar</span>
-        </div>
-        <div class="flujo-rag" data-in="2">
-          <span class="chip">pregunta</span><span class="flecha">→</span>
-          <span class="chip">buscar en el mapa</span><span class="flecha">→</span>
-          <span class="chip">fragmentos</span><span class="flecha">→</span>
-          <span class="chip">prompt = pregunta + fragmentos</span><span class="flecha">→</span>
-          <span class="chip">modelo</span>
-        </div>
-        <p class="texto sobre-escritorio" data-in="2">Cada trozo de documentación es un punto en el mapa. Se buscan los más cercanos a la pregunta.<br><b>No se toca ni un peso.</b></p>
-      </div>
-
-      <div class="pila" data-in="3" data-out="7">
-      <div class="columna" data-out="4" style="gap: 28px;">
-        <div class="ventana">
-          <div class="barra"><span class="icono">📄</span><span class="nombre">rag.js - Bloc de notas</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
-          <div class="cuerpo blanco">
-<pre class="codigo compacto">
-Settings.llm = new Ollama({ model: "llama3.2:3b" });
-Settings.embedModel = new OllamaEmbedding({ model: "bge-m3" });
-const indice = await VectorStoreIndex.fromDocuments(documentos);
-const respuesta = await indice.asQueryEngine().query({ query: pregunta });
-</pre>
-          </div>
-        </div>
-        <p class="texto sobre-escritorio">Un manual de soporte de 4 documentos + un modelo de 3.000 millones de parámetros, en local, sin tarjeta gráfica.</p>
-      </div>
-
-      <div class="columna" data-in="4" style="gap: 28px;">
-        <div class="ventana">
-          <div class="barra"><span class="icono">💻</span><span class="nombre">MS-DOS · node preguntar.js</span><span class="botones"><i>×</i></span></div>
-<div class="dos-prompt"><span class="claro">C:\&gt; ¿Qué datos hacen falta antes de escalar una incidencia de rendimiento?</span>
-1. Momento exacto de inicio.
-2. Módulo o pantalla afectada.
-3. Alcance (todos los usuarios o solo quien reporta).
-4. Navegador y versión.
-<span class="amarillo">Fragmentos usados:  <span class="verde">0.787</span>  rendimiento.md   0.435  facturacion.md</span>
-<span data-in="5"><span class="claro">C:\&gt; ¿Cuál es la capital de Australia?</span>
-No tengo información sobre la capital de Australia en el contexto proporcionado.
-<span class="amarillo">Fragmentos usados:  <span style="color:#ff7777">0.240</span>  facturacion.md   0.233  planes.md</span></span></div>
-        </div>
-        <p class="frase sobre-escritorio" data-in="6">0,787 frente a 0,240: sabes si hay algo relevante <b>antes</b> de llamar al modelo.</p>
-      </div>
-      </div>
-
-      <div class="columna" data-in="7" style="gap: 30px;">
-        <div class="ventana">
-          <div class="barra"><span class="icono">💧</span><span class="nombre">RAG en Drupal</span><span class="botones"><i>_</i><i>□</i><i>×</i></span></div>
-          <div class="cuerpo blanco">
-            <table class="tabla" style="width: 100%;">
-              <tr><th>Cuando…</th><th>…en el índice</th></tr>
-              <tr><td>se guarda un nodo</td><td>reindexar ese nodo <span class="tenue">(hook)</span></td></tr>
-              <tr><td>se borra un nodo</td><td>quitarlo del índice</td></tr>
-              <tr><td>pasa el tiempo</td><td>reindexado programado <span class="tenue">(cron)</span></td></tr>
-              <tr><td>pregunta un usuario</td><td>solo fragmentos de nodos que <b>puede ver</b></td></tr>
-            </table>
-          </div>
-        </div>
-        <p class="frase sobre-escritorio">Esto es Drupal de toda la vida.<br>El modelo es lo fácil.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="clip-dice" data-in="5" data-out="6">Atado al manual, no se inventa la respuesta. Ni siquiera la fácil.</div>
-
-  <aside class="nota" data-beat="1">Si quiero que sepa lo que pone en mi documentación, afinar no es el camino. RAG: no hacer que lo recuerde, ponérselo delante.</aside>
-  <aside class="nota" data-beat="2">El mapa de antes, aplicado a trozos de texto: cada fragmento es un punto. Se buscan los más cercanos a la pregunta (por el ángulo, similitud del coseno). Límite: captura el sentido general, no un número de factura; por eso se combina con la búsqueda por palabras de toda la vida.</aside>
-  <aside class="nota" data-beat="3">El ejemplo: un manual de 4 documentos y un modelo de 3.000 M en local. El núcleo son cuatro líneas.</aside>
-  <aside class="nota" data-beat="4">Pregunta del manual: responde los cuatro datos, en orden. Mejor fragmento: 0,787.</aside>
-  <aside class="nota" data-beat="5">Pregunta fuera del manual: se niega. La sala espera Canberra.</aside>
-  <aside class="nota" data-beat="6">La puntuación te dice si hay algo relevante antes de llamar al modelo.</aside>
-  <aside class="nota" data-beat="7">Lo difícil de un RAG es mantener el índice al día: guardar, borrar, cron y permisos. Eso es Drupal de toda la vida.</aside>
+  <aside class="nota" data-beat="1">Ya sabemos generar: un token, se añade, otro. Pues preguntémosle algo. «¿Cuál es la capital de Francia?» Y no responde: sigue con más preguntas. No es un fallo: en los textos, las preguntas así suelen venir en listas (exámenes, cuestionarios), así que lo más probable después de una pregunta es otra pregunta. En cambio, a «La capital de Francia es» sí completa «París». Esto es un modelo base: solo preentrenado. (Ejemplo del libro, 5.2.)</aside>
+  <aside class="nota" data-beat="2">¿Por qué? Porque lo que hemos visto es solo el primer paso. Entrenar un LLM de verdad son tres pasos: capacidad, forma y criterio. Por dentro, los tres son el mismo bucle de siempre; lo que cambia son los datos con que se alimenta.</aside>
+  <aside class="nota" data-beat="3">Preentrenamiento: exactamente el bucle que hemos visto, sobre billones de tokens. El valor esperado ya viene en el texto. El resultado es el modelo base de antes: predice muy bien, pero no conversa. Esto no lo vais a hacer nunca.</aside>
+  <aside class="nota" data-beat="4">Lo que entra es texto en bruto, lo que pillemos: libros, webs, foros, código. Por ejemplo, el principio de El hobbit, de Tolkien.</aside>
+  <aside class="nota" data-beat="5">Ajuste supervisado: el mismo bucle, con otros datos. Se parte del modelo base y se sigue entrenando con ejemplos de instrucción y respuesta: en el trabajo de referencia, unos 13.000 (Ouyang y otros, 2022), frente a billones de tokens. Varios órdenes de magnitud menos, midiendo el error solo en la respuesta. Enseña la forma, no conocimiento.</aside>
+  <aside class="nota" data-beat="6">Lo que entra son conversaciones de ejemplo: el turno del usuario y la respuesta buena, con unas marcas que separan los turnos y que también son tokens. El error solo se mide en la respuesta (lo subrayado). Si quieres un modelo para otra cosa, otros ejemplos: con 99 tickets clasificados en JSON, el libro consigue el formato perfecto, pero el acierto se queda a medias.</aside>
+  <aside class="nota" data-beat="7">Preferencias: humanos eligen entre respuestas. Juzgar es más fácil que demostrar. Aquí ya no hay un token esperado, sino una nota de cuánto gusta la respuesta.</aside>
+  <aside class="nota" data-beat="8">Efecto secundario: si a los evaluadores les gusta que les den la razón, el modelo aprende a dar la razón.</aside>
 </section>
 
 <!-- ======================================================================
@@ -1301,37 +1281,7 @@ No tengo información sobre la capital de Australia en el contexto proporcionado
      ====================================================================== -->
 <section class="escena" data-id="cierre" data-titulo="Cierre">
   <div class="pila">
-    <div class="columna" data-out="6" style="gap: 34px;">
-      <h2 class="titular sobre-escritorio">Para recordar</h2>
-      <div class="pila">
-      <div class="columna" data-out="3" style="gap: 34px;">
-      <div class="ventana">
-        <div class="barra"><span class="icono">📋</span><span class="nombre">¿Qué necesito?</span><span class="botones"><i>×</i></span></div>
-        <div class="cuerpo blanco" style="padding: 10px;">
-          <table class="tabla" style="width: 100%;">
-            <tr><th>Quiero que el modelo…</th><th>Herramienta</th><th>Coste</th></tr>
-            <tr><td>sepa lo que pone en mis datos</td><td><b>RAG</b></td><td>No se entrena</td></tr>
-            <tr><td>responda con mi formato o tono</td><td><b>LoRA</b></td><td>Minutos, MB</td></tr>
-            <tr><td>resuelva algo pequeño y cerrado, rápido y en casa</td><td><b>Modelo propio</b></td><td>Segundos, KB</td></tr>
-            <tr><td>haga cualquier cosa</td><td><b>Modelo comercial</b></td><td>Lo de siempre</td></tr>
-          </table>
-        </div>
-      </div>
-      <p class="texto sobre-escritorio" data-in="2">El 99 % de los casos: un modelo comercial. Saber cómo funciona sirve para usarlo mejor.</p>
-      </div>
-
-      <div class="columna" data-in="3" style="gap: 26px;">
-        <div class="ventana"><div class="barra"><span class="icono">📏</span><span class="nombre">1</span></div>
-          <div class="cuerpo"><p class="frase">Más grande no es mejor.</p><p class="pequeno tenue">9.098 parámetros ganan a 101.770.</p></div></div>
-        <div class="ventana" data-in="4"><div class="barra"><span class="icono">⚙️</span><span class="nombre">2</span></div>
-          <div class="cuerpo"><p class="frase">El modelo no es el sistema.</p><p class="pequeno tenue">Con preprocesado 93 %, sin él 69 %.</p></div></div>
-        <div class="ventana" data-in="5"><div class="barra"><span class="icono">✖️</span><span class="nombre">3</span></div>
-          <div class="cuerpo"><p class="frase">Los errores se multiplican.</p><p class="pequeno tenue">0,933¹⁰ ≈ 0,5.</p></div></div>
-      </div>
-      </div>
-    </div>
-
-    <div class="centro" data-in="6" data-out="7">
+    <div class="centro" data-out="2">
       <div class="ventana dialogo" style="width: 1450px;">
         <div class="barra"><span class="icono">💬</span><span class="nombre">Para terminar</span><span class="botones"><i>×</i></span></div>
         <div class="cuerpo">
@@ -1341,30 +1291,24 @@ No tengo información sobre la capital de Australia en el contexto proporcionado
       </div>
     </div>
 
-    <div class="centro" data-in="7">
+    <div class="centro despedida" data-in="2">
       <h1 class="wordart">¡Gracias!</h1>
-      <div class="ventana dialogo" style="width: 900px; margin-top: 30px;">
-        <div class="barra"><span class="icono">💾</span><span class="nombre">Samuel Solís</span><span class="botones"><i>×</i></span></div>
+      <div class="ventana dialogo">
+        <div class="barra"><span class="icono">💾</span><span class="nombre">¿Cuál es el siguiente token? · Samuel Solís</span><span class="botones"><i>×</i></span></div>
         <div class="cuerpo">
-          <div class="qr-hueco">QR</div>
-          <div class="columna" style="gap: 10px;">
-            <p class="texto negrita">Inteligencia artificial sin artificios</p>
-            <p class="pequeno">El libro y los ejemplos</p>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" class="qr-repo" role="img" aria-label="QR del repositorio de la charla"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m1 0h1m2 0h2m2 0h2m1 0h1m4 0h1m2 0h7m-33 1h1m5 0h1m3 0h2m4 0h1m2 0h1m1 0h2m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m1 0h2m1 0h3m3 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h1m3 0h1m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h5m2 0h2m3 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h2m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m1 0h1m3 0h5m1 0h4m-24 1h1m3 0h1m1 0h7m1 0h1m2 0h1m2 0h2m1 0h1m1 0h5m2 0h1m-32 1h1m3 0h1m1 0h3m1 0h1m1 0h5m5 0h1m1 0h1m3 0h3m-32 1h2m1 0h1m1 0h4m1 0h3m2 0h2m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m-32 1h2m1 0h1m5 0h1m2 0h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m5 0h1m-32 1h1m2 0h4m1 0h1m1 0h1m2 0h3m1 0h1m1 0h6m1 0h1m1 0h2m2 0h1m-29 1h1m3 0h1m3 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m4 0h1m-29 1h6m3 0h1m1 0h2m1 0h3m1 0h1m2 0h4m4 0h1m-31 1h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h1m2 0h2m1 0h3m2 0h4m-28 1h1m2 0h3m3 0h2m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-30 1h1m1 0h2m9 0h4m2 0h1m1 0h1m1 0h1m3 0h2m-31 1h1m1 0h1m3 0h1m3 0h2m2 0h2m4 0h4m1 0h1m1 0h1m1 0h1m1 0h1m-31 1h4m2 0h1m2 0h4m3 0h5m1 0h3m1 0h1m3 0h2m-30 1h1m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m2 0h3m3 0h4m1 0h2m-33 1h3m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m3 0h1m4 0h1m1 0h1m1 0h1m1 0h1m1 0h1m-26 1h1m2 0h4m2 0h4m3 0h4m2 0h2m1 0h1m-30 1h1m2 0h1m3 0h2m1 0h1m2 0h4m1 0h2m1 0h4m1 0h2m1 0h1m-32 1h2m2 0h3m1 0h1m3 0h1m4 0h1m1 0h10m2 0h1m-24 1h3m1 0h5m1 0h1m1 0h1m2 0h2m3 0h1m1 0h2m-32 1h7m1 0h5m2 0h1m1 0h2m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m2 0h1m1 0h1m1 0h1m2 0h3m1 0h2m2 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m2 0h1m3 0h2m1 0h6m-30 1h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m3 0h2m2 0h1m1 0h2m1 0h4m-30 1h1m1 0h3m1 0h1m2 0h1m4 0h5m4 0h2m1 0h3m-29 1h1m5 0h1m2 0h5m3 0h1m1 0h3m1 0h4m-27 1h7m1 0h1m2 0h1m1 0h1m1 0h3m2 0h3m1 0h3m5 0h1"/></svg>
+          <div class="columna" style="gap: 18px; align-items: flex-start;">
+            <p class="frase">¿Cuál es el<br>siguiente token?</p>
+            <p class="texto"><b>Samuel Solís</b><br>DrupalCamp Spain 2026</p>
+            <p class="pequeno">La charla y el modelo de juguete, para que lo entrenes tú.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="clip-dice" data-in="7">Parece que tienes preguntas. ¿Quieres ayuda?<div class="opciones"><span>Preguntar</span><span>Ir a por café</span></div></div>
-
-  <aside class="nota" data-beat="1">Tres formas de usar esta maquinaria sin ser un gran laboratorio, y la cuarta de siempre.</aside>
-  <aside class="nota" data-beat="2">La proporción honesta.</aside>
-  <aside class="nota" data-beat="3">Más grande no es mejor.</aside>
-  <aside class="nota" data-beat="4">El modelo no es el sistema.</aside>
-  <aside class="nota" data-beat="5">Los errores se multiplican.</aside>
-  <aside class="nota" data-beat="6">Frase final del libro. Haber recorrido el ciclo entero, aunque sea en pequeño, es la mejor defensa contra creer que es magia y creer que es trivial.</aside>
-  <aside class="nota" data-beat="7">Gracias. Preguntas.</aside>
+  <aside class="nota" data-beat="1">Frase final del libro. Haber recorrido el ciclo entero, aunque sea con un juguete, es la mejor defensa contra creer que es magia y creer que es trivial.</aside>
+  <aside class="nota" data-beat="2">Gracias. En el QR está todo: la presentación y el modelo de juguete, con instrucciones para entrenarlo vosotros. Preguntas.</aside>
 </section>
 
   <!-- Clip, el ayudante (dibujo propio, homenaje al de Office 97) -->

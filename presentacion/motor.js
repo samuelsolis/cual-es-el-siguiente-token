@@ -429,10 +429,13 @@
     if (CAPTURA || REDUCIDO) document.body.classList.add("sin-movimiento");
     prepararCodigo(raiz);
 
-    escenas = [...raiz.querySelectorAll(".escena")].map((el) => ({ el, beats: contarBeats(el) }));
+    // Una escena con data-fuera está aparcada: sigue en el HTML, pero no cuenta ni se ve.
+    escenas = [...raiz.querySelectorAll(".escena:not([data-fuera])")].map((el) => ({ el, beats: contarBeats(el) }));
 
+    // En la barra, solo las secciones que tienen alguna escena
     const tareas = document.querySelector("#barra-tareas .tareas");
-    if (tareas) tareas.innerHTML = SECCIONES.map(([id, t]) => `<span class="tarea" data-seccion="${id}">${t}</span>`).join("");
+    const conEscena = SECCIONES.filter(([id]) => escenas.some((e) => e.el.dataset.seccion === id));
+    if (tareas) tareas.innerHTML = conEscena.map(([id, t]) => `<span class="tarea" data-seccion="${id}">${t}</span>`).join("");
     reloj();
     setInterval(reloj, 15000);
 

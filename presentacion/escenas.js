@@ -109,7 +109,7 @@
   })();
 
   const estadoNeurona = (beat) =>
-    beat >= 13 ? ESTADO_JUGUETE : beat >= 11 ? ESTADO_GRANDE : beat >= 8 ? ESTADO_JUGUETE : beat >= 7 ? ESTADO_CAPA : ESTADO_NEURONA;
+    beat >= 10 ? ESTADO_GRANDE : beat >= 7 ? ESTADO_JUGUETE : beat >= 6 ? ESTADO_CAPA : ESTADO_NEURONA;
 
   const suave = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   const mezcla = (a, b, t) => a + (b - a) * t;
@@ -213,6 +213,12 @@
   const estiloPeso = (w) => ({ stroke: w >= 0 ? "#1f3fbf" : "#d26a00", strokeWidth: String(Math.min(10, 0.8 + 2.4 * Math.abs(w))) });
 
   Charla.escena("neurona", async (ctx) => {
+    // De 4.1 a 4.2, los dos números de la fila de «come» vuelan del Excel a las entradas.
+    if (ctx.animar && ctx.anterior === 1 && ctx.beat === 2) {
+      const entradas = ctx.el.querySelectorAll('.valor text[data-valor="embeddings.7.0"], .valor text[data-valor="embeddings.7.1"]');
+      [$("#come-d1"), $("#come-d2")].forEach((celda, i) =>
+        volarToken(celda, entradas[i], { duracion: 1100, retraso: 250 + i * 120, celda: true, desdeCelda: true }));
+    }
     const destino = estadoNeurona(ctx.beat);
     const origen = ctx.anterior ? estadoNeurona(ctx.anterior) : destino;
     if (!ctx.animar || origen === destino) { pintarNeurona(destino, destino, 1); return; }
@@ -256,6 +262,11 @@
       const [t, k] = el.dataset.pct.split(".").map(Number);
       el.textContent = pct(PRED0[t].porcentajes[k]);
     });
+    // con el juguete ya entrenado (solo mira el último token)
+    document.querySelectorAll("[data-pct-mf]").forEach((el) => {
+      const [t, k] = el.dataset.pctMf.split(".").map(Number);
+      el.textContent = pct(J.predecir(MF, t).porcentajes[k]);
+    });
     document.querySelectorAll("[data-pct-paso]").forEach((el) => {
       const [t, k] = el.dataset.pctPaso.split(".").map(Number);
       el.textContent = pct(J.predecir(M1, t).porcentajes[k]);
@@ -290,6 +301,14 @@
   })();
 
   // La tabla de embeddings del vocabulario, recién creada.
+  (function tablaNeurona() {
+    const el = $("#tabla-neurona");
+    if (!el) return;
+    el.innerHTML = "<tr><th>nº</th><th>token</th><th>d1</th><th>d2</th></tr>" + J.VOCABULARIO.map((t, k) =>
+      `<tr class="${k === COME ? "fila-come" : ""}"><td class="fila-nombre">${k}</td><td class="token">${t}</td>` +
+      `<td${k === COME ? ' id="come-d1"' : ""}>${fmt(M0.embeddings[k][0])}</td><td${k === COME ? ' id="come-d2"' : ""}>${fmt(M0.embeddings[k][1])}</td></tr>`).join("");
+  })();
+
   (function tablaJuguete() {
     const el = $("#tabla-juguete");
     if (!el) return;
@@ -311,7 +330,7 @@
     return [dx, dy];
   }
 
-  async function volarToken(origen, destino, { duracion = 1000, retraso = 0, celda = false } = {}) {
+  async function volarToken(origen, destino, { duracion = 1000, retraso = 0, celda = false, desdeCelda = false } = {}) {
     const esc = $("#escenario"), r = esc.getBoundingClientRect(), f = r.width / 1920;
     const caja = (b, [dx, dy] = [0, 0]) => ({ left: (b.left - r.left) / f - dx + "px", top: (b.top - r.top) / f - dy + "px", width: b.width / f + "px", height: b.height / f + "px" });
     let fin;
@@ -323,7 +342,16 @@
     const volando = document.createElement("span");
     volando.className = "pieza-volando";
     volando.textContent = origen.textContent;
-    const inicio = caja(origen.getBoundingClientRect(), desplazado(origen));
+    let inicio = caja(origen.getBoundingClientRect(), desplazado(origen));
+    if (desdeCelda) {
+      // sale del texto de una celda, a su tamaño, sin recuadro
+      const rango = document.createRange();
+      rango.selectNodeContents(origen);
+      const estilo = getComputedStyle(origen);
+      inicio = { ...caja(rango.getBoundingClientRect(), desplazado(origen)), fontSize: estilo.fontSize, padding: "0px", borderWidth: "0px", backgroundColor: "rgba(238, 238, 255, 0)" };
+      volando.style.fontFamily = estilo.fontFamily;
+      volando.style.fontWeight = "700";
+    }
     Object.assign(volando.style, inicio);
     esc.appendChild(volando);
     origen.style.visibility = "hidden";
@@ -555,73 +583,7 @@
     pintarMapaEntreno(m.embeddings);
   }
 
-  // El modelo entero, al azar y entrenado: la tabla (mapa) y la red, con sus pesos
-  // como líneas. Para el entrenado se guarda el modelo tras cada vuelta.
-  const VUELTAS_MODELO = [J.copiar(M0)];
-  (() => { const m = J.copiar(M0); for (let v = 1; v <= VUELTAS; v++) { J.entrenarVuelta(m); VUELTAS_MODELO.push(J.copiar(m)); } })();
-
-  function redPesos(el) {
-    if (!el) return () => {};
-    const pos = { e1: [70, 125], e2: [70, 225], A: [250, 125], B: [250, 225], jA: [330, 125], jB: [330, 225] };
-    J.VOCABULARIO.forEach((_, k) => { pos["f" + k] = [440, 22 + (k + 0.5) * (286 / TOKENS)]; });
-    const aristas = [];
-    for (const a of ["e1", "e2"]) for (const b of ["A", "B"]) aristas.push([a, b]);
-    aristas.push(["A", "jA"], ["B", "jB"]);  // una salida por neurona oculta, que luego se reparte
-    for (const a of ["jA", "jB"]) J.VOCABULARIO.forEach((_, k) => aristas.push([a, "f" + k]));
-    const lineas = aristas.map(([a, b]) => {
-      const l = svg("line", { x1: pos[a][0], y1: pos[a][1], x2: pos[b][0], y2: pos[b][1], class: "peso" });
-      el.appendChild(l);
-      return l;
-    });
-    const nodos = {};
-    for (const [id, [x, y]] of Object.entries(pos)) {
-      const union = id.startsWith("j");
-      nodos[id] = svg("circle", { cx: x, cy: y, r: union ? 5 : id.startsWith("f") ? 11 : 20, class: union ? "union-mini" : "nodo-mini" });
-      el.appendChild(nodos[id]);
-    }
-    const nombres = J.VOCABULARIO.map((t, k) => el.appendChild(svg("text", { x: 462, y: pos["f" + k][1] + 8, class: "salida-mini" }, t)));
-    el.appendChild(svg("text", { x: 70, y: 300, class: "pie-mini" }, "entrada: «come»"));
-    el.appendChild(svg("text", { x: 250, y: 300, class: "pie-mini" }, "capa oculta"));
-    return (m) => {
-      lineas.forEach((l, i) => {
-        const w = pesoArista(m, ...aristas[i]);
-        Object.assign(l.style, w === null ? { stroke: "#000", strokeWidth: "4" } : estiloPeso(w));
-      });
-      const p = J.predecir(m, COME).porcentajes, gana = p.indexOf(Math.max(...p));
-      nombres.forEach((n, k) => n.classList.toggle("gana", k === gana));
-      J.VOCABULARIO.forEach((_, k) => nodos["f" + k].classList.toggle("gana", k === gana));
-    };
-  }
-  const RANGO_ENTRENO = [2.15, 1.5];
-  const ladoModelo = (cual) => {
-    const mapa = mapaTokens($("#mapa-" + cual), 640, 400, RANGO_ENTRENO), red = redPesos($("#red-" + cual));
-    const genera = $("#genera-" + cual);
-    return (m) => {
-      if (mapa) mapa(m.embeddings);
-      red(m);
-      if (genera) genera.textContent = J.generar(m, EL, 3).map((k) => J.VOCABULARIO[k]).join(" ");
-    };
-  };
-  const pintarM0 = ladoModelo("m0"), pintarMF = ladoModelo("mf");
-  pintarM0(M0);
-  pintarMF(MF);
-
-  async function entrenarEntero(ctx, animar) {
-    const vuelta = $("#vuelta-entero");
-    if (!animar) { pintarMF(ctx.beat >= 10 ? MF : M0); if (vuelta) vuelta.textContent = ctx.beat >= 10 ? VUELTAS : 0; return; }
-    const inicio = performance.now(), duracion = 2000;
-    while (ctx.vigente()) {
-      const t = Math.min(1, (performance.now() - inicio) / duracion);
-      const v = Math.round(t * VUELTAS);
-      pintarMF(VUELTAS_MODELO[v]);
-      if (vuelta) vuelta.textContent = v;
-      if (t >= 1) break;
-      await new Promise(requestAnimationFrame);
-    }
-  }
-
   Charla.escena("juguete", async (ctx) => {
-    entrenarEntero(ctx, ctx.animar && ctx.anterior === 9 && ctx.beat === 10);
     barrasJuguete(ctx.el, ctx.beat === 6 ? J.predecir(M1, COME).porcentajes : PRED0[COME].porcentajes);
     if (ctx.beat < 7) { pintarEntreno(ctx.el, M0, 0); return; }
     if (ctx.beat > 7 || !ctx.animar) { pintarEntreno(ctx.el, MF, VUELTAS); return; }
@@ -666,17 +628,8 @@
   mapa($("#mapa-entreno"), 11, true);
 
   /* ------------------------------------------------------------------------
-     Atención: la fila de "banco", idéntica en las tres frases
+     Atención: el coste, cada token contra todos
      ------------------------------------------------------------------------ */
-
-  (function vectorBanco() {
-    const r = Charla.azar(3);
-    const valores = Array.from({ length: 8 }, () => fmt(r() * 2 - 1));
-    ["#vector-banco", "#vector-banco-2", "#vector-banco-3"].forEach((s) => {
-      const el = $(s);
-      if (el) el.innerHTML = valores.map((v) => `<span>${v}</span>`).join("");
-    });
-  })();
 
   (function rejillaCoste() {
     const el = $("#rejilla-coste");
@@ -684,9 +637,82 @@
     el.innerHTML = "<i></i>".repeat(24 * 24);
   })();
 
+  // «el perro come»: los tres vectores de cada token (sin números) y nuestra red, con
+  // sus pesos como líneas. Cerrada (beat 1), la red se desplaza hasta que su entrada
+  // coincide con la fila de «come», como en la escena 4.
+  (function diagramaAtencion() {
+    const chips = $("#chips-qkv");
+    if (!chips) return;
+    // Lo que sale de las tres capas para cada token. Ilustrativo: el juguete no tiene
+    // atención. Las cuentas de «Mirar» y «Mezclar» (en el HTML) salen de estos números.
+    const QKV = [
+      [[0.4, -0.3], [0.1, -0.2], [0.2, 0.1]],     // el:    consulta, clave, valor
+      [[-0.6, 0.9], [0.5, 0.6], [0.8, -0.5]],     // perro
+      [[1.0, 2.0], [0.3, 0.1], [-0.1, 0.3]],      // come
+    ];
+    [215, 385, 555].forEach((y, t) => {
+      [["q", 385], ["k", 575], ["v", 765]].forEach(([cls, x], c) => {
+        // las consultas de «el» y «perro» no se usan para «come»
+        const g = svg("g", { class: `chip-qkv ${cls}${c === 0 && t < 2 ? " no-usada" : ""}${c === 0 && t === 2 ? " q-come" : ""}` });
+        g.appendChild(svg("rect", { x: x - 80, y: y - 26, width: 160, height: 52, rx: 6 }));
+        [-38, 38].forEach((dx, d) => {
+          g.appendChild(svg("rect", { class: "celda", x: x + dx - 34, y: y - 18, width: 68, height: 36 }));
+          g.appendChild(svg("text", { class: "num-qkv", x: x + dx, y: y + 8 }, fmt(QKV[t][c][d], 1)));
+        });
+        chips.appendChild(g);
+      });
+    });
+
+    const pos = { e1: [1150, 543], e2: [1150, 567], A: [1205, 480], B: [1205, 630], jA: [1237, 480], jB: [1237, 630] };
+    J.VOCABULARIO.forEach((_, k) => { pos["f" + k] = [1282, 130 + k * 70]; });
+    const lineas = $("#red-atencion-lineas"), nodos = $("#red-atencion-nodos");
+    const arista = (a, b, cls) => {
+      const l = svg("line", { x1: pos[a][0], y1: pos[a][1], x2: pos[b][0], y2: pos[b][1], class: "arista " + cls });
+      const w = pesoArista(M0, a, b);
+      if (w !== null) Object.assign(l.style, estiloPeso(w));
+      lineas.appendChild(l);
+    };
+    for (const a of ["e1", "e2"]) for (const b of ["A", "B"]) arista(a, b, "red");
+    arista("A", "jA", "salida"); arista("B", "jB", "salida b");
+    for (const a of ["jA", "jB"]) J.VOCABULARIO.forEach((_, k) => arista(a, "f" + k, "red"));
+    nodos.appendChild(svg("circle", { cx: pos.A[0], cy: pos.A[1], r: 24, class: "nodo nucleo" }));
+    nodos.appendChild(svg("circle", { cx: pos.B[0], cy: pos.B[1], r: 24, class: "nodo nucleo b" }));
+    nodos.appendChild(svg("circle", { cx: pos.jA[0], cy: pos.jA[1], r: 6, class: "nodo union" }));
+    nodos.appendChild(svg("circle", { cx: pos.jB[0], cy: pos.jB[1], r: 6, class: "nodo union b" }));
+    J.VOCABULARIO.forEach((_, k) => nodos.appendChild(svg("circle", { cx: pos["f" + k][0], cy: pos["f" + k][1], r: 17, class: "nodo" + (k === GANA0 ? " gana" : "") })));
+
+    // Un modelo de verdad: bloques [atención → capas], cada uno con sus propios pesos.
+    // Dentro de la atención, cada token mira a todos; dentro de las capas, cada uno va por separado.
+    const carriles = [215, 385, 555];
+    const bloques = $("#bloques-reales");
+    [[300, "bloque 1"], [540, "bloque 2"], [840, "último bloque"]].forEach(([x, nombre], b) => {
+      const g = svg("g", { class: "bloque-real b" + (b + 1) });
+      g.appendChild(svg("rect", { class: "marco", x, y: 150, width: 200, height: 470, rx: 14 }));
+      g.appendChild(svg("text", { x: x + 100, y: 138, class: "pie" }, nombre));
+      g.appendChild(svg("rect", { class: "atencion", x: x + 12, y: 168, width: 80, height: 434, rx: 10 }));
+      for (const a of carriles) for (const c of carriles) g.appendChild(svg("line", { class: "mira", x1: x + 22, y1: a, x2: x + 82, y2: c }));
+      g.appendChild(svg("text", { x: x + 52, y: 300, class: "rotulo-bloque", transform: `rotate(-90 ${x + 52} 300)` }, "atención"));
+      g.appendChild(svg("rect", { class: "capas", x: x + 108, y: 168, width: 80, height: 434, rx: 10 }));
+      for (const a of carriles) {
+        g.appendChild(svg("circle", { class: "nodo nucleo", cx: x + 134, cy: a, r: 11 }));
+        g.appendChild(svg("circle", { class: "nodo nucleo b", cx: x + 162, cy: a, r: 11 }));
+      }
+      g.appendChild(svg("text", { x: x + 148, y: 300, class: "rotulo-bloque capas-txt", transform: `rotate(-90 ${x + 148} 300)` }, "capas"));
+      bloques.appendChild(g);
+    });
+    for (const a of carriles) bloques.appendChild(svg("text", { x: 790, y: a + 12, class: "puntos b2" }, "…"));
+    bloques.appendChild(svg("text", { x: 790, y: 138, class: "pie b2" }, "decenas"));
+    const final = $("#final-real");
+    for (let k = 0; k < TOKENS; k++) {
+      const y = 150 + k * 66;
+      final.appendChild(svg("line", { class: "arista red", x1: 1090, y1: 555, x2: 1150, y2: y }));
+      final.appendChild(svg("circle", { class: "nodo", cx: 1150, cy: y, r: 14 }));
+    }
+  })();
+
   Charla.escena("atencion", async (ctx) => {
     const celdas = [...ctx.el.querySelectorAll("#rejilla-coste i")];
-    if (ctx.beat !== 6) { celdas.forEach((c) => c.classList.add("on")); return; }
+    if (ctx.beat !== 10) { celdas.forEach((c) => c.classList.add("on")); return; }
     if (!ctx.animar) { celdas.forEach((c) => c.classList.add("on")); return; }
     celdas.forEach((c) => c.classList.remove("on"));
     for (let fila = 0; fila < 24; fila++) {
@@ -765,6 +791,16 @@
       `<div class="candidato ${i === elegido ? "elegido" : ""}"><span>${t}</span><span class="b"><i style="--v:${p}"></i></span><span class="p">${p} %</span></div>`).join("");
   }
 
+  // La temperatura retoca los porcentajes antes de sortear: cada uno elevado a 1/T y
+  // vuelto a repartir para que sumen 100. Baja, el favorito se lleva casi todo; alta,
+  // se reparte más. Los porcentajes de partida son los ilustrativos de la lista.
+  const TEMPERATURA = { 3: 0.5, 4: 2 };
+  function conTemperatura(lista, t) {
+    const pesos = lista.map(([, p]) => Math.pow(p, 1 / t));
+    const total = pesos.reduce((a, b) => a + b, 0);
+    return lista.map(([tok], i) => [tok, Math.round((pesos[i] / total) * 100)]);
+  }
+
   Charla.escena("generar", async (ctx) => {
     const texto = $("#texto-generado", ctx.el);
     const cand = $("#candidatos", ctx.el);
@@ -772,7 +808,17 @@
 
     if (!ctx.animar || ctx.beat !== 1) {
       texto.innerHTML = `${INICIO_TEXTO} ${palabras.join(" ")}`;
-      pintarCandidatos(cand, GENERACION[GENERACION.length - 1], 0);
+      const ultima = GENERACION[GENERACION.length - 1];
+      const t = TEMPERATURA[ctx.beat];
+      const lista = t ? conTemperatura(ultima, t) : ultima;
+      // si ya están pintados, solo se mueven las barras (para que se vea el cambio)
+      const filas = cand.querySelectorAll(".candidato");
+      if (filas.length === lista.length) {
+        filas.forEach((f, i) => {
+          f.querySelector(".b i").style.setProperty("--v", lista[i][1]);
+          f.querySelector(".p").textContent = `${lista[i][1]} %`;
+        });
+      } else pintarCandidatos(cand, lista, 0);
       return;
     }
 

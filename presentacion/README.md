@@ -76,4 +76,4 @@ Las piezas apiladas en el mismo sitio (una sustituye a la otra) van dentro de un
 
 Las cifras de los dígitos (traza de entrenamiento, aciertos, la hoja escaneada y los 15 números leídos) son las de las ejecuciones reales de `ejemplos/5.6-digitos/` del repositorio del libro. Las de LoRA y RAG salen del libro.
 
-Los porcentajes de los ejemplos de texto (gato/perro, banco, la generación) son ilustrativos, y así se indica en pantalla.
+Los porcentajes de los ejemplos de texto (gato/perro, la atención, la generación) son ilustrativos, y así se indica en pantalla.

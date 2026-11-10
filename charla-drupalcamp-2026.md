@@ -39,11 +39,12 @@ Tiempos pendientes de ajustar una vez cerrado el discurso.
 
 **Objetivo:** situar el problema y prometer algo concreto.
 
+- **El título cambia:** primero sale el del programa, «Inteligencia artificial sin artificios»; al clic siguiente se tacha, y al otro llega el de verdad, «**¿Cuál es el siguiente token?**». Es lo único que hace un modelo de lenguaje, y al final se entenderá por qué. (Decidido el 2026-11-10: el título publicado no cambia; el cambio es solo en pantalla.)
+
 - Gancho: "¿Cuántos habéis utilizado la IA para resolver un problema esta semana? ¿Y cuántos sabríais explicar qué ha pasado dentro?"
 - La IA genera código que suele funcionar, pero la usamos como una caja negra. Hoy la abrimos.
 - Advertencia honesta: no vamos a entrenar un ChatGPT. Eso es de laboratorios con presupuestos de decenas de millones. Pero las piezas son las mismas, y las vamos a ver todas.
-- Mapa de la charla en una diapositiva: **el perro come carne → atención → de verdad → afinar → RAG**.
-- **Dos tipos principales de IA** (tres pasos en pantalla): primero la **discriminativa**, con una salida sencilla: elige entre unas pocas respuestas (spam / no spam, qué cifra es); los dígitos del bloque 3 son de ese tipo. Luego la **generativa**, que crea algo nuevo (imagen, audio, texto): **misma estrategia, distinto output**. Por último se resaltan los **LLM, que generan texto**: de ellos va la charla.
+- Enlace: «Empezamos por el principio: de palabras a tokens». (El mapa de la charla y los dos tipos de IA se quitaron el 2026-11-07: no aportaban.)
 
 **Diapositiva:** una caja negra con un `?` → la misma caja abierta llena de números.
 
@@ -108,16 +109,14 @@ Antes de pasar a 3D (con la tabla y el mapa ya en pantalla), una llave bajo el E
 | --- | --- | --- | --- |
 | nuestro juguete | 8 | 2 | 16 |
 | Llama 3.2 3B (el modelo local del libro, 5.3) | 128.256 | 3.072 | ≈ 394 millones |
-| GPT-3 (2020) | 50.257 | 12.288 | ≈ 618 millones |
-| Gemma 3 27B (Google, 2025) | ≈ 262.000 | 5.376 | ≈ 1.409 millones |
+| Qwen3.6 35B-A3B (Alibaba, abril de 2026) | 248.320 | 2.048 | ≈ 509 millones |
+| Kimi K3 (Moonshot AI, junio de 2026) | 163.840 | 7.168 | ≈ 1.174 millones |
 
-Fuentes, leídas el 2026-10-20: ficha oficial de Llama 3.2 (`MODEL_CARD.md`, «3B (3.21B)») y `models/sku_list.py` del repositorio `meta-llama/llama-models` (`vocab_size` 128256, `dim` 3072); Brown et al. (2020), *Language Models are Few-Shot Learners*, arXiv:2005.14165 (tabla 2.1: 175.0B, `d_model` 12288; reutiliza el tokenizador de GPT-2); Radford et al. (2019), *Language Models are Unsupervised Multitask Learners* («The vocabulary is expanded to 50,257»). «Números por token» es el tamaño de cada fila de la tabla de embeddings.
+Fuentes: Llama 3.2, leídas el 2026-10-20: ficha oficial (`MODEL_CARD.md`, «3B (3.21B)») y `models/sku_list.py` del repositorio `meta-llama/llama-models` (`vocab_size` 128256, `dim` 3072). Qwen3.6 y Kimi K3, leídas el 2026-11-10 en Hugging Face: `config.json` de `Qwen/Qwen3.6-35B-A3B` (`vocab_size` 248320, `hidden_size` 2048, `num_hidden_layers` 40; 35.951.822.704 parámetros en BF16 según el recuento del repositorio; la ficha dice «35B in total and 3B activated») y de `moonshotai/Kimi-K3` (`vocab_size` 163840, `hidden_size` 7168, `num_hidden_layers` 93; la ficha dice 2.8T de parámetros totales, 104B activos, y «160K» de vocabulario). «Números por token» es el tamaño de cada fila de la tabla de embeddings. Se eligieron por ser de lo que se sirve hoy (por ejemplo, en nan.builders): Llama como modelo local, Qwen como mediano abierto y Kimi K3 como uno de los más grandes con pesos publicados.
 
-Gemma 3 27B: Gemma Team, Google DeepMind (2025), *Gemma 3 Technical Report*, arXiv:2503.19786 («vocabulary has 262k entries»; tabla 1: 1.416 millones de parámetros de embedding para 27B); metadatos públicos de `gemma3:27b` en ollama.com (`gemma3.embedding_length` 5376, `token_embd.weight` [5376, 262145]). En pantalla, «≈ 262.000»: el número exacto de filas varía un poco según la versión. Su configuración en Hugging Face está restringida y no se ha podido leer.
+Si preguntan por Claude, GPT-4 o Gemini: sus fabricantes no publican ni parámetros ni vocabulario; lo que circula son estimaciones. Detalle curioso para comentar: Qwen3.6 tiene casi el doble de vocabulario que Llama 3.2 3B (248.320 frente a 128.256), pero filas más cortas (2.048 frente a 3.072).
 
-Si preguntan por Claude, GPT-4 o Gemini: sus fabricantes no publican ni parámetros ni vocabulario; lo que circula son estimaciones. Detalle curioso para comentar: Llama 3.2 3B tiene un vocabulario más del doble de grande que GPT-3.
-
-**Para ti, cuando lleguen los parámetros:** parámetros = todos los números que el modelo aprende: la tabla de embeddings **más** los pesos y sesgos de todas las neuronas. La tabla es solo una parte: en Llama 3.2 3B, unos 394 de 3.210 millones (~12 %); en GPT-3, unos 618 de 175.000 millones (~0,35 %). Lo grande son las capas, que se aplican a todos los tokens por igual. (Llama 3.2 reutiliza la tabla como capa final, «Shared Embeddings: Yes» en su ficha; el juguete no.) Llama 3.1 405B: `vocab_size` 128256 y `dim` 16384 en `sku_list.py`. Detalle para comentar: mismo vocabulario que Llama 3.2 3B; lo que crece es el tamaño de cada fila.
+**Para ti, cuando lleguen los parámetros:** parámetros = todos los números que el modelo aprende: la tabla de embeddings **más** los pesos y sesgos de todas las neuronas. La tabla es solo una parte: en Llama 3.2 3B, unos 394 de 3.210 millones (~12 %); en Kimi K3, unos 1.174 de 2.800.000 millones (~0,04 %). Lo grande son las capas, que se aplican a todos los tokens por igual. (Llama 3.2 reutiliza la tabla como capa final, «Shared Embeddings: Yes» en su ficha; el juguete no.) Llama 3.1 405B: `vocab_size` 128256 y `dim` 16384 en `sku_list.py`. Detalle para comentar: mismo vocabulario que Llama 3.2 3B; lo que crece es el tamaño de cada fila.
 
 ### Transición: del azar al orden
 
@@ -197,12 +196,12 @@ Pesos y sesgo son el modelo; las entradas, el dato. (Para ti, si alguien pregunt
   | --- | --- | --- |
   | nuestro juguete | 2 | 46 |
   | Llama 3.2 3B | 28 | 3.210 millones |
-  | Gemma 3 27B | 62 | ≈ 27.000 millones |
-  | GPT-3 (2020) | 96 | 175.000 millones |
+  | Qwen3.6 35B | 40 | ≈ 36.000 millones |
+  | Kimi K3 | 93 | 2.800.000 millones |
 
-  Fuentes: Llama 3.2 3B, ficha oficial («3.21B») y `sku_list.py` (`n_layers` 28); Gemma 3 27B, informe técnico (tabla 1: 1.416 M de embedding + 25.600 M sin embedding, sin contar el codificador de imagen) y metadatos de Ollama (`block_count` 62); GPT-3, artículo de 2020 (tabla 2.1: 96 capas, 175,0 B). En los modelos reales cada «capa» es un bloque que incluye la atención, que se ve después.
+  Fuentes: Llama 3.2 3B, ficha oficial («3.21B») y `sku_list.py` (`n_layers` 28); Qwen3.6 35B y Kimi K3, `config.json` y fichas en Hugging Face (ver 1.1). Los dos son de «mezcla de expertos»: cada token usa solo una parte de los parámetros (unos 3.000 millones en Qwen, 104.000 millones en Kimi), por si preguntan. En los modelos reales cada «capa» es un bloque que incluye la atención, que se ve después.
 
-- **Volvamos a nuestro modelo:** la red grande se reduce y vuelve a ser la nuestra, con «gato 40,5 %» marcado; al lado, `modelo.exe`: «el perro come **gato**». Luego un aviso, «Un momento…»: **¿quién decide cada número? ¿Y por qué sale «gato»?** Y dentro del aviso: **Nadie. Se aprenden.** (Sale «gato» porque los números aún están al azar.)
+- **Un momento:** sobre la red grande, un aviso: «¡Pero todos estos números están al azar!». Y al clic siguiente: «Hasta que dejan de ser azar». De ahí, al entrenamiento (la escena 5 ya empieza con «el perro come ___» y «gato» al 40,5 %). (Cambiado el 2026-11-10: antes volvía a nuestro modelo y preguntaba «¿Quién decide cada número?».)
 
 ### 1.4 Entrenar: esperado → generado
 
@@ -259,21 +258,17 @@ Pesos y sesgo son el modelo; las entradas, el dato. (Para ti, si alguien pregunt
 
 **Diapositivas:** los 8 tokens en recuadros y su número debajo · `vocabulario.txt` · la tabla de embeddings en Excel junto al mapa con 8 puntos · la neurona con la fila de «come», sus pesos y la calculadora · neurona → capa → nuestra red → una red grande, como una sola figura que se transforma · `modelo.exe` con generado / debería / error · `modelo.xls` con lo que cambia en un paso · el entrenamiento en directo con el mapa moviéndose · antes / ahora al generar.
 
-### 1.6 El modelo entero: tabla + red
+### 1.6 Cierre del entrenamiento
 
-El mismo esquema de «del azar al orden» del principio, ahora con todo lo que se ha visto, y con números reales del juguete:
+Tras generar («antes: el gato gato gato» → «ahora: el perro come carne»), Clip: «46 números. Y ya “sabe” que el perro come carne. Eso es el modelo.»
 
-- **Izquierda, al azar (M0):** el mapa de la tabla y la red con sus pesos como líneas (grosor = tamaño del peso; azul, positivo; naranja, negativo). Para «come» gana «gato»; genera «el gato gato gato».
-- **Centro:** `entrenar.exe`, que cuenta las 40 vueltas.
-- **Derecha, entrenado:** se ve entrenar en directo, vuelta a vuelta. El mapa se mueve (solo los cuatro tokens de la frase), las líneas cambian de grosor y para «come» acaba ganando «carne»; genera «el perro come carne». Pie: «los mismos 46 números, ajustados».
-- **El matiz que hay que decir:** en las líneas no se ve un «orden» como en el mapa. Nadie puede mirar los pesos y decir que están bien; se nota en lo que hace el modelo. Por eso es tan difícil saber qué ha aprendido un modelo mirando sus números (interpretabilidad, libro 1.2).
-- Después, Clip: «46 números. Y ya “sabe” que el perro come carne. Eso es el modelo.»
+(El tríptico «el modelo entero: tabla + red», al azar → entrenar.exe → entrenado, se quitó el 2026-11-10 porque repetía el entrenamiento en directo y el «antes / ahora». Si alguien pregunta por los pesos: en las líneas de la red no se ve un «orden» como en el mapa; nadie puede mirar los pesos y decir que están bien, se nota en lo que hace el modelo. Por eso es tan difícil saber qué ha aprendido un modelo mirando sus números: interpretabilidad, libro 1.2.)
 
-En la escena de la red (1.3), las líneas de nuestra red ya se dibujan con el grosor y el color de sus pesos al azar, para que este cierre se reconozca.
+**El enlace con la atención (5.10–5.11):** «Pero solo ha mirado «come»». `modelo.exe · entrenado` con «~~el perro~~ **come** → carne 99,7 %» y, al clic siguiente, «~~el gato~~ **come** → carne 99,7 %». Es real: el juguete entrenado solo recibe la fila del último token, así que con «el gato come» dice lo mismo, y eso que «pescado» está en el vocabulario. No tiene en cuenta nada de lo anterior: le falta contexto.
 
 **Si vas tarde:** quita la tabla de antes → después de un paso; deja el entrenamiento en directo.
 
-**Transición:** "Nuestro juguete solo mira la última palabra. Con «come» basta para adivinar «carne», pero ¿y con «banco»?"
+**Transición:** "Nuestro juguete solo mira la última palabra. Con «come» acaba diciendo «carne», pero no sabe quién come."
 
 ---
 
@@ -285,17 +280,36 @@ En la escena de la red (1.3), las líneas de nuestra red ya se dibujan con el gr
 
 ### 2.1 Atención
 
-**El problema que resuelve.** Nuestro juguete solo mira la última palabra. Y aunque mirase todas, con la tabla cada token tiene **un** vector, siempre el mismo. Pero *banco* es el mismo token en "banco de peces", "banco del parque" y "banco central": **la misma fila de la tabla**. El vector de la tabla no sabe en qué frase está. Lo que lo desambigua es el resto de la frase.
+**El problema que resuelve.** Volvemos al juguete con «el perro come». Solo entra la fila de *come*: *el* y *perro* se quedan fuera. ¿Quién come? No lo sabe; por eso, al azar, dice «gato».
 
-**La idea.** Coger el vector de cada token y **mezclarle un poco de los vectores de los demás tokens de la frase**, más de los que importan y menos de los que no. En "banco de peces", *banco* toma mucho de *peces* y su vector se desplaza hacia la zona de los animales del mapa. En "banco central", hacia la zona del dinero. Mismo token de partida, vector distinto según la frase.
+**Lo que hasta aquí es de cualquier modelo.** La tabla, las neuronas, las capas y el bucle de entrenar (esperado → generado → corregir) no son «lo de antes de la atención»: así se entrena también hoy. Lo que le falta al juguete es mirar la frase entera. Antes de 2017 los modelos sí la miraban, pero en cadena, palabra a palabra (ver la nota histórica al final de este apartado).
 
-**¿Cómo decide cuánto le importa cada uno?** Cada token saca tres vectores a partir del suyo, cada uno con **su propia `capa`** (la del bloque 1):
+**Dónde encaja: entre la tabla y las capas.** Paso a paso, con «el perro come»:
 
-- **consulta:** qué estoy buscando;
-- **clave:** qué ofrezco yo;
-- **valor:** qué aporto si me eligen.
+1. Texto → tokens: `[5, 3, 7]`. Ahora se usan los tres.
+2. Tabla: se cogen las tres filas (*el*, *perro*, *come*). La tabla no cambia.
+3. **Atención** (el paso nuevo):
+   - cada fila pasa por **tres capas pequeñas**, las mismas para todos los tokens, y sale convertida en tres vectores: **consulta** (qué busco), **clave** (qué ofrezco) y **valor** (qué aporto);
+   - **mirar:** la consulta de *come* se compara con la clave de cada uno (multiplicar y sumar: **una `neurona` sin sesgo**). Sale una puntuación por token, y `porcentajes` la convierte en un reparto. Por ejemplo, ilustrativo: *el* 10 %, *perro* 70 %, *come* 20 %;
+   - **mezclar:** *come* en esta frase = su fila + 10 % del valor de *el* + 70 % del de *perro* + 20 % del suyo. Mismo tamaño que la fila, pero ahora sabe algo de su frase. Lo mismo se hace para *el* y para *perro*.
+4. Capa oculta, capa final y porcentajes: **todo igual que en el juguete**, pero lo que entra es el *come* mezclado, que ya sabe quién come.
+5. Al entrenar, el mismo bucle de siempre. Ahora intervino más: las tres capas de la atención y también las filas de *el* y *perro*, que en el juguete no se habrían tocado.
 
-Mi consulta se compara con la clave de cada uno de los demás (multiplicar y sumar, o sea, **una `neurona` sin sesgo**). Eso da una puntuación por token. Las puntuaciones se pasan a porcentajes que suman 100 %, y con esos porcentajes se mezclan los valores.
+**Con números (en pantalla, 6.3–6.5; ilustrativos salvo las filas de la tabla):**
+
+| entra (fila) | → consulta | → clave | → valor |
+| --- | --- | --- | --- |
+| el `[−0,36 0,46]` | `[0,4 −0,3]` (no se usa para «come») | `[0,1 −0,2]` | `[0,2 0,1]` |
+| perro `[−0,85 0,86]` | `[−0,6 0,9]` (no se usa para «come») | `[0,5 0,6]` | `[0,8 −0,5]` |
+| come `[0,44 −0,90]` | `[1,0 2,0]` | `[0,3 0,1]` | `[−0,1 0,3]` |
+
+Cada capa: entra una fila (2 números), sale un vector (2 números, uno por neurona). Mirar: `[1,0 2,0]` × cada clave → −0,3 / 1,7 / 0,5 → porcentajes 9 % / 70 % / 21 %. Mezclar: `[0,44 −0,90]` + 9 % × valor de «el» + 70 % × valor de «perro» + 21 % × valor de «come» = `[0,99 −1,18]`. Eso entra en la capa oculta en lugar de la fila sola. De los 9 vectores, para «come» se usan 7. Cada neurona de esas capas tiene tantas entradas como números por token (2 aquí; 3.072 en Llama 3.2 3B), no tantas como tokens: con más tokens, las capas se usan más veces, pero no crecen.
+
+**¿Qué se guarda?** Las **tres capas** (consulta, clave y valor): son parte del modelo, igual que la capa oculta, y solo cambian al entrenar. No son por token, son las mismas para todos: lo que hace distinta la salida es la fila que entra. Si nuestro juguete tuviera atención, serían 3 × 2 × (2 + 1) = **18 números más** (hipotético: el juguete no la tiene). Lo que **no** se guarda es el resultado de mirar: quién mira a quién y el *come* mezclado se calculan en cada frase y se tiran, como las salidas de cualquier neurona.
+
+**«Busco», «ofrezco» y «aporto»** son nombres por el papel que cumplen en la cuenta: la consulta solo se compara, la clave solo es comparada y el valor solo se suma. Se separan clave y valor porque lo que te hace interesante no tiene por qué ser lo que aportas. Lo que acaban codificando no lo decide nadie: las tres capas empiezan al azar y se entrenan. Imagen para programadores: un objeto `{clave: valor}` en el que **todas las claves casan un poco** y te llevas una mezcla de los valores.
+
+**Un modelo de verdad: bloques apilados.** Subimos de nivel, como en la escena 4. Un **bloque** es atención seguida de capas normales, con sus propios pesos. De cada bloque sale un vector por token, del mismo tamaño, y entra en el siguiente; las capas de cada bloque procesan todos los tokens, cada uno por separado. En el segundo bloque, *come* vuelve a mirar, pero los vectores que ve ya vienen mezclados (*perro* ya tomó algo de *el*): la información se encadena. Al final, solo el vector del último token pasa a la capa final. Clip, con tamaños reales (fuentes en los bloques 1.1 y 1.3): Llama 3.2 3B, 28 bloques y 3.072 números por token; Qwen3.6 35B, 40 y 2.048; Kimi K3, 93 y 7.168. Las «capas» de la escena 4 eran estos bloques. No confundir: los bloques van **en serie**; dentro de cada bloque hay varias atenciones **en paralelo** (el artículo original usa ocho).
 
 En código (simplificado: omito la escala y la normalización que lleva la versión real):
 
@@ -329,7 +343,7 @@ function atencion(vectores, q, k, v) {
 
 Entra un vector por token y sale un vector por token, del mismo tamaño, pero ahora **cada uno sabe algo de su frase**.
 
-**¿Quién decide qué es "buscar" y qué es "ofrecer"?** Nadie. Los pesos de esas tres capas empiezan al azar y se ajustan en el entrenamiento, igual que en el juguete (1.4): si mirar a *peces* ayuda a predecir mejor lo que viene después de *banco*, esos pesos se van ajustando para que *banco* mire a *peces*.
+**¿Quién decide qué es "buscar" y qué es "ofrecer"?** Nadie. Los pesos de esas tres capas empiezan al azar y se ajustan en el entrenamiento, igual que en el juguete (1.4): si mirar a *perro* ayuda a predecir mejor lo que viene después de *come*, esos pesos se van ajustando para que *come* mire a *perro*.
 
 **Cómo es el modelo completo.** Esto, apilado:
 
@@ -339,7 +353,11 @@ Entra un vector por token y sale un vector por token, del mismo tamaño, pero ah
 
 Todo son tablas de pesos, `capa`, `neurona` y `porcentajes`. No hay ninguna pieza nueva, solo muchas más.
 
-**El precio, visible en el código:** fijaos en el `for` de los tokens dentro de otro `for` de los tokens. Cada token contra todos → coste **cuadrático**. Duplicar el contexto ≈ cuadruplicar el trabajo. Por eso el contexto es finito y caro.
+(Al final de este bloque, en 6.12, Clip: «Adiós, magia». Antes estaba tras la neurona, en la escena 4.)
+
+**El precio, visible en el código:** fijaos en el `for` de los tokens dentro de otro `for` de los tokens. Cada token contra todos → coste **cuadrático**. Comparaciones = tokens × tokens: con nuestras 3 palabras, 3 × 3 = 9; con 1.000, un millón; con 2.000, cuatro millones. Por eso duplicar el contexto ≈ cuadruplicar el trabajo.
+
+**Y la memoria.** Quién mira a quién se tira, pero mientras dura la conversación sí se guarda, para cada token, lo que aporta a los demás (su clave y su valor), para no recalcularlo con cada token nuevo. Eso crece en proporción al contexto, no con el cuadrado. Dato real del libro (5.3, Llama 3.2 3B en Ollama): el modelo pesa 2,0 GB; con 4.096 tokens de contexto ocupa 2,39 GB, con 16.384, 3,80 GB, y con 32.768, 5,58 GB. Por eso el contexto es finito y caro.
 
 (Si sobra un segundo: este diseño viene de *Attention Is All You Need*, 2017. Antes se leía palabra a palabra, en serie; esto lo calcula todo a la vez, y eso permitió entrenar con muchísimos más datos.)
 
@@ -354,10 +372,10 @@ El mismo bucle del juguete, con miles de frases. «Le di de comer al **gato**» 
 
 **La relación nunca se escribe: es un efecto secundario de intentar predecir bien el siguiente token.** Dos tokens acaban cerca porque, para predecir, da casi igual uno que otro.
 
-Ojo, hay dos tipos de "relación" y conviene no mezclarlos:
+Por si preguntan (ya no sale en pantalla): hay dos tipos de "relación" y conviene no mezclarlos:
 
 - **Parecido** (*perro* ≈ *gato*): está en la **tabla**, es la posición en el mapa. Fija tras el entrenamiento.
-- **Relevancia en esta frase** (*banco* ↔ *peces*): la calcula la **atención** en cada frase, con los pesos de consulta y clave. Cambia de una frase a otra.
+- **Relevancia en esta frase** (*come* ↔ *perro*): la calcula la **atención** en cada frase, con los pesos de consulta y clave. Cambia de una frase a otra.
 
 **Y ya está.** Terminado el entrenamiento, todos esos números (tabla, consultas, claves, valores, capas) se quedan fijos, como los 46 del juguete. Como curiosidad del mapa que queda, las direcciones también acaban significando algo: `rey − hombre + mujer` cae cerca de `reina`.
 
@@ -366,6 +384,8 @@ Ojo, hay dos tipos de "relación" y conviene no mezclarlos:
 ### 2.3 Generar: el sorteo
 
 Como en el juguete, pero **el código que envuelve al modelo** no siempre elige el más probable: sortea (temperatura), lo añade al final del texto y vuelve a llamar al modelo. Un token cada vez.
+
+**La temperatura** es una perilla del programa, no del modelo: retoca los porcentajes antes de sortear (cada uno elevado a 1/T y vuelto a repartir). En pantalla, con la lista ilustrativa sofá 50 / suelo 30 / jardín 15 / banco 5: a **0,5** se afila (68 / 25 / 6 / 1) y el favorito gana casi siempre; a **2** se aplana (38 / 29 / 21 / 12) y salen más los raros: más variedad y más riesgo. A 0, siempre el más probable. El modelo no cambia ni un número.
 
 Tres consecuencias para cerrar el bloque:
 
@@ -376,14 +396,13 @@ Tres consecuencias para cerrar el bloque:
 **Diapositivas:**
 
 - La cadena texto → probabilidades.
-- "banco" con tres frases: flechas de atención de distinto grosor hacia *peces* / *parque* / *central*, y el punto de *banco* desplazándose en el mapa hacia una zona distinta en cada caso.
-- El código de `atencion` con los dos `for` anidados resaltados (coste cuadrático).
-- La pila del modelo completo: tabla → [atención → capas] × N → capa final → porcentajes.
+- Nuestra red con «el perro come»: solo entra *come*. La red se desliza y se abre el hueco de la atención entre la tabla y las capas; dentro, las tres capas, los tres vectores de cada token, mirar (consulta de *come* contra las claves, porcentajes ilustrativos) y mezclar. Después, todo igual. Y qué se guarda: las tres capas (+18, hipotético).
+- Subir de nivel: la misma figura se convierte en bloques [atención → capas] apilados hasta la capa final, y Clip con bloques y números por token de Llama 3.2 3B, Qwen3.6 35B y Kimi K3.
+- El código de `atencion` con los dos `for` anidados resaltados (coste cuadrático) y la memoria real de Llama 3.2 3B según el contexto.
 - La lista gato/perro/sofá/factura moviéndose frase a frase (ilustrativo).
 - El mapa: palabras al azar que acaban agrupadas.
-- Los dos tipos de relación: parecido (mapa) frente a relevancia en la frase (flechas de atención).
 
-**Si vas tarde:** en atención, quita el código y quédate con *banco* + consulta/clave/valor contado con palabras + "cada token contra todos, por eso el contexto es caro". No quites el bloque 1.4: es lo que une toda la charla.
+**Si vas tarde:** en atención, quita el código y quédate con «el perro come» + consulta/clave/valor contado con palabras + "cada token contra todos, por eso el contexto es caro". No quites el bloque 1.4: es lo que une toda la charla.
 
 **Transición:** "Todo esto suena muy bien en una diapositiva. Pero ¿se puede hacer de verdad? Un modelo de texto que valga para algo, en esta sala, no. Pero el bucle es el mismo para cualquier cosa, y uno pequeño sí lo podemos entrenar nosotros. Para muestra, un botón."
 
@@ -458,6 +477,8 @@ Tres consecuencias para cerrar el bloque:
 ---
 
 ## 4 · Cómo se entrena un LLM — y por qué tú no
+
+**En pantalla (9.3 y 9.4), dos ventanas emergentes con los datos de cada fase:** `corpus.txt`, con el principio de *El hobbit* de Tolkien, texto que trae Samuel de su edición, sin referencia en pantalla: la dice de viva voz, y `ejemplos.txt`, conversaciones de ejemplo con marcas de turno ilustrativas y la respuesta subrayada, que es donde se mide el error. Cada ventana es un beat propio (tarjeta → ventana → siguiente tarjeta). En las tarjetas: «al lado del preentrenamiento, una gota: varios órdenes de magnitud menos datos» (los 13.000 ejemplos de Ouyang y otros, 2022, quedan en la nota) y «en ese trabajo, un modelo de 1.300 millones de parámetros con las tres fases gustó más que GPT-3, de 175.000 millones» (libro, 5.2).
 
 > Si hay que ir corto: base vs. instruct con el ejemplo de Francia, y RLHF en una frase ("humanos eligen la mejor respuesta, y de ahí la adulación").
 
@@ -556,28 +577,11 @@ Tres consecuencias para cerrar el bloque:
 
 ## 7 · Cierre
 
-**Objetivo:** atar los cuatro hilos y dejar un criterio de decisión.
+Dos beats (decidido el 2026-11-10; se quitaron la tabla «¿Qué necesito?», el «99 %» y los tres puntos clave, que venían de LoRA, RAG y los dígitos):
 
-1. **Recapitulación en una diapositiva** — tres formas de usar la maquinaria:
-   
-   | Quiero que el modelo…                                            | Herramienta                  | Coste         |
-   | ---------------------------------------------------------------- | ---------------------------- | ------------- |
-   | sepa lo que pone en mis datos                                    | **RAG**                      | No se entrena |
-   | responda con mi formato o tono                                   | **Fine-tuning (LoRA)**       | Minutos, MB   |
-   | resuelva una tarea pequeña y cerrada, rápido y sin salir de casa | **Modelo propio desde cero** | Segundos, KB  |
-   | haga cualquier cosa                                              | Modelo comercial             | Lo de siempre |
-   
+1. **La frase final del libro:** «Las dos actitudes que peor le sientan a esta tecnología: creer que es magia y creer que es trivial». Haber recorrido el ciclo entero, aunque sea con un juguete, es la mejor defensa contra las dos.
+2. **¡Gracias!** con el título de verdad, «¿Cuál es el siguiente token?», Samuel Solís, DrupalCamp Spain 2026 y un **QR grande al repositorio** (`github.com/samuelsolis/cual-es-el-siguiente-token`): la charla y el modelo de juguete, con instrucciones para entrenarlo. Preguntas.
 
-    Y la proporción honesta: el 99 % de los casos se resuelven con lo último. Saber cómo funciona por dentro sirve para usarlo mejor y para reconocer el 1 % restante.
-2. **Las tres lecciones que vuelven una y otra vez:**
-   - Más grande no es mejor (9.098 parámetros ganan a 101.770).
-   - El modelo no es el sistema (preprocesado: 93 % vs. 69 %).
-   - Los errores se multiplican (0,933¹⁰ ≈ 0,5).
-3. **Frase final** (cierra el libro y la charla):
-   > *"Haber recorrido el ciclo entero, aunque sea en pequeño, es la mejor defensa contra las dos actitudes que peor sientan a esta tecnología: creer que es magia y creer que es trivial."*
-4. Referencia al libro / repositorio con los ejemplos (QR en la última diapositiva).
-
----
 
 ## Plan de recortes (si a mitad vas tarde)
 

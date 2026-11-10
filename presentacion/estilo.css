@@ -69,6 +69,7 @@ html, body {
   visibility: hidden;
   transition: opacity var(--t) ease, visibility 0s linear var(--t);
 }
+.escena[data-fuera] { display: none; }
 .escena.activa { opacity: 1; visibility: visible; transition: opacity var(--t) ease; }
 
 [data-in], [data-out] {
@@ -504,3 +505,4 @@ table.tabla tr.marcada td { background: #ffff9c; }
   opacity: 0; transition: opacity .4s ease; pointer-events: none;
 }
 #ayuda.visible { opacity: 1; }
+.dos-prompt .azul-bash { color: #5c8cff; }
